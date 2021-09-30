@@ -30,7 +30,7 @@ class FormLogin extends Component {
             password:this.state.password
         }
         try{
-            const {data} = await axios.post(`http://localhost:5000/login`, payload)
+            const {data} = await axios.post("http://localhost:5000/login", payload)
             const {token} = data
             localStorage.setItem('token',token)
             console.log(this.props.history)
