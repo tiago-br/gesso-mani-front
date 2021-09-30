@@ -26,10 +26,10 @@ class FormNewUser extends Component {
             username:this.state.username,
             password:this.state.password
         }
-        const usernames = await axios.get('http://localhost:5000/signup')
+        const usernames = await axios.get(process.env.API + '/signup')
         const checkExistUsername = () => usernames.data.find((e)=>e.username===this.state.username)
         try{
-            await axios.post('http://localhost:5000/signup',payload)
+            await axios.post(process.env.API + '/signup',payload)
         }catch(er){
             if(this.state.username.length<=3){
                 this.setState({
