@@ -8,11 +8,19 @@ class Api {
 
         
     }
+    
     login =  async (payload) =>{
-        const {data} = await this.api.post('')
+        const {data} = await this.api.post('/login',payload)
         const {token} = data
         localStorage.setItem('token',token)
     }
+
+    signup = async () => {
+
+        
+
+    }
+
 }
 
 export default new Api()

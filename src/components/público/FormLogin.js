@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
+import api from '../../utils/api.util'
+
 require('dotenv').config()
 
 const FormContainer = styled.form`
@@ -9,39 +10,39 @@ const FormContainer = styled.form`
 
 
 class FormLogin extends Component {
-    state={
-        username:'',
-        password:'',
-        msg:''
+    state = {
+        username: '',
+        password: '',
+        msg: ''
     }
-    handleChangeLogin =(e)=>{
+    handleChangeLogin = (e) => {
         e.preventDefault()
-        const {name, value} = e.target
+        const { name, value } = e.target
 
         this.setState({
-            [name]:value
+            [name]: value
         })
     }
 
-    handleSubmit = async (e) =>{
+    handleSubmit = async (e) => {
         e.preventDefault()
         const payload = {
-            username:this.state.username,
-            password:this.state.password
+            username: this.state.username,
+            password: this.state.password
         }
-        try{
-            const {data} = await axios.post(`http://localhost:5000/login`, payload)
-            const {token} = data
-            localStorage.setItem('token',token)
-            console.log(this.props.history)
+        try {
+
+            await api.login(payload)
             this.props.history.push('/vendas')
-        }catch(e){
-            this.setState({
-                msg:'Usuário ou senha inválido',
-                password:'',
-                username:''
-            })
+
         } 
+        catch (e) {
+            this.setState({
+                msg: 'Usuário ou senha inválido',
+                password: '',
+                username: ''
+            })
+        }
     }
 
     render() {

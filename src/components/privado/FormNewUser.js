@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import api from '../../utils/api.util'
 
 const formUser = styled.form`
 
@@ -26,11 +27,12 @@ class FormNewUser extends Component {
             username:this.state.username,
             password:this.state.password
         }
-        const usernames = await axios.get(process.env.API + '/signup')
+        const usernames = await axios.get('http://localhost:5000/signup')
         const checkExistUsername = () => usernames.data.find((e)=>e.username===this.state.username)
         try{
             await axios.post(process.env.API + '/signup',payload)
         }catch(er){
+          
             if(this.state.username.length<=3){
                 this.setState({
                      msg:'Usuário deve conter pelo menos 4 dígitos',
@@ -53,7 +55,8 @@ class FormNewUser extends Component {
                     password:""
                 })
             }
-             
+           
+            
         }
 
         this.setState({
@@ -62,6 +65,7 @@ class FormNewUser extends Component {
         })
 
     }
+    
     render() {
         return (
             <>
