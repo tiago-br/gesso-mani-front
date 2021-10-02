@@ -33,7 +33,7 @@ class FormLogin extends Component {
         try {
 
             await api.login(payload)
-            this.props.history.push('/vendas')
+            window.location = "/sistema/novofuncionario"
 
         } 
         catch (e) {

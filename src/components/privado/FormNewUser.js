@@ -2,70 +2,76 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import api from '../../utils/api.util'
+require('dotenv').config()
+
 
 const formUser = styled.form`
 
 `
 
 class FormNewUser extends Component {
-    state={
-        username:"",
-        password:"",
-        msg:""
+    state = {
+        username: "",
+        password: "",
+        msg: ""
     }
 
-    handleUsername = (e) =>{
+
+    handleUsername = (e) => {
         e.preventDefault()
-        const {name, value} = e.target
+        const { name, value } = e.target
         this.setState({
-            [name]:value
+            [name]: value
         })
     }
-    handleSubmit = async (e) =>{
-        console.log('submit')
-        const payload ={
-            username:this.state.username,
-            password:this.state.password
-        }
-        const usernames = await axios.get('http://localhost:5000/signup')
-        const checkExistUsername = () => usernames.data.find((e)=>e.username===this.state.username)
-        try{
-            await axios.post(process.env.API + '/signup',payload)
-        }catch(er){
-          
-            if(this.state.username.length<=3){
-                this.setState({
-                     msg:'Usuário deve conter pelo menos 4 dígitos',
-                     username:"",
-                     password:""
-                 })
-            
-            }
-            if(checkExistUsername){
-                this.setState({
-                    msg:'Usuário já existente',
-                    username:"",
-                    password:""
-                })
-            }
-            if(this.state.password.length !== 6){
-                this.setState({
-                    msg:'A senha precisa ter 6 dígitos',
-                    username:"",
-                    password:""
-                })
-            }
-           
-            
+
+    handleSubmit = async (e) => {
+
+
+        const payload = {
+            username: this.state.username,
+            password: this.state.password
         }
 
-        this.setState({
-            username:"",
-            password:""
-        })
+        const usernames = await api.getUsers()
+        const checkExistUsername = usernames.data.find((e) => e.username === this.state.username)
 
-    }
+
     
+
+        try {
+     
+            api.signup(payload)
+
+            this.setState({
+                msg: 'Usuário criado com sucesso',
+            })
+
+            if (this.state.username.length <= 3) {
+                this.setState({
+                    msg: 'Usuário deve conter pelo menos 4 dígitos',
+                })
+            } 
+            if (this.state.password.length !== 6) {
+                this.setState({
+                    msg: 'A senha precisa ter 6 dígitos',
+                })
+            } 
+           if (checkExistUsername) {
+                this.setState({
+                    msg: 'Usuário já existente',
+                })
+            } 
+           
+
+        } catch (error) {
+            
+
+        }
+        
+
+    }
+
     render() {
         return (
             <>
