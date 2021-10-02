@@ -6,7 +6,7 @@ require('dotenv').config()
 
 
 const formUser = styled.form`
-
+ color:pink;
 `
 
 class FormNewUser extends Component {
