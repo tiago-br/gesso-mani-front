@@ -115,6 +115,7 @@ const Message = styled.p`
 
 margin-top: 1.5rem;
 text-align: center;
+font-size: 1.3rem;
 
 
 `
