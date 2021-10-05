@@ -208,7 +208,15 @@ class FormNewUser extends Component {
                 data:"dia 21",
                 valor_total: 1000           
         }
-        
+    //     api.postProduto( {
+    //         name:"produto400",
+    //         quantidade_em_estoque:2,
+    //         valor_de_venda:200,
+    //         descricao:"uma placa realmente bonita",
+    //         img_Url:"algumaimagem",
+    //         modificado_por:"gustavo"
+    //   })
+    
 
 
     }

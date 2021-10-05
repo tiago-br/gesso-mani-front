@@ -72,9 +72,13 @@ class Api {
     getProduto = async () =>{
       return await this.api.get('/produtos')
     }
-      //metodo delet, deleta um orçamento inteiro de acordo com o Id
+      //metodo delete, deleta um orçamento inteiro de acordo com o Id
     deleteProduto = async (id) =>{
       await this.api.delete(`/produtos/${id}`)
+    }
+      //metodo post, cria um novo produto
+    postProduto = async (payload) =>{
+      await this.api.post('/produtos',payload)
     }
 }
 
