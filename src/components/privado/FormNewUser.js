@@ -216,9 +216,11 @@ class FormNewUser extends Component {
             img_Url:"algumaimagem",
             modificado_por:"gustavo"
       }
-      const {data} = await api.getProduto()
-      const ap = data[0]._id
-      await api.putProduto(ap,a)
+    //   const {data} = await api.getProduto()
+    //   const ap = data[0]._id
+    //   await api.putProduto(ap,a)
+     const ll = await api.getVendas()
+     console.log(ll)
         
 
 

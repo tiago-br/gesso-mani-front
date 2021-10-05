@@ -51,7 +51,7 @@ class Api {
 
       return await this.api.get('/signup')
     }
-    // orçamento route metodos
+    // orçamento route metodos:
       //metodo delete
     deleteOrcamento = async (id) =>{
 
@@ -67,7 +67,7 @@ class Api {
       await this.api.post('/orcamento',payload)
     }
 
-    // produtos route metodos
+    // produtos route metodos:
       //metodo get, pegar todos os produtos 
     getProduto = async () =>{
       return await this.api.get('/produtos')
@@ -87,11 +87,25 @@ class Api {
     }
       //metodo put, altera o produto inteiro a partir da aba estoque
     putProduto = async (id,payload) =>{
-
       await this.api.put(`/produtos/estoque/${id}`,payload)
-
     }
-
+    //venda route metodos:
+      //retorna todas as vendas
+    getVendas = async () =>{
+      return await this.api.get('/vendas')
+    }
+      //post, cria uma nova venda
+    postVenda = async (payload) => {
+      await this.api.post('/vendas', payload)
+    }
+      //delete a venda inteira 
+    deleteVenda = async (id) =>{
+      await this.api.delete(`/vendas/${id}`)
+    }
+      //delete um produto da venda
+    deleteUmProdutoVenda = async (idVenda,idProduto) =>{
+      await this.api.delete(`/vendas/${idVenda}/${idProduto}`)
+    }
 }
 
 export default new Api()
