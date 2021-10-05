@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 require('dotenv').config()
-
+//git ignore
 ReactDOM.render(
   <BrowserRouter>
     <App />
