@@ -37,24 +37,34 @@ class Api {
     };
     
     login =  async (payload) =>{
-        const {data} = await this.api.post('/login',payload)
-        const {token} = data
-        localStorage.setItem('token',token)
+      const {data} = await this.api.post('/login',payload)
+      const {token} = data
+      localStorage.setItem('token',token)
     }
 
     signup = async (payload) => {
 
-      
-
-        await this.api.post('/signup',payload)
-        
-     
+      await this.api.post('/signup',payload)
     }
 
     getUsers = async () => {
 
-        return await this.api.get('/signup')
-  
+      return await this.api.get('/signup')
+    }
+    // orçamento route metodos
+      //metodo delete
+    deleteOrcamento = async (id) =>{
+
+      await this.api.delete(`/orcamento/${id}`)
+
+    }
+      //retorna todos os orçamentos
+    getOrcamento = async () =>{
+      return await this.api.get('/orcamento')
+    }
+      //cria um novo orcamento a partir da venda
+    postOrcamento = async (payload) => {
+      await this.api.post('/orcamento',payload)
     }
 
 }

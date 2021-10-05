@@ -153,46 +153,62 @@ class FormNewUser extends Component {
     handleSubmit = async (e) => {
 
 
-        const payload = {
-            username: this.state.username,
-            password: this.state.password
+        // const payload = {
+        //     username: this.state.username,
+        //     password: this.state.password
+        // }
+
+        // const usernames = await api.getUsers()
+        // const checkExistUsername = usernames.data.find((e) => e.username === this.state.username)
+
+
+
+        // try {
+        //     api.signup(payload)
+
+        //     this.setState({
+        //         msg: 'Usuário criado com sucesso',
+        //     })
+
+        //     if (this.state.username.length <= 3) {
+        //         this.setState({
+        //             msg: 'Usuário deve conter pelo menos 4 dígitos',
+        //         })
+        //     }
+        //     if (this.state.password.length !== 6) {
+        //         this.setState({
+        //             msg: 'A senha precisa ter 6 dígitos',
+        //         })
+        //     }
+        //     if (checkExistUsername) {
+        //         this.setState({
+        //             msg: 'Usuário já existente',
+        //         })
+        //     }
+
+
+        // } catch (error) {
+
+
+        // }
+
+        e.preventDefault()
+       
+        const p = {
+                vendedor: "Gusta",
+                cliente:"tiago",
+                produtos: [{
+                    nome: "gessoooAo",
+                    quantidade: 10,
+                    valorUnitário: 25
+                    },  {nome: "chavedefenda",
+                    quantidade: 10,
+                    valorUnitário: 250000
+                    }],
+                data:"dia 21",
+                valor_total: 1000           
         }
-
-        const usernames = await api.getUsers()
-        const checkExistUsername = usernames.data.find((e) => e.username === this.state.username)
-
-
-
-
-        try {
-
-            api.signup(payload)
-
-            this.setState({
-                msg: 'Usuário criado com sucesso',
-            })
-
-            if (this.state.username.length <= 3) {
-                this.setState({
-                    msg: 'Usuário deve conter pelo menos 4 dígitos',
-                })
-            }
-            if (this.state.password.length !== 6) {
-                this.setState({
-                    msg: 'A senha precisa ter 6 dígitos',
-                })
-            }
-            if (checkExistUsername) {
-                this.setState({
-                    msg: 'Usuário já existente',
-                })
-            }
-
-
-        } catch (error) {
-
-
-        }
+        api.postOrcamento(p)
 
 
     }
