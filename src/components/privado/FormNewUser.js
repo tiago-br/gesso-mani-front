@@ -220,7 +220,7 @@ class FormNewUser extends Component {
     //   const ap = data[0]._id
     //   await api.putProduto(ap,a)
      const ll = await api.getVendas()
-     console.log(ll)
+      await api.putVenda("615b1d651342e6c31a28940d","615b1d651342e6c31a28940f",{quantidade:40})
         
 
 

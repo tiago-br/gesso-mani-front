@@ -80,7 +80,7 @@ class Api {
     postProduto = async (payload) =>{
       await this.api.post('/produtos',payload)
     }
-      //metodo put, para alterar a quantidade a partir de venda
+      //metodo put, para alterar a quantidade a partir da venda
     putVendaParaProduto = async (name,payload)=> {
       //payload é um objeto no formato {quantidade:Number}
       await this.api.put(`/produtos/${name}`,payload)
@@ -105,6 +105,12 @@ class Api {
       //delete um produto da venda
     deleteUmProdutoVenda = async (idVenda,idProduto) =>{
       await this.api.delete(`/vendas/${idVenda}/${idProduto}`)
+    }
+      //metodo put para alterar a quantidade de um produto da venda
+    putVenda = async (idVenda,idProduto,payload) =>{
+      //payload deve ser um objeto no formato {quantidade: Number}
+      //altera para a quantidade que for passada no payload
+      await this.api.put(`/vendas/${idVenda}/${idProduto}`,payload)
     }
 }
 
