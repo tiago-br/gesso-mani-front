@@ -209,14 +209,16 @@ class FormNewUser extends Component {
                 valor_total: 1000           
         }
          const a = {
-            name:"produto400",
-            quantidade_em_estoque:2,
+            name:"NOVO",
+            quantidade_em_estoque:5,
             valor_de_venda:200,
             descricao:"uma placa realmente bonita",
             img_Url:"algumaimagem",
             modificado_por:"gustavo"
       }
-      await api.putVendaParaProduto('produto4000',{quantidade:1})
+      const {data} = await api.getProduto()
+      const ap = data[0]._id
+      await api.putProduto(ap,a)
         
 
 

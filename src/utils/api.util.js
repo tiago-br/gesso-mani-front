@@ -81,11 +81,17 @@ class Api {
       await this.api.post('/produtos',payload)
     }
       //metodo put, para alterar a quantidade a partir de venda
-
     putVendaParaProduto = async (name,payload)=> {
       //payload é um objeto no formato {quantidade:Number}
       await this.api.put(`/produtos/${name}`,payload)
     }
+      //metodo put, altera o produto inteiro a partir da aba estoque
+    putProduto = async (id,payload) =>{
+
+      await this.api.put(`/produtos/estoque/${id}`,payload)
+
+    }
+
 }
 
 export default new Api()
