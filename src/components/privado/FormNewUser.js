@@ -208,7 +208,7 @@ class FormNewUser extends Component {
                 data:"dia 21",
                 valor_total: 1000           
         }
-        api.postOrcamento(p)
+        
 
 
     }

@@ -67,6 +67,15 @@ class Api {
       await this.api.post('/orcamento',payload)
     }
 
+    // produtos route metodos
+      //metodo get, pegar todos os produtos 
+    getProduto = async () =>{
+      return await this.api.get('/produtos')
+    }
+      //metodo delet, deleta um orçamento inteiro de acordo com o Id
+    deleteProduto = async (id) =>{
+      await this.api.delete(`/produtos/${id}`)
+    }
 }
 
 export default new Api()
