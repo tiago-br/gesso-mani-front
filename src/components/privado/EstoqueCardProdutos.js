@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import api from '../../utils/api.util'
 
 const FormCard = styled.form`
 
@@ -16,10 +17,9 @@ class EstoqueCardProdutos extends Component {
         img_Url:this.props.img_Url,
         id:this.props._id,
         msg:"",
-        edit:{
-            disabled:"true"
-        },
-        load:false
+        edit:true,
+        load:false,
+        modificado_por:localStorage.getItem('user')
     }
 
     componentDidMount=()=>{
@@ -39,7 +39,32 @@ class EstoqueCardProdutos extends Component {
                     edit:!this.state.edit
             })
     }
+    handleAtualizarProduto = async (e) =>{
+        e.preventDefault()
+        const payload={
+            name:this.state.name,
+            quantidade_em_estoque:this.state.quantidade_em_estoque,
+            valor_de_venda:this.state.valor_de_venda,
+            descricao:this.state.descricao,
+            img_Url:this.state.img_Url,
+            modificado_por:this.state.modificado_por
+        }
+        try {
+            await api.putProduto(this.state.id,payload)
+            this.setState({
+                msg:"Produto Atualizado com Sucesso",
+                
+            })
+        } catch (error) {
+            this.setState({
+                msg:"Erro ao atualizar o produto",
+
+            })
+        }
+        this.handleEditOn()
+    }
     render() {
+        console.log(this.state.modificado_por)
         return (
             
             <div>
@@ -57,10 +82,11 @@ class EstoqueCardProdutos extends Component {
                         <input type="text" name="img_Url" value={this.state.img_Url} onChange={this.handleChange}/>
                         <label>Descrição do produto</label>
                         <textarea name="descricao" value={this.state.descricao} onChange={this.handleChange} rows="8" cols="70">{this.state.descricao}</textarea>
-                        <button>Atualizar Produto</button>
+                        <button onClick={this.handleAtualizarProduto}>Atualizar Produto</button>
                         </fieldset>
                         </FormCard>
                         <button onClick={this.handleEditOn}>Editar</button>
+                        <div>{this.state.msg}</div>
                     </ContainerProduto>
                 :
                 <h1>Carregando ...</h1>
