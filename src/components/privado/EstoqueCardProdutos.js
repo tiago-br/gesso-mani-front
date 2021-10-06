@@ -19,7 +19,8 @@ class EstoqueCardProdutos extends Component {
         openDeletBar:false,
         msgClass:"",
         deleteSenha:"",
-        msgDelet:""
+        msgDelet:"",
+        quantidade:0
 
     }
 
@@ -36,10 +37,21 @@ class EstoqueCardProdutos extends Component {
             [name]:value
         })
     }
-    handleEditOn = (e) =>{
-            this.setState({
-                    edit:!this.state.edit
-            })
+    handleEditOn = (changeMsg) =>{
+            if(changeMsg==="message"){
+                this.setState({
+                    edit:!this.state.edit,
+                }) 
+            }else if(changeMsg==="Erro ao adicionar"){
+                this.setState({
+                    msg:changeMsg
+                })
+            }else{
+                this.setState({
+                edit:!this.state.edit,
+                msg:""
+            }) 
+            }
     }
     handleAtualizarProduto = async (e) =>{
         e.preventDefault()
@@ -67,7 +79,7 @@ class EstoqueCardProdutos extends Component {
                 msgClass:"fail-att-product"
             })
         }
-        this.handleEditOn()
+        this.handleEditOn("message")
     }
     handleOpenDeletBar= (e) =>{
         e.preventDefault()
@@ -92,8 +104,22 @@ class EstoqueCardProdutos extends Component {
             })
         }
     }
+    handleAddEstoque = async (e)=>{
+        e.preventDefault(e)
+        try {
+    
+            const payload={
+                quantidade : parseFloat(this.state.quantidade)
+            }
+            console.log(typeof payload.quantidade)
+            await api.putAddEstoque(payload,this.state.name)
+            window.location.reload()
+            // this.handleEditOn(this.state.quantidade)
+        } catch (error) {
+            this.handleEditOn("Erro ao adicionar")
+        }
+    }
     render() {
-        console.log(this.state.msgClass)
         return (
             
             <div>
@@ -115,16 +141,15 @@ class EstoqueCardProdutos extends Component {
                         :
                         <>
                         <fieldset disabled={this.state.edit}>
-                        <div>
-                       
+                        <div className="estoque-card-fields">
                             
                                 <label>Produto: </label>
                                 <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
                           
+                                    
+                                <label>Quantidade em estoque: </label>
+                                <input type="number" step="1" min="0" name="quantidade_em_estoque" value={this.state.quantidade_em_estoque} onChange={this.handleChange}></input>
                             
-                        <label>Quantidade em estoque: </label>
-                        <input type="number" step="1" min="0" name="quantidade_em_estoque" value={this.state.quantidade_em_estoque} onChange={this.handleChange}></input>
-                     
 
                       
                             
@@ -136,26 +161,36 @@ class EstoqueCardProdutos extends Component {
                                 <input type="text" name="img_Url" value={this.state.img_Url} onChange={this.handleChange}/>
                             
                            
-                        </div>
                       
                             <label>Descrição do produto</label>
-                            <textarea name="descricao" value={this.state.descricao} onChange={this.handleChange} rows="5" cols="60">{this.state.descricao}</textarea>
-                            <div>
+                            <textarea name="descricao" value={this.state.descricao} onChange={this.handleChange} rows="5" cols="30">{this.state.descricao}</textarea>
+                        </div>
+                        <div className="estoque-card-bts">
+                           <div>
+                                <button onClick={this.handleAtualizarProduto}>Atualizar Produto</button>
+                                <h4 className={this.state.msgClass}>{this.state.msg}</h4>
                             </div>
-                            <button onClick={this.handleAtualizarProduto}>Atualizar Produto</button>
-                     
+                            <div>
+                            <button onClick={this.handleOpenDeletBar}>Excluir Produto</button>
+                            </div>
+                            
+                        </div>
                         </fieldset>
-                        <h4 className={this.state.msgClass}>{this.state.msg}</h4>
+                        
                         </>
                         }
                         {!this.state.openDeletBar &&
-                        <div className="estoque-card-btns">
-                            <button onClick={this.handleOpenDeletBar}>Excluir Produto</button>
+                        <div className="estoque-card-btn-editar">
+                            <div>
+                            <label>Adicionar Produtos: </label>
+                            <input type="number" value={this.state.quantidade} name="quantidade" onChange={this.handleChange}/>
+                            <button onClick={this.handleAddEstoque}>Adicionar ao estoque</button>
+                            </div>
                             <button type="button" onClick={this.handleEditOn}>Editar</button>
                         </div>
                         }
                         </form>
-                    
+                        
                         
                     </>
                 :

@@ -1,12 +1,21 @@
 .form-estoque-card{
     width: 90vw;
-    height: 25vh;
+    height: 28vh;
     border: 3px solid black;
     border-radius: 10px;
     vertical-align: middle;
     margin-bottom: 5vh;
     background-color: #E5E4E2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
+}
+
+.estoque-card-bts{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .form-estoque-card fieldset{
@@ -16,11 +25,13 @@
 }
 
 .sucess-att-product{
+    font-size: 0.8rem;
     text-align: center;
     color: green;
 }
 
 .fail-att-product{
+    font-size: 0.8rem;
     text-align: center;
     color:red
 }
@@ -105,4 +116,20 @@
 #btn-delet-bar-confirmar:hover{
     cursor:pointer;
     background-color: rgb(26, 158, 26);
+}
+
+.estoque-card-btn-editar{
+    display: flex;
+    text-align: end;
+    justify-content: end;
+}
+.estoque-card-btn-editar button{
+    display: block;
+    font-size: 1.2rem;
+    color:white;
+    background-color: black;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 7px;
+    
 }
