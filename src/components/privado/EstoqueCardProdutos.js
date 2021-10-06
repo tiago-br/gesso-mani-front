@@ -111,9 +111,10 @@ class EstoqueCardProdutos extends Component {
             const payload={
                 quantidade : parseFloat(this.state.quantidade)
             }
-            console.log(typeof payload.quantidade)
             await api.putAddEstoque(payload,this.state.name)
-            window.location.reload()
+            this.setState({
+                quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque)
+            })
             // this.handleEditOn(this.state.quantidade)
         } catch (error) {
             this.handleEditOn("Erro ao adicionar")
@@ -142,7 +143,7 @@ class EstoqueCardProdutos extends Component {
                         <>
                         <fieldset disabled={this.state.edit}>
                         <div className="estoque-card-fields">
-                            
+                            <div className="estoque-card-field-left">
                                 <label>Produto: </label>
                                 <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
                           
@@ -155,16 +156,20 @@ class EstoqueCardProdutos extends Component {
                             
                                 <label>Valor de venda: </label>
                                 <input type="number" name="valor_de_venda" value={this.state.valor_de_venda}onChange={this.handleChange} min="0" step="0.01"></input>
-                            
-                            
+                            </div>
+                            <div className="estoque-card-field-right">
                                 <label>Imagem URL: </label>
-                                <input type="text" name="img_Url" value={this.state.img_Url} onChange={this.handleChange}/>
+                                    <input type="text" name="img_Url" value={this.state.img_Url} onChange={this.handleChange}/>
+                                
                             
-                           
-                      
-                            <label>Descrição do produto</label>
-                            <textarea name="descricao" value={this.state.descricao} onChange={this.handleChange} rows="5" cols="30">{this.state.descricao}</textarea>
+                        
+                                <label>Descrição do produto</label>
+                                <textarea name="descricao" value={this.state.descricao} onChange={this.handleChange} rows="5" cols="30">{this.state.descricao}</textarea>
+                            </div>
+
                         </div>
+
+
                         <div className="estoque-card-bts">
                            <div>
                                 <button onClick={this.handleAtualizarProduto}>Atualizar Produto</button>
@@ -181,10 +186,10 @@ class EstoqueCardProdutos extends Component {
                         }
                         {!this.state.openDeletBar &&
                         <div className="estoque-card-btn-editar">
-                            <div>
+                            <div className="div-estoque-btn-Adicionar">
                             <label>Adicionar Produtos: </label>
                             <input type="number" value={this.state.quantidade} name="quantidade" onChange={this.handleChange}/>
-                            <button onClick={this.handleAddEstoque}>Adicionar ao estoque</button>
+                            <button id="estoque-btn-Adicionar"onClick={this.handleAddEstoque}>Adicionar ao estoque</button>
                             </div>
                             <button type="button" onClick={this.handleEditOn}>Editar</button>
                         </div>

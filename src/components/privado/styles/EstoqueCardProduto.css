@@ -1,6 +1,6 @@
 .form-estoque-card{
     width: 90vw;
-    height: 28vh;
+    height: 35vh;
     border: 3px solid black;
     border-radius: 10px;
     vertical-align: middle;
@@ -120,8 +120,9 @@
 
 .estoque-card-btn-editar{
     display: flex;
-    text-align: end;
-    justify-content: end;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
 }
 .estoque-card-btn-editar button{
     display: block;
@@ -132,4 +133,48 @@
     height: 6vh;
     border-radius: 7px;
     
+}
+#estoque-btn-Adicionar{
+    display: inline;
+    background-color: black;
+    font-size: 1rem;
+    margin-left: 2vw;
+}
+.div-estoque-btn-Adicionar{
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.estoque-card-fields{
+    display: flex;
+}
+.estoque-card-field-left{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2vw;
+    margin-top: 2vh;
+}
+
+.estoque-card-field-left label,input{
+    font-size: 1.2rem;
+    width: 15vw;
+}
+
+.estoque-card-field-left input:disabled{
+    border:none;
+    background-color: inherit;
+    font-weight: 700;
+}
+
+.estoque-card-field-right label,input{
+    font-size: 1.2rem;
+    width: 15vw;
+}
+
+
+.estoque-card-field-rigth textarea:disabled{
+    border:none;
+    background-color: inherit;
+    font-weight: 700;
 }
