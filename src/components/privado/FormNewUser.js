@@ -7,11 +7,10 @@ require('dotenv').config()
 const Container = styled.div`
 
 width: 100vw;
-height: 100vh;
+height: 80vh;
 display: flex;
 justify-content: center;
 align-items: center;
-margin-top: -12vh;
 /* @media only screen and (max-width: 1200px) {  
         width: 1rem;
         margin-left: -2.4rem;
