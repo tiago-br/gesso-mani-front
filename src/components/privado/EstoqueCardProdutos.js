@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import api from '../../utils/api.util'
+import './styles/EstoqueCardProduto.css'
 
-const FormCard = styled.form`
 
-`
-
-const ContainerProduto = styled.div`
-`
 class EstoqueCardProdutos extends Component {
     state={
         name:this.props.name,
@@ -19,7 +15,12 @@ class EstoqueCardProdutos extends Component {
         msg:"",
         edit:true,
         load:false,
-        modificado_por:localStorage.getItem('user')
+        modificado_por:localStorage.getItem('user'),
+        openDeletBar:false,
+        msgClass:"",
+        deleteSenha:"",
+        msgDelet:""
+
     }
 
     componentDidMount=()=>{
@@ -28,13 +29,14 @@ class EstoqueCardProdutos extends Component {
         })
     }
     handleChange = (e) =>{
+        e.preventDefault()
         const {name,value}= e.target
 
         this.setState({
             [name]:value
         })
     }
-    handleEditOn = () =>{
+    handleEditOn = (e) =>{
             this.setState({
                     edit:!this.state.edit
             })
@@ -50,44 +52,113 @@ class EstoqueCardProdutos extends Component {
             modificado_por:this.state.modificado_por
         }
         try {
+            if(this.state.name==="" || this.state.quantidade_em_estoque<0){
+                throw new Error()
+            }
             await api.putProduto(this.state.id,payload)
             this.setState({
                 msg:"Produto Atualizado com Sucesso",
+                msgClass:"sucess-att-product"
                 
             })
         } catch (error) {
             this.setState({
                 msg:"Erro ao atualizar o produto",
-
+                msgClass:"fail-att-product"
             })
         }
         this.handleEditOn()
     }
+    handleOpenDeletBar= (e) =>{
+        e.preventDefault()
+        this.setState({
+            openDeletBar:!this.state.openDeletBar
+        })
+    }
+    handleDeleteProduct = async (e) =>{
+        e.preventDefault()
+        if(this.state.deleteSenha===this.state.name){
+            try {
+                await api.deleteProduto(this.state.id)
+                window.location.reload()
+            } catch (error) {
+                this.setState({
+                    msgDelet:"Erro ao deletar o item"
+                })
+            }
+        }else{
+            this.setState({
+                msgDelet:"Nome digitado inválido"
+            })
+        }
+    }
     render() {
-        console.log(this.state.modificado_por)
+        console.log(this.state.msgClass)
         return (
             
             <div>
                 {this.state.load?
-                    <ContainerProduto>
-                        <FormCard>
+                <>
+                    <form className="form-estoque-card">
+                       
+                        {this.state.openDeletBar?
+                        <>
+                        <p>Tem certeza que quer deletar o produto <span>{this.state.name}</span> do estoque?</p>
+                        <label>Digite o nome do produto, e clique em confirmar para excluir o produto:</label>
+                        <input type="text" name="deleteSenha" value={this.state.deleteSenha} onChange={this.handleChange}/>
+                        
+                        <button onClick={this.handleOpenDeletBar}>Cancelar</button>
+                        <button onClick={this.handleDeleteProduct}>Confirmar</button>
+                        </>
+                        :
+                        <>
                         <fieldset disabled={this.state.edit}>
-                        <label>Produto</label>
-                        <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
-                        <label>Quantidade em estoque</label>
+                        <div>
+                       
+                            
+                                <label>Produto: </label>
+                                <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
+                          
+                            
+                        <label>Quantidade em estoque: </label>
                         <input type="number" step="1" min="0" name="quantidade_em_estoque" value={this.state.quantidade_em_estoque} onChange={this.handleChange}></input>
-                        <label>Valor de venda</label>
-                        <input type="number" name="valor_de_venda" value={this.state.valor_de_venda}onChange={this.handleChange} min="0" step="0.01"></input>
-                        <label>Imagem URL </label>
-                        <input type="text" name="img_Url" value={this.state.img_Url} onChange={this.handleChange}/>
-                        <label>Descrição do produto</label>
-                        <textarea name="descricao" value={this.state.descricao} onChange={this.handleChange} rows="8" cols="70">{this.state.descricao}</textarea>
-                        <button onClick={this.handleAtualizarProduto}>Atualizar Produto</button>
+                     
+
+                      
+                            
+                                <label>Valor de venda: </label>
+                                <input type="number" name="valor_de_venda" value={this.state.valor_de_venda}onChange={this.handleChange} min="0" step="0.01"></input>
+                            
+                            
+                                <label>Imagem URL: </label>
+                                <input type="text" name="img_Url" value={this.state.img_Url} onChange={this.handleChange}/>
+                            
+                           
+                        </div>
+                      
+                            <label>Descrição do produto</label>
+                            <textarea name="descricao" value={this.state.descricao} onChange={this.handleChange} rows="5" cols="60">{this.state.descricao}</textarea>
+                            <div>
+                            </div>
+                            <button onClick={this.handleAtualizarProduto}>Atualizar Produto</button>
+                     
                         </fieldset>
-                        </FormCard>
-                        <button onClick={this.handleEditOn}>Editar</button>
-                        <div>{this.state.msg}</div>
-                    </ContainerProduto>
+                        <h4 className={this.state.msgClass}>{this.state.msg}</h4>
+                        </>
+                        }
+                        {this.state.openDeletBar?
+                        <div>
+                            <p>{this.state.msgDelet}</p>
+                        </div>:
+                        <div className="estoque-card-btns">
+                            <button onClick={this.handleOpenDeletBar}>Excluir Produto</button>
+                            <button type="button" onClick={this.handleEditOn}>Editar</button>
+                        </div>
+                        }
+                        </form>
+                    
+                        
+                    </>
                 :
                 <h1>Carregando ...</h1>
                 }

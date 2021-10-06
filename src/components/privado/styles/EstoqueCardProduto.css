@@ -1,0 +1,38 @@
+.form-estoque-card{
+    width: 90vw;
+    height: 25vh;
+    border: 3px solid black;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin-bottom: 5vh;
+
+}
+
+.form-estoque-card fieldset{
+    height: fit-content;
+    border: none;
+    vertical-align: middle;
+}
+
+.sucess-att-product{
+    text-align: center;
+    color: green;
+}
+
+.fail-att-product{
+    text-align: center;
+    color:red
+}
+
+.form-estoque-card span{
+    font-weight: 700;
+    font-size: large;
+}
+.form-estoque-card button{
+    display: block;
+}
+
+.estoque-card-btns{
+    display: flex;
+    justify-content: space-around;
+}
