@@ -102,14 +102,16 @@ class EstoqueCardProdutos extends Component {
                     <form className="form-estoque-card">
                        
                         {this.state.openDeletBar?
-                        <>
+                        <div className="opened-delet-bar">
                         <p>Tem certeza que quer deletar o produto <span>{this.state.name}</span> do estoque?</p>
-                        <label>Digite o nome do produto, e clique em confirmar para excluir o produto:</label>
-                        <input type="text" name="deleteSenha" value={this.state.deleteSenha} onChange={this.handleChange}/>
-                        
-                        <button onClick={this.handleOpenDeletBar}>Cancelar</button>
-                        <button onClick={this.handleDeleteProduct}>Confirmar</button>
-                        </>
+                        <label>Abaixo, digite o nome do produto e clique em <span>confirmar</span> para excluir:</label>
+                        <input type="text" name="deleteSenha" value={this.state.deleteSenha} onChange={this.handleChange} placeholder="Digite o nome do produto aqui"/>
+                        <aside>{this.state.msgDelet}</aside>
+                        <div className="btns-opened-delet-bar">
+                        <button id="btn-delet-bar-btn-cancelar" onClick={this.handleOpenDeletBar}>Cancelar</button>
+                        <button id="btn-delet-bar-confirmar" onClick={this.handleDeleteProduct}>Confirmar</button>
+                        </div>
+                        </div>
                         :
                         <>
                         <fieldset disabled={this.state.edit}>
@@ -146,10 +148,7 @@ class EstoqueCardProdutos extends Component {
                         <h4 className={this.state.msgClass}>{this.state.msg}</h4>
                         </>
                         }
-                        {this.state.openDeletBar?
-                        <div>
-                            <p>{this.state.msgDelet}</p>
-                        </div>:
+                        {!this.state.openDeletBar &&
                         <div className="estoque-card-btns">
                             <button onClick={this.handleOpenDeletBar}>Excluir Produto</button>
                             <button type="button" onClick={this.handleEditOn}>Editar</button>
