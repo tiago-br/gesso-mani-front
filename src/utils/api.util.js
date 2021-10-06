@@ -113,6 +113,10 @@ class Api {
       //altera para a quantidade que for passada no payload
       await this.api.put(`/vendas/${idVenda}/${idProduto}`,payload)
     }
+     //Esto route metodo put para adicionar produtos ao estoque
+    putAddEstoque = async (quantidade,name) =>{
+      await this.api.put(`/produtos/estoque/qtd/${name}`,quantidade)
+    }
 }
 
 export default new Api()

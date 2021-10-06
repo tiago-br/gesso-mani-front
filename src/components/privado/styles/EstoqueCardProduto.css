@@ -1,0 +1,180 @@
+.form-estoque-card{
+    width: 90vw;
+    height: 35vh;
+    border: 3px solid black;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin-bottom: 5vh;
+    background-color: #E5E4E2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.estoque-card-bts{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form-estoque-card fieldset{
+    height: fit-content;
+    border: none;
+    vertical-align: middle;
+}
+
+.sucess-att-product{
+    font-size: 0.8rem;
+    text-align: center;
+    color: green;
+}
+
+.fail-att-product{
+    font-size: 0.8rem;
+    text-align: center;
+    color:red
+}
+
+.form-estoque-card span{
+    font-weight: 700;
+    font-size: large;
+}
+.form-estoque-card button{
+    display: block;
+}
+
+.estoque-card-btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+.opened-delet-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.opened-delet-bar{
+    margin-top: 2vh;
+}
+.opened-delet-bar label{
+    margin-top: 0.5vh;
+    display: block;
+
+}
+
+.opened-delet-bar input{
+    margin-top: 2vh;
+    display: block;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #faf8f5;
+    border: 2px solid gray;
+    border-radius: 4px;
+    width: 30vw;
+}
+.opened-delet-bar aside{
+    font-size: 0.8rem;
+    color:red
+}
+
+.opened-delet-bar input:focus{
+    text-align: center;
+    background-color: #faf8f5;
+    
+
+}
+
+.btns-opened-delet-bar{
+    margin-top: 2vh;
+    display: flex;
+    width:50vw;
+    justify-content: space-around;
+}
+
+.btns-opened-delet-bar button{
+    font-size: 1rem;
+    width: 15vw;
+    height: 4.5vh;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+#btn-delet-bar-btn-cancelar{
+    background-color: red;
+}
+#btn-delet-bar-btn-cancelar:hover{
+    background-color: tomato;
+    cursor: pointer;
+}
+
+#btn-delet-bar-confirmar{
+    background-color: green;
+}
+
+#btn-delet-bar-confirmar:hover{
+    cursor:pointer;
+    background-color: rgb(26, 158, 26);
+}
+
+.estoque-card-btn-editar{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+.estoque-card-btn-editar button{
+    display: block;
+    font-size: 1.2rem;
+    color:white;
+    background-color: black;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 7px;
+    
+}
+#estoque-btn-Adicionar{
+    display: inline;
+    background-color: black;
+    font-size: 1rem;
+    margin-left: 2vw;
+}
+.div-estoque-btn-Adicionar{
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.estoque-card-fields{
+    display: flex;
+}
+.estoque-card-field-left{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2vw;
+    margin-top: 2vh;
+}
+
+.estoque-card-field-left label,input{
+    font-size: 1.2rem;
+    width: 15vw;
+}
+
+.estoque-card-field-left input:disabled{
+    border:none;
+    background-color: inherit;
+    font-weight: 700;
+}
+
+.estoque-card-field-right label,input{
+    font-size: 1.2rem;
+    width: 15vw;
+}
+
+
+.estoque-card-field-rigth textarea:disabled{
+    border:none;
+    background-color: inherit;
+    font-weight: 700;
+}
