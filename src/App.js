@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router';
 import './App.css';
+import EstoquePage from './pages/privado/EstoquePage';
 import SignupPage from './pages/privado/SignupPage';
 import Home from './pages/público/Home';
 import LoginPage from './pages/público/LoginPage';
@@ -20,7 +21,7 @@ function App() {
       <PrivateRoutes>
 
       <Route exact path="/sistema/novofuncionario" render={(props) => <SignupPage {...props}/>}/>
-
+      <Route exact path="/sistema/estoque" render={(props) => <EstoquePage {...props}/>}/>
       </PrivateRoutes>
 
       
