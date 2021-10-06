@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import EstoqueNovoProduto from '../../components/privado/EstoqueNovoProduto'
 import NavbarUser from '../../components/privado/NavbarUser'
 import styled from 'styled-components'
+import EstoqueAtualizarProduto from '../../components/privado/EstoqueAtualizarProduto'
 
 
 const ButtonTittle = styled.button`
@@ -65,7 +66,7 @@ class EstoquePage extends Component {
                     {this.state.novoProduto ?
                         <EstoqueNovoProduto user={this.state.user}/>
                         :
-                        <div>AtualizarProduto</div>
+                        <EstoqueAtualizarProduto user={this.state.user}/>
                     }                   
                     
                 </div>
