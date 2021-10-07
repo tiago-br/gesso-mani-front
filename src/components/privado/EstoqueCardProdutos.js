@@ -69,7 +69,7 @@ class EstoqueCardProdutos extends Component {
             }
             await api.putProduto(this.state.id,payload)
             this.setState({
-                msg:"Produto Atualizado com Sucesso",
+                msg:"Produto atualizado com sucesso!",
                 msgClass:"sucess-att-product"
                 
             })
@@ -109,13 +109,13 @@ class EstoqueCardProdutos extends Component {
         try {
     
             const payload={
-                quantidade : parseFloat(this.state.quantidade)
+                quantidade : parseFloat(this.state.quantidade),
+                modificado_por:this.state.modificado_por
             }
             await api.putAddEstoque(payload,this.state.name)
             this.setState({
                 quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque)
             })
-            // this.handleEditOn(this.state.quantidade)
         } catch (error) {
             this.handleEditOn("Erro ao adicionar")
         }
@@ -163,7 +163,7 @@ class EstoqueCardProdutos extends Component {
                                 
                             
                         
-                                <label>Descrição do produto</label>
+                                <label>Descrição do produto:</label>
                                 <textarea name="descricao" value={this.state.descricao} onChange={this.handleChange} rows="5" cols="30">{this.state.descricao}</textarea>
                             </div>
 
@@ -171,13 +171,13 @@ class EstoqueCardProdutos extends Component {
 
 
                         <div className="estoque-card-bts">
-                           <div>
-                                <button onClick={this.handleAtualizarProduto}>Atualizar Produto</button>
-                                <h4 className={this.state.msgClass}>{this.state.msg}</h4>
-                            </div>
                             <div>
-                            <button onClick={this.handleOpenDeletBar}>Excluir Produto</button>
+                            <button id="btn-excluir-produto" onClick={this.handleOpenDeletBar}>Excluir produto</button>
                             </div>
+                           <div>
+                                <button id="btn-atualizar-produto" onClick={this.handleAtualizarProduto}>Atualizar produto</button>
+                            </div>
+                                <h4 className={this.state.msgClass}>{this.state.msg}</h4>
                             
                         </div>
                         </fieldset>
