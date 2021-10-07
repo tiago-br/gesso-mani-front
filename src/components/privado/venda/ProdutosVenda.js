@@ -48,65 +48,55 @@ const Descontos = styled.div`
 class ProdutosVenda extends Component {
 
     state = {
-        produtos: [{
-            name: "gesso",
-            valor_unitario: 25,
-            quantidade: 100,
-            total: ""
-        }, {
-            name: "f530 ",
-            valor_unitario: 19,
-            quantidade: 10,
-            total: ""
-        }, {
-            name: "montante",
-            valor_unitario: 28,
-            quantidade: 20,
-            total: ""
-        }, {
-            name: "placa",
-            valor_unitario: 28,
-            quantidade: 30,
-            total: ""
-        }],
-        valorTotal : 0,
-        desconto : false,
-        entrega : false
+        produtos: [],
+        valorTotal: 0,
+        desconto: false,
+        entrega: false,
+        nameDeleteCard: "",
     }
 
-    valorTotal = () => {
-     
-     let valor = 0
-     
-     // map para pegar valor total da lista de compra 
-     this.state.produtos.map(produto => {
-       valor += produto.valor_unitario * produto.quantidade
-    })
-
-    // condição de acresentar ou retirar os 10% de desconto
-    if(this.state.desconto === true){
-        const desconto = valor / 10
-        valor = valor - desconto
-    }
-
-    // condição de acresentar ou retirar a entrega 
-    if(this.state.entrega){
-         valor = valor + 30
+    componentDidMount = async () => {
+        await this.setState({
+            produtos: this.props.produto
+        })
     }
     
+
+    valorTotal = () => {
+
+        let valor = 0
+
+        // map para pegar valor total da lista de compra 
+        this.state.produtos.map(produto => valor += produto.valor_unitario * produto.quantidade)
+
+        // condição de acresentar ou retirar os 10% de desconto
+        if (this.state.desconto) {
+
+            const desconto = valor / 10
+
+            valor = valor - desconto
+
+
+        }
+
+        // condição de acresentar ou retirar a entrega 
+        if (this.state.entrega) {
+            valor = valor + 30
+        }
+
         return valor
 
     }
 
     btDesconto = () => {
         this.setState({
-            desconto : !this.state.desconto
+            desconto: !this.state.desconto
         })
-      
+
     }
     btDescontoColor = () => {
-        
-        if(this.state.desconto){
+
+        if (this.state.desconto) {
             return "green"
         }
         return "red"
@@ -114,35 +104,51 @@ class ProdutosVenda extends Component {
 
     btEntrega = () => {
         this.setState({
-            entrega : !this.state.entrega
+            entrega: !this.state.entrega
         })
-       
-      
+
+
     }
-    
+
     btEntregaColor = () => {
-        
-        if(this.state.entrega){
+
+        if (this.state.entrega) {
             return "green"
         }
-        
-        return "red" 
-        
+
+        return "red"
+
     }
+
+    deleteCard = async (value) => {
+
+        const array = [...this.state.produtos]
+
+        const a = array.findIndex(e => e.name === value)
+
+        array.splice(a, 1)
+
+        await this.setState({
+            produtos: array
+        })
+
+       
+    }
+
 
 
     render() {
         return (
             <Container>
-                
 
-                {this.state.produtos.map(produto => <CardVenda name={produto.name} valor_unitario={produto.valor_unitario} quantidade={produto.quantidade}  />)}
+
+                {this.state.produtos.map(produto => <CardVenda key={produto.name} name={produto.name} valor_unitario={produto.valor_unitario} quantidade={produto.quantidade} delete={this.deleteCard} />)}
 
                 <ContainerDown>
 
                     <Descontos>
-                        <BtDesconto style = {{backgroundColor : this.btDescontoColor()}} onClick = {this.btDesconto}>Desconto</BtDesconto>
-                        <BtFrete style = {{backgroundColor : this.btEntregaColor()} } onClick = {this.btEntrega}>Entrega</BtFrete>
+                        <BtDesconto style={{ backgroundColor: this.btDescontoColor() }} onClick={this.btDesconto}>Desconto</BtDesconto>
+                        <BtFrete style={{ backgroundColor: this.btEntregaColor() }} onClick={this.btEntrega}>Entrega</BtFrete>
                     </Descontos>
 
                     <ContainerValorTotal>
