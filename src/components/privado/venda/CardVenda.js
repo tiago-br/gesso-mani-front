@@ -38,13 +38,25 @@ const ValorTotal = styled.div`
 
 
 class CardVenda extends Component {
+
+    state = {
+        produtos : []
+    }
+
+    handleDelete = () => {
+
+        this.props.delete(this.props.name)
+
+    }
+    
+    
     render() {
         return (
             <Card>
-                <ButtonDelete>X</ButtonDelete>
+                <ButtonDelete onClick = {this.handleDelete}>X</ButtonDelete>
                 <Name>{this.props.name}</Name>
-                <Valor_Unitario>{this.props.valor_unitario}</Valor_Unitario>
                 <Quantidade>{this.props.quantidade}</Quantidade>
+                <Valor_Unitario>{this.props.valor_unitario}</Valor_Unitario>
                 <ValorTotal>{this.props.valor_unitario * this.props.quantidade}</ValorTotal>
                 
             </Card>

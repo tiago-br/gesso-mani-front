@@ -108,6 +108,7 @@ const Input = styled.input`
 margin-top: 10px;
 height: 2rem;
 border-radius: 10px;
+width: 20rem;
 
 `
 const Message = styled.p`
