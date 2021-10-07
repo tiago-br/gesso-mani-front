@@ -156,6 +156,7 @@
     text-align: center;
     display: flex;
     align-items: center;
+    margin-left: 2vw;
 }
 .estoque-card-fields{
     display: flex;
@@ -171,6 +172,7 @@
 .estoque-card-field-left label,input{
     font-size: 1.2rem;
     width: 15vw;
+    padding-left: 4px;
 }
 
 .estoque-card-field-left input:disabled{
@@ -196,6 +198,7 @@
     border: 1px solid black;
     background-color: white;
     padding: 10px;
+    width: 29vw;
 }
 .estoque-card-field-right textarea:disabled,input:disabled{
     background-color: inherit;
@@ -211,22 +214,15 @@
 }
 
 .estoque-card-bts button{
-    font-size: 0.8rem;
+    font-size: 1rem;
     color:white;
     background-color: black;
     width: 12vw;
-    height: 4vh;
+    height: 6vh;
     border-radius: 7px;
     margin-left: 2vw;
 }
 .estoque-card-bts button:disabled{
-    font-size: 0.8rem;
-    color:white;
-    background-color: black;
-    width: 12vw;
-    height: 4vh;
-    border-radius: 7px;
-    margin-left: 2vw;
     visibility: hidden;
 }
 
@@ -246,4 +242,38 @@
     cursor: pointer;
     background-color: green;
     color:white;
+}
+
+.msg-add-success{
+    margin-left: 1vw;
+    color: green;
+    padding: 3px;
+    background-color: inherit;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.msg-add-fail{
+    margin-left: 1vw;
+    color: red;
+    padding: 3px;
+    background-color: inherit;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.div-estoque-btn-Adicionar input{
+    margin-left: 1vw;
+    width: 6vw;
+    font-size: 1.3rem;
+    text-align: center;
+    height: 5vh;
+}
+
+.div-estoque-btn-Adicionar input:focus{
+    text-align: center;
+}
+
+.estoque-card-btn-editar fieldset:disabled{
+    visibility: hidden;
 }

@@ -20,11 +20,13 @@ class EstoqueCardProdutos extends Component {
         msgClass:"",
         deleteSenha:"",
         msgDelet:"",
-        quantidade:0
+        quantidade:0,
+        msgAdd:"",
+        classMsgAdd:""
 
     }
 
-    componentDidMount=()=>{
+    componentDidMount=async()=>{
         this.setState({
             load:true
         })
@@ -41,15 +43,13 @@ class EstoqueCardProdutos extends Component {
             if(changeMsg==="message"){
                 this.setState({
                     edit:!this.state.edit,
+                    msgAdd:""
                 }) 
-            }else if(changeMsg==="Erro ao adicionar"){
-                this.setState({
-                    msg:changeMsg
-                })
             }else{
                 this.setState({
                 edit:!this.state.edit,
-                msg:""
+                msg:"",
+                msgAdd:""
             }) 
             }
     }
@@ -106,6 +106,10 @@ class EstoqueCardProdutos extends Component {
     }
     handleAddEstoque = async (e)=>{
         e.preventDefault(e)
+        this.setState({
+            classMsgAdd:"",
+            msgAdd:""
+        })
         try {
     
             const payload={
@@ -113,11 +117,47 @@ class EstoqueCardProdutos extends Component {
                 modificado_por:this.state.modificado_por
             }
             await api.putAddEstoque(payload,this.state.name)
+            if(payload.quantidade>1)
             this.setState({
-                quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque)
+                quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
+                msgAdd:`${payload.quantidade} produtos foram adicionados ao estoque!`,
+                classMsgAdd:"msg-add-success",
+                quantidade:0
             })
+            if(payload.quantidade===1)
+            this.setState({
+                quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
+                msgAdd:`${payload.quantidade} produto foi adicionado ao estoque!`,
+                classMsgAdd:"msg-add-success",
+                quantidade:0
+            })
+            if(payload.quantidade===0)
+            this.setState({
+                quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
+                msgAdd:`Nenhum produto foi adicionado ao estoque!`,
+                classMsgAdd:"msg-add-success",
+                quantidade:0
+            })
+            if(payload.quantidade<-1)
+            this.setState({
+                quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
+                msgAdd:`${(-1)*payload.quantidade} produtos foram removidos do estoque!`,
+                classMsgAdd:"msg-add-success",
+                quantidade:0
+            })
+            if(payload.quantidade===-1)
+            this.setState({
+                quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
+                msgAdd:`${(-1)*payload.quantidade} produto foi removido do estoque!`,
+                classMsgAdd:"msg-add-success",
+                quantidade:0
+            })
+
         } catch (error) {
-            this.handleEditOn("Erro ao adicionar")
+            this.setState({
+                msgAdd:`Erro ao adicionar!`,
+                classMsgAdd:"msg-add-fail"
+            })
         }
     }
     render() {
@@ -185,14 +225,20 @@ class EstoqueCardProdutos extends Component {
                         </>
                         }
                         {!this.state.openDeletBar &&
-                        <div className="estoque-card-btn-editar">
-                            <div className="div-estoque-btn-Adicionar">
-                            <label>Adicionar Produtos: </label>
-                            <input type="number" value={this.state.quantidade} name="quantidade" onChange={this.handleChange}/>
-                            <button id="estoque-btn-Adicionar"onClick={this.handleAddEstoque}>Adicionar ao estoque</button>
+                       
+                            <div className="estoque-card-btn-editar">
+                                <fieldset disabled={!this.state.edit}>
+                                <div className="div-estoque-btn-Adicionar">
+                                <label >Adicionar Produtos: </label>
+                                <input  type="number" value={this.state.quantidade} name="quantidade" onChange={this.handleChange}/>
+                                <button id="estoque-btn-Adicionar"onClick={this.handleAddEstoque}>Adicionar ao estoque</button>
+                                <div>
+                                    <h4 className={this.state.classMsgAdd}>{this.state.msgAdd}</h4>
+                                </div>
+                                </div>
+                                </fieldset>
+                                <button type="button" onClick={this.handleEditOn}>Editar</button>
                             </div>
-                            <button type="button" onClick={this.handleEditOn}>Editar</button>
-                        </div>
                         }
                         </form>
                         
