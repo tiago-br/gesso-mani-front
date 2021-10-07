@@ -1,6 +1,6 @@
 .form-estoque-card{
     width: 90vw;
-    height: 35vh;
+    height: 38vh;
     border: 3px solid black;
     border-radius: 10px;
     vertical-align: middle;
@@ -14,8 +14,9 @@
 
 .estoque-card-bts{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    margin-left: 4vw;
 }
 
 .form-estoque-card fieldset{
@@ -25,7 +26,8 @@
 }
 
 .sucess-att-product{
-    font-size: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     text-align: center;
     color: green;
 }
@@ -134,11 +136,21 @@
     border-radius: 7px;
     
 }
+.estoque-card-btn-editar button:hover{
+    cursor: pointer;
+    background-color: gainsboro;
+    color:black
+}
 #estoque-btn-Adicionar{
     display: inline;
     background-color: black;
     font-size: 1rem;
     margin-left: 2vw;
+}
+#estoque-btn-Adicionar:hover{
+    cursor: pointer;
+    background-color: gainsboro;
+    color:black
 }
 .div-estoque-btn-Adicionar{
     text-align: center;
@@ -166,15 +178,72 @@
     background-color: inherit;
     font-weight: 700;
 }
-
+.estoque-card-field-right{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 2vw;
+    margin-top: 2vh
+}
 .estoque-card-field-right label,input{
-    font-size: 1.2rem;
-    width: 15vw;
+    font-size: 0.9rem;
+    width: 30vw;
 }
 
+.estoque-card-field-right textarea{
+    resize: none;
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px;
+}
+.estoque-card-field-right textarea:disabled,input:disabled{
+    background-color: inherit;
+    font-weight: 300;
+    resize: none;
+    border: none;
+}
 
-.estoque-card-field-rigth textarea:disabled{
+.estoque-card-field-right label:disabled{
     border:none;
     background-color: inherit;
-    font-weight: 700;
+    font-weight: 300;
+}
+
+.estoque-card-bts button{
+    font-size: 0.8rem;
+    color:white;
+    background-color: black;
+    width: 12vw;
+    height: 4vh;
+    border-radius: 7px;
+    margin-left: 2vw;
+}
+.estoque-card-bts button:disabled{
+    font-size: 0.8rem;
+    color:white;
+    background-color: black;
+    width: 12vw;
+    height: 4vh;
+    border-radius: 7px;
+    margin-left: 2vw;
+    visibility: hidden;
+}
+
+.estoque-card-bts button:hover{
+    cursor: pointer;
+    background-color: gainsboro;
+    color:black
+}
+
+#btn-excluir-produto:hover{
+    cursor: pointer;
+    background-color: rgb(255, 38, 0);
+    color:white;
+}
+
+#btn-atualizar-produto:hover{
+    cursor: pointer;
+    background-color: green;
+    color:white;
 }
