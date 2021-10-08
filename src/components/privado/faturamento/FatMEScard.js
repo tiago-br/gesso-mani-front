@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 
-class fatMEScard extends Component {
+class FatMEScard extends Component {
+    componentDidMount = () =>{
+    }
     render() {
         return (
             <div>
                 <button>
-                    Botão
+                    {this.props.mes}
                 </button>
             </div>
         )
     }
 }
 
-export default fatMEScard
+export default FatMEScard
