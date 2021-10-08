@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import FormVenda from '../../components/privado/venda/FormVenda'
 import NavbarUser from '../../components/privado/NavbarUser'
 import ProdutosVenda from '../../components/privado/venda/ProdutosVenda'
-import styled, { StyleSheetManager } from 'styled-components'
+import styled from 'styled-components'
 import CardProdutosVenda from '../../components/privado/venda/CardProdutosVenda'
 import api from '../../utils/api.util'
 
@@ -89,6 +89,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 margin: 2rem;
+margin-top: 5rem;
 
 
 
@@ -104,11 +105,15 @@ class VendasPage extends Component {
     state = {
         //produtos
         listProdutos: [],
-
+        cliente: "",
+        data: "",
+        valorTotal: 0,
         produtos: [],
         loading: false,
         filterProduts: [],
-        inputValue: ''
+        inputValue: '',
+        desconto: true,
+        entrega: true
     }
 
     componentDidMount = async () => {
@@ -124,10 +129,40 @@ class VendasPage extends Component {
 
     }
 
-    handleProdutos = (produtos) => {
+    handleProdutos = async (produtos) => {
 
         const material = this.state.listProdutos
+
+        let checkProduto = false
+        let indice = this.state.produtos.findIndex(e => e.name === produtos.nome)
+
+        // if (this.state.produtos[indice].quantidade_em_estoque < produtos.quantidade) {
+        //     return alert('Não temos essa quantidade no estoque ')
+        // }
+
+        material.map(item => {
+            if (item.nome === produtos.nome) {
+                return checkProduto = true
+            }
+        })
+
+        if (checkProduto === true) {
+
+            let indice = material.findIndex(e => e.nome === produtos.nome)
+            let novaQuantidade = parseInt(produtos.quantidade)
+            let result = parseInt(material[indice].quantidade) + novaQuantidade
+
+            material[indice].quantidade = result
+
+            this.setState({
+                listProdutos: this.state.listProdutos,
+            })
+
+            return console.log('acresentado com sucesso')
+        }
+
         material.push(produtos)
+
         this.setState({
             listProdutos: material
         })
@@ -168,51 +203,133 @@ class VendasPage extends Component {
     infoVenda = async (payload) => {
 
 
+        await this.setState({
+            cliente: payload.name,
+            data: payload.data
+        })
+    }
+
+    // Pega valor total na venda 
+    valorTotal = () => {
+
+        let valor = 0
+
+        // map para pegar valor total da lista de compra 
+        this.state.listProdutos.map(produto => valor += produto.valorUnitário * produto.quantidade)
+
+        // condição de acresentar ou retirar os 10% de desconto
+        if (!this.state.desconto) {
+            const desconto = valor / 10
+            valor = valor - desconto
+        }
+
+        // condição de acresentar ou retirar a entrega 
+        if (!this.state.entrega) {
+            valor = valor + 30
+        }
+
+        return valor
+    }
+
+    handleDesconto = (payload) => {
+
+        this.setState({
+            desconto: payload
+        })
+    }
+
+    handleEntrega = (payload) => {
+
+        this.setState({
+            entrega: payload
+        })
     }
 
     novaVenda = async () => {
 
-
         let material = [...this.state.listProdutos]
         const vendedor = localStorage.getItem('user')
-      
+        const cliente = this.state.cliente
+        const data = this.state.data
+        let valor = await this.valorTotal()
 
-        let payload = {
-            vendedor: vendedor,
-            cliente: "sicuto",
-            produtos: material, 
-            data: "12092004",
-            valor_total: 122500
+        const payload = {
+            vendedor,
+            cliente,
+            produtos: material,
+            data,
+            valor_total: valor
         }
-        
-        
 
-        // await api.postVenda(payload)
+        await api.postVenda(payload)
+
+        // Retirar a quantidade vendida do estoque
+        await material.map(produto => {
+
+            let payload = {
+                quantidade: produto.quantidade
+            }
+
+            api.putVendaParaProduto(produto.nome, payload)
+
+        })
+
+        await this.setState({
+            listProdutos: []
+        }
+        )
+
+        await setTimeout(function () { window.location.reload(); }, 1000)
+
+    }
+    novoOrcamento = async () => {
+
+        const vendedor = localStorage.getItem('user')
+        const cliente = this.state.cliente
+        let material = [...this.state.listProdutos]
+        const data = this.state.data
+        let valor = await this.valorTotal()
+
+        const payload = {
+            vendedor,
+            cliente,
+            produtos: material,
+            data,
+            valor_total: valor
+        }
+
+
+        api.postOrcamento(payload)
+
+        await this.setState({
+            listProdutos: []
+        }
+        )
+
+        await setTimeout(function () { window.location.reload(); }, 1000)
+
 
     }
 
-
     render() {
-
 
         return (
             <div>
                 <NavbarUser />
-                <FormVenda  infoVenda= {this.infoVenda}/>      
-                <ProdutosVenda  deleteCard={this.deleteCard} produto={this.state.listProdutos} />
+                <FormVenda infoVenda={this.infoVenda} />
+                <ProdutosVenda handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard} produto={this.state.listProdutos} />
 
                 <Buttons>
-                    <Bt> Orçamento </Bt>
+                    <Bt onClick={this.novoOrcamento}> Orçamento </Bt>
                     <Bt onClick={this.novaVenda}> Venda </Bt>
                 </Buttons>
 
                 <ContainerSearch class="form__group field">
                     <WidthInput>
                         <Search type="text" class="form__field" placeholder="Name" name="name" id='name' value={this.state.inputValue} onChange={this.handleInput} />
-                        <Label for="name" class="form__label">Search</Label>
+                        <Label for="name" class="form__label">Busca</Label>
                     </WidthInput>
                 </ContainerSearch>
-
 
                 <ContainerInfo>
 

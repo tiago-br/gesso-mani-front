@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import {FiDelete} from 'react-icons/fi'
 
 
 
@@ -16,23 +17,33 @@ border-radius: 20px;
 `
 const Name = styled.div`
 
+width: 18rem;
+text-align: center;
 
 
 `
 const Valor_Unitario = styled.div`
 
-
+width: 18rem;
+text-align:center;
 
 `
 const Quantidade = styled.div`
 
-
+width: 18rem;
+text-align:center;
 
 `
 const ButtonDelete = styled.div`
-
+width: 18rem;
+text-align:center;
+font-size: 1.2rem;
+color: red;
 ` 
 const ValorTotal = styled.div`
+width: 18rem;
+text-align:center;
+
 `
 
 
@@ -53,7 +64,7 @@ class CardVenda extends Component {
     render() {
         return (
             <Card>
-                <ButtonDelete onClick = {this.handleDelete}>X</ButtonDelete>
+                <ButtonDelete onClick = {this.handleDelete}><FiDelete/></ButtonDelete>
                 <Name>{this.props.name}</Name>
                 <Quantidade>{this.props.quantidade}</Quantidade>
                 <Valor_Unitario>{this.props.valorUnitário}</Valor_Unitario>

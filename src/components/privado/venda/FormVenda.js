@@ -27,16 +27,16 @@ class FormVenda extends Component {
      }
    
     
-    handleChange = (ev) => {
+    handleChange = async (ev) => {
 
         const {name,value} = ev.target
         this.setState({
             [name] : value
         })
 
+       await this.props.infoVenda(this.state)
 
     }
-    
   
    
     render() {

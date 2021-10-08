@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+
 import styled from 'styled-components'
 import api from '../../utils/api.util'
 require('dotenv').config()

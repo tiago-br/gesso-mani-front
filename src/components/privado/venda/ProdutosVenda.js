@@ -14,17 +14,21 @@ margin-top: 2rem;
 const BtDesconto = styled.button`
 
 margin: 2rem;
+width: 9rem;
+height: 2rem;
 
 `
 const BtFrete = styled.button`
 
-
+width: 9rem;
+height: 2rem;
 `
 const ValorTotal = styled.div`
 
 text-decoration: underline;
 text-decoration-color: black;
 text-decoration-style: double;
+font-size: 1.2rem;
 
 `
 const ContainerDown = styled.div`
@@ -42,6 +46,26 @@ const Descontos = styled.div`
 
 
 
+`
+const ContainerInfo = styled.div`
+
+display: flex;
+justify-content: space-around;
+text-align: center;
+margin-top: 2rem;
+width: 70rem;
+
+h3{
+    width: 17rem;
+
+}
+
+`
+const ContainerInfo2 = styled.div`
+
+display: flex;
+justify-content: center;
+align-items: center;
 `
 
 
@@ -62,21 +86,18 @@ class ProdutosVenda extends Component {
     }
     
 
-    valorTotal = () => {
+    valorTotal =  () => {
 
         let valor = 0
 
         // map para pegar valor total da lista de compra 
         this.state.produtos.map(produto =>  valor += produto.valorUnitário * produto.quantidade)
 
+
         // condição de acresentar ou retirar os 10% de desconto
         if (this.state.desconto) {
-
             const desconto = valor / 10
-
             valor = valor - desconto
-
-
         }
 
         // condição de acresentar ou retirar a entrega 
@@ -84,16 +105,20 @@ class ProdutosVenda extends Component {
             valor = valor + 30
         }
 
-        return valor
+      return valor
 
     }
 
     btDesconto = () => {
+       
         this.setState({
             desconto: !this.state.desconto
         })
 
+        this.props.handleDesconto(this.state.desconto)
+
     }
+    
     btDescontoColor = () => {
 
         if (this.state.desconto) {
@@ -106,8 +131,8 @@ class ProdutosVenda extends Component {
         this.setState({
             entrega: !this.state.entrega
         })
-
-
+        
+        this.props.handleEntrega(this.state.entrega)
     }
 
     btEntregaColor = () => {
@@ -127,8 +152,9 @@ class ProdutosVenda extends Component {
     render() {
         return (
             <Container>
-
-
+<ContainerInfo2><ContainerInfo>  <h3>Delete</h3><h3>Produto</h3><h3>Quantidade</h3><h3>Valor Unidade</h3><h3>Valor</h3>    </ContainerInfo></ContainerInfo2>
+                
+                
                 {this.state.produtos.map(produto => <CardVenda key={produto.nome} name={produto.nome} valorUnitário={produto.valorUnitário} quantidade={produto.quantidade} delete={this.props.deleteCard} />)}
 
                 <ContainerDown>
@@ -139,6 +165,7 @@ class ProdutosVenda extends Component {
                     </Descontos>
 
                     <ContainerValorTotal>
+                      
                         <ValorTotal>Valor Total : {this.valorTotal()} </ValorTotal>
                     </ContainerValorTotal>
 
