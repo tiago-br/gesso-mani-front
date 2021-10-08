@@ -56,8 +56,8 @@ class CardVenda extends Component {
                 <ButtonDelete onClick = {this.handleDelete}>X</ButtonDelete>
                 <Name>{this.props.name}</Name>
                 <Quantidade>{this.props.quantidade}</Quantidade>
-                <Valor_Unitario>{this.props.valor_unitario}</Valor_Unitario>
-                <ValorTotal>{this.props.valor_unitario * this.props.quantidade}</ValorTotal>
+                <Valor_Unitario>{this.props.valorUnitário}</Valor_Unitario>
+                <ValorTotal>{this.props.valorUnitário * this.props.quantidade}</ValorTotal>
                 
             </Card>
         )

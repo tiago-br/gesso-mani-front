@@ -57,8 +57,8 @@ class CardProdutosVenda extends Component {
 
          await this.setState({
             produtos: {
-                name: this.props.name ,
-                valor_unitario: this.props.valor,
+                nome: this.props.name ,
+                valorUnitário: this.props.valor,
                 quantidade: this.state.quantidade,
             },
             boolean: !this.state.boolean,

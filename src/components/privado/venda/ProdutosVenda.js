@@ -67,7 +67,7 @@ class ProdutosVenda extends Component {
         let valor = 0
 
         // map para pegar valor total da lista de compra 
-        this.state.produtos.map(produto => valor += produto.valor_unitario * produto.quantidade)
+        this.state.produtos.map(produto =>  valor += produto.valorUnitário * produto.quantidade)
 
         // condição de acresentar ou retirar os 10% de desconto
         if (this.state.desconto) {
@@ -129,7 +129,7 @@ class ProdutosVenda extends Component {
             <Container>
 
 
-                {this.state.produtos.map(produto => <CardVenda key={produto.name} name={produto.name} valor_unitario={produto.valor_unitario} quantidade={produto.quantidade} delete={this.props.deleteCard} />)}
+                {this.state.produtos.map(produto => <CardVenda key={produto.nome} name={produto.nome} valorUnitário={produto.valorUnitário} quantidade={produto.quantidade} delete={this.props.deleteCard} />)}
 
                 <ContainerDown>
 

@@ -102,7 +102,9 @@ h3{
 class VendasPage extends Component {
 
     state = {
+        //produtos
         listProdutos: [],
+
         produtos: [],
         loading: false,
         filterProduts: [],
@@ -123,72 +125,95 @@ class VendasPage extends Component {
     }
 
     handleProdutos = (produtos) => {
-        
+
         const material = this.state.listProdutos
         material.push(produtos)
         this.setState({
             listProdutos: material
         })
     }
- 
+
     handleInput = async (ev) => {
-        
-        const {value} = ev.target
+
+        const { value } = ev.target
         this.setState({
-            inputValue : value
+            inputValue: value
         })
 
         const filtered = await this.state.produtos.filter(produto => {
-            
-            return produto.name.toLocaleLowerCase().includes(this.state.inputValue.toLocaleLowerCase())
-          })
-  
-         
-          await this.setState({
-              filterProduts : filtered
-          })
 
-        
+            return produto.name.toLocaleLowerCase().includes(this.state.inputValue.toLocaleLowerCase())
+        })
+
+        await this.setState({
+            filterProduts: filtered
+        })
     }
 
     deleteCard = async (value) => {
 
-        
-
         const array = this.state.listProdutos
 
-        const a = array.findIndex(e => e.name === value)
+        const i = array.findIndex(e => e.nome === value)
 
-        array.splice(a, 1)
+        array.splice(i, 1)
 
         await this.setState({
             produtos: array
         })
-   
+
+    }
+
+    // Pega nome do cliente e a data
+    infoVenda = async (payload) => {
+
+
+    }
+
+    novaVenda = async () => {
+
+
+        let material = [...this.state.listProdutos]
+        const vendedor = localStorage.getItem('user')
+      
+
+        let payload = {
+            vendedor: vendedor,
+            cliente: "sicuto",
+            produtos: material, 
+            data: "12092004",
+            valor_total: 122500
+        }
+        
+        
+
+        // await api.postVenda(payload)
+
     }
 
 
     render() {
-        
+
+
         return (
             <div>
                 <NavbarUser />
-                <FormVenda />
-                <ProdutosVenda  deleteCard = {this.deleteCard} produto={this.state.listProdutos} />
+                <FormVenda  infoVenda= {this.infoVenda}/>      
+                <ProdutosVenda  deleteCard={this.deleteCard} produto={this.state.listProdutos} />
 
                 <Buttons>
                     <Bt> Orçamento </Bt>
-                    <Bt> Venda </Bt>
+                    <Bt onClick={this.novaVenda}> Venda </Bt>
                 </Buttons>
 
                 <ContainerSearch class="form__group field">
-                    <WidthInput>   
-                        <Search type="text" class="form__field"  placeholder="Name" name="name" id='name' value = {this.state.inputValue} onChange = {this.handleInput}/>
+                    <WidthInput>
+                        <Search type="text" class="form__field" placeholder="Name" name="name" id='name' value={this.state.inputValue} onChange={this.handleInput} />
                         <Label for="name" class="form__label">Search</Label>
                     </WidthInput>
                 </ContainerSearch>
 
-                
+
                 <ContainerInfo>
 
                     <h3>Nome</h3>
@@ -199,7 +224,8 @@ class VendasPage extends Component {
                 </ContainerInfo>
 
                 {this.state.filterProduts.map(produto => {
-                return <CardProdutosVenda key = {produto.name} name={produto.name} quantidade={produto.quantidade_em_estoque} valor={produto.valor_de_venda} function={this.handleProdutos} />})}
+                    return <CardProdutosVenda key={produto.name} name={produto.name} quantidade={produto.quantidade_em_estoque} valor={produto.valor_de_venda} function={this.handleProdutos} />
+                })}
 
 
             </div>
