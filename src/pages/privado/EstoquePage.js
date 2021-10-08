@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import EstoqueNovoProduto from '../../components/privado/EstoqueNovoProduto'
+import EstoqueNovoProduto from '../../components/privado/estoque/EstoqueNovoProduto'
 import NavbarUser from '../../components/privado/NavbarUser'
 import styled from 'styled-components'
-import EstoqueAtualizarProduto from '../../components/privado/EstoqueAtualizarProduto'
+import EstoqueAtualizarProduto from '../../components/privado/estoque/EstoqueAtualizarProduto'
 
 
 const ButtonTittle = styled.button`
