@@ -88,7 +88,6 @@ class FaturamentoPage extends Component {
     }
     render()
         {
-            console.log(this.state.vendasMesesArr)
         return (
             <div>
                 <NavbarUser/>

@@ -2,3 +2,20 @@
     display: flex;
     flex-direction: column;
 }
+
+.container-btn-fat-mes-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.container-btn-fat-mes-card button{
+    display: block;
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5vh;
+    height: 10vh;
+}
