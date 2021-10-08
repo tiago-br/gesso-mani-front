@@ -6,12 +6,13 @@ class FatMEScard extends Component {
         fatTotalMes:""
     }
     componentDidMount = () =>{
+        console.log(this.props.vendas)
         const valoresDasVendasMes = this.props.vendas.map(e=>e.valor_total)
         const fatTotalMes = valoresDasVendasMes.reduce((acc,current)=>{
             return acc+current
         },0)
         this.setState({
-            fatTotalMes
+            fatTotalMes:fatTotalMes.toLocaleString('pt-BR')
         })
         
     }
@@ -23,7 +24,7 @@ class FatMEScard extends Component {
                     {this.props.mes}
                     </div>
                     <div>
-                    {this.state.fatTotalMes}
+                    R${this.state.fatTotalMes}
                     </div>
 
                 </button>

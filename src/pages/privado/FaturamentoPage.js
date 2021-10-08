@@ -14,7 +14,7 @@ class FaturamentoPage extends Component {
         vendasFilterByYear:[],
         meses:["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
         vendasMesesArr:[],
-        msgTest:"t"
+        fatTotal:""
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -37,7 +37,7 @@ class FaturamentoPage extends Component {
             return objectData
         })
         const copyDateDasVendas = [...novaVendas]
-        const vendasFilterByYear = copyDateDasVendas.filter(e=>e.data.ano==="0001")
+        const vendasFilterByYear = copyDateDasVendas.filter(e=>e.data.ano==="2021")
         const todosOsAnos =[]
         copyDateDasVendas.forEach(e=>{
             if(!todosOsAnos.includes(e.data.ano)){
@@ -56,6 +56,11 @@ class FaturamentoPage extends Component {
             const vendasMes = vendasFilterByYear.filter(mes=>mes.data.mes===valorMes)
             vendasMesesArr.push(vendasMes)
         }
+        const copyVendasMesesArr = [...vendasMesesArr]
+        const vendaTotalMeses = copyVendasMesesArr.flat().map(valorTotal=>valorTotal.valor_total).reduce((acc,valor)=>{
+            return acc+valor
+        },0)
+        const totalFormatado = vendaTotalMeses.toLocaleString('pt-BR')
 
     
        
@@ -64,7 +69,8 @@ class FaturamentoPage extends Component {
             novaVendas:novaVendas,
             todosOsAnos:sortTodosOsAnos,
             vendasFilterByYear,
-            vendasMesesArr
+            vendasMesesArr,
+            fatTotal:totalFormatado
         })
     }
     handleChooseYear = async(e) =>{
@@ -81,18 +87,22 @@ class FaturamentoPage extends Component {
             const vendasMes = vendasFilterByYear.filter(mes=>mes.data.mes===valorMes)
             vendasMesesArr.push(vendasMes)
         }
-        
+        const copyVendasMesesArr = [...vendasMesesArr]
+        const vendaTotalMeses = copyVendasMesesArr.flat().map(valorTotal=>valorTotal.valor_total).reduce((acc,valor)=>{
+            return acc+valor
+        },0)
+        const totalFormatado = vendaTotalMeses.toLocaleString('pt-BR')
         await this.setState({
             currentYear:e.target.value,
             vendasFilterByYear,
             vendasMesesArr:vendasMesesArr,
+            fatTotal:totalFormatado
         })
     }
     render()
     {
-        console.log(this.state.vendasMesesArr)
         return (
-            <div>
+            <div className="page-Faturamento">
                 <NavbarUser/>
                 <h1>Faturamento</h1>
                 <h2>Selcione um ano</h2>
@@ -106,18 +116,18 @@ class FaturamentoPage extends Component {
                             </div>
                             )
                         }
-                        <button onClick={this.handleChooseYear}>Pequisar</button>
                     </form>
                 </div>
                 <div>
                         <h3>Ano <b>{this.state.currentYear}</b> selecionado</h3>
                     <div>
                         {this.state.vendasMesesArr.map((e,i)=>
-                            {   console.log('trocando')
+                            {  
                                return <FatMEScard vendas={[...e]} mes={this.state.meses[i]} key={this.state.meses[i] + this.state.currentYear}
                                 />}
                         )}
                     </div>
+                    <h3>Faturamento total: R${`${this.state.fatTotal}`}</h3>
                 </div>
 
                 
