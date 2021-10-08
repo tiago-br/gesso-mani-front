@@ -5,16 +5,17 @@ import '../../components/privado/faturamento/style/FaturamentoPageStyle.css'
 
 class FaturamentoPage extends Component {
     state={
-        todasAsVendas:[],
+        novaVendas:[],
         datas:"",
         test:[],
         todosOsAnos:[],
-        currentYear:2021
+        currentYear:"2021",
+        vendasFilterByYear:[]
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
         const vendas = [...data]
-        const dateDasVendas = vendas.map(e=>{
+        const novaVendas = vendas.map(e=>{
             const dataSeparada = e.data.split("T")[0].split("-")
             const objectoDataSeparado ={
                 ano: dataSeparada[0],
@@ -23,11 +24,16 @@ class FaturamentoPage extends Component {
             }
             const objectData ={
                 data:objectoDataSeparado,
-                id:e._id
+                id:e._id,
+                vendedor:e.vendedor,
+                cliente:e.cliente,
+                produtos: [...e.produtos],
+                valor_total:e.valor_total
             }
             return objectData
         })
-        const copyDateDasVendas = [...dateDasVendas]
+        const copyDateDasVendas = [...novaVendas]
+        const vendasFilterByYear = copyDateDasVendas.filter(e=>e.data.ano==="2021")
         const todosOsAnos =[]
         copyDateDasVendas.forEach(e=>{
             if(!todosOsAnos.includes(e.data.ano)){
@@ -39,18 +45,23 @@ class FaturamentoPage extends Component {
        
         this.setState({
             todasAsVendas:data,
-            datas:dateDasVendas,
-            todosOsAnos:sortTodosOsAnos
+            novaVendas:novaVendas,
+            todosOsAnos:sortTodosOsAnos,
+            vendasFilterByYear
         })
     }
     handleChooseYear = async(e) =>{
+        const copyDateDasVendas = [...this.state.todasAsVendas]
+        console.log(copyDateDasVendas)
+        const vendasFilterByYear = copyDateDasVendas.filter(vendas=>vendas.data.ano===e.target.value)
         await this.setState({
             currentYear:e.target.value,
+            vendasFilterByYear
         })
-        console.log(this.state.currentYear)
     }
     render()
         {
+        console.log(this.state.vendasFilterByYear)
         return (
             <div>
                 <NavbarUser/>
@@ -66,8 +77,12 @@ class FaturamentoPage extends Component {
                             </div>
                             )
                         }
-                        <button>Pesquisar Ano</button>
                     </form>
+                </div>
+                <div>
+                    <div>
+                        {}
+                    </div>
                 </div>
 
                 
