@@ -277,3 +277,22 @@
 .estoque-card-btn-editar fieldset:disabled{
     visibility: hidden;
 }
+
+.container-search-bar-att{
+    text-align: center;
+    margin-top: 7vh;
+}
+
+.container-search-bar-att input{
+    width: 40vw;
+    font-size: 1.2rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+   
+}
+
+.container-search-bar-att input:focus{
+   outline: none;
+   border-bottom: 2px solid black;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import api from '../../utils/api.util'
 import EstoqueCardProdutos from './EstoqueCardProdutos'
 import styled from 'styled-components'
+import './styles/EstoqueCardProduto.css'
 
 const ContainerCards = styled.div`
     display: flex;
@@ -53,13 +54,13 @@ class EstoqueAtualizarProduto extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <input type="text" name="searchBar" onChange={(e)=>{this.handleSearch(e)}}/>
+                <div className="container-search-bar-att">
+                    <input type="text" placeholder="Barra de pesquisa" name="searchBar" onChange={(e)=>{this.handleSearch(e)}}/>
                 </div>
                 <ContainerCards>
                 {this.state.load?
                     this.state.filterProdutos.map(e=>{
-                        return <EstoqueCardProdutos {...e}/>}
+                        return <EstoqueCardProdutos {...e} key={e._id}/>}
                     )
                 :
                     <h1>Carregando ...</h1>
