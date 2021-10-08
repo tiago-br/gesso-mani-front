@@ -8,12 +8,13 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    width: 90vw;
+    width: 100vw;
+    max-width: 100vw;
 }
 
 .container-btn-fat-mes-card button{
     display: block;
-    width: 80vw;
+    width: 70vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,4 +29,27 @@
 }
 .page-Faturamento{
     text-align: center;
+}
+.page-Faturamento h3{
+    
+}
+
+.container-fat-total-value{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    margin-bottom: 5vh;
+   
+}
+.fat-total-value{
+    width: 30vw;
+    background-color: #E5E4E2;
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

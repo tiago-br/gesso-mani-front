@@ -119,7 +119,7 @@ class FaturamentoPage extends Component {
                     </form>
                 </div>
                 <div>
-                        <h3>Ano <b>{this.state.currentYear}</b> selecionado</h3>
+                        <p>Ano <b>{this.state.currentYear}</b> selecionado</p>
                     <div>
                         {this.state.vendasMesesArr.map((e,i)=>
                             {  
@@ -127,7 +127,11 @@ class FaturamentoPage extends Component {
                                 />}
                         )}
                     </div>
-                    <h3>Faturamento total: R${`${this.state.fatTotal}`}</h3>
+                    <div className="container-fat-total-value">
+                        <div className="fat-total-value">
+                            <h3>Faturamento total de {this.state.currentYear}: R${`${this.state.fatTotal}`}</h3>
+                        </div>
+                    </div>
                 </div>
 
                 
