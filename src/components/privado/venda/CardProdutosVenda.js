@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import {MdOutlineAddCircle} from 'react-icons/md'
 
 const Container = styled.div`
 display: flex;
@@ -8,6 +9,7 @@ align-items: center;
 border: 2px solid black;
 margin: 2rem;
 border-radius: 20px;
+height: 3.7rem;
 
 `
 const Nome = styled.div`
@@ -26,7 +28,8 @@ const Valor = styled.div`
 
 const Acresentar = styled.div`
  width: 12rem;
-font-size: 3rem;
+font-size: 2.2rem;
+padding-top: 9px;
 text-align: center;
 
 `
@@ -92,11 +95,11 @@ class CardProdutosVenda extends Component {
     render() {
         return (
             <Container>
-
+                
                 <Nome>{this.props.name}</Nome>
                 {this.state.boolean ? <InputQuantidade  type = "number" name = "quantidade" value = {this.state.quantidade} onChange = {this.handleInput} /> : <Quantidade>{this.props.quantidade}</Quantidade>}
                 <Valor> {this.props.valor}</Valor>
-                {this.state.boolean ? <Acresentar onClick = {this.handleClick}>+</Acresentar> : <Acresentar onClick = {this.handleQuantidade}>+</Acresentar>   }
+                {this.state.boolean ? <Acresentar><MdOutlineAddCircle onClick = {this.handleClick}/></Acresentar> : <Acresentar><MdOutlineAddCircle onClick = {this.handleQuantidade}/></Acresentar>  }
                 
             </Container>
         )
