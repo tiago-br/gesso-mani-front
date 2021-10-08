@@ -47,7 +47,8 @@ class EstoqueNovoProduto extends Component {
             const checkExist =  data.find(e=>e.name===payload.name)
             if(checkExist){
                 this.setState({
-                msg:`O produto "${payload.name}" já está registrado no estoque`
+                msg:`O produto "${payload.name}" já está registrado no estoque`,
+                msgClassInvalidName:"msg-class-invalid-name"
              
                 })
             }else if(!payload.name){

@@ -13,6 +13,10 @@ const ButtonTittle = styled.button`
     border-radius: 30px;
     display: block;
     cursor: pointer;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
 `
 const DivButton = styled.div`
     display: flex;
