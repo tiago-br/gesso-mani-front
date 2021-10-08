@@ -120,20 +120,7 @@ class ProdutosVenda extends Component {
 
     }
 
-    deleteCard = async (value) => {
 
-        const array = [...this.state.produtos]
-
-        const a = array.findIndex(e => e.name === value)
-
-        array.splice(a, 1)
-
-        await this.setState({
-            produtos: array
-        })
-
-       
-    }
 
 
 
@@ -142,7 +129,7 @@ class ProdutosVenda extends Component {
             <Container>
 
 
-                {this.state.produtos.map(produto => <CardVenda key={produto.name} name={produto.name} valor_unitario={produto.valor_unitario} quantidade={produto.quantidade} delete={this.deleteCard} />)}
+                {this.state.produtos.map(produto => <CardVenda key={produto.name} name={produto.name} valor_unitario={produto.valor_unitario} quantidade={produto.quantidade} delete={this.props.deleteCard} />)}
 
                 <ContainerDown>
 

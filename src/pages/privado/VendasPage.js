@@ -99,7 +99,6 @@ h3{
 
 `
 
-
 class VendasPage extends Component {
 
     state = {
@@ -123,7 +122,6 @@ class VendasPage extends Component {
 
     }
 
-
     handleProdutos = (produtos) => {
         
         const material = this.state.listProdutos
@@ -132,9 +130,7 @@ class VendasPage extends Component {
             listProdutos: material
         })
     }
-
-    
-    
+ 
     handleInput = async (ev) => {
         
         const {value} = ev.target
@@ -155,19 +151,30 @@ class VendasPage extends Component {
         
     }
 
-    
+    deleteCard = async (value) => {
 
-    
-    
-    
-    
+        
+
+        const array = this.state.listProdutos
+
+        const a = array.findIndex(e => e.name === value)
+
+        array.splice(a, 1)
+
+        await this.setState({
+            produtos: array
+        })
+   
+    }
+
+
     render() {
         
         return (
             <div>
                 <NavbarUser />
                 <FormVenda />
-                <ProdutosVenda  produto={this.state.listProdutos} />
+                <ProdutosVenda  deleteCard = {this.deleteCard} produto={this.state.listProdutos} />
 
                 <Buttons>
                     <Bt> Orçamento </Bt>
@@ -192,7 +199,7 @@ class VendasPage extends Component {
                 </ContainerInfo>
 
                 {this.state.filterProduts.map(produto => {
-                return <CardProdutosVenda name={produto.name} quantidade={produto.quantidade_em_estoque} valor={produto.valor_de_venda} function={this.handleProdutos} />})}
+                return <CardProdutosVenda key = {produto.name} name={produto.name} quantidade={produto.quantidade_em_estoque} valor={produto.valor_de_venda} function={this.handleProdutos} />})}
 
 
             </div>
