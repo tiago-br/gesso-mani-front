@@ -12,6 +12,11 @@ const ButtonTittle = styled.button`
     background-color: gray;
     border-radius: 30px;
     display: block;
+    cursor: pointer;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
 `
 const DivButton = styled.div`
     display: flex;

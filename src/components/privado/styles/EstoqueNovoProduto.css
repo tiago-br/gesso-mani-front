@@ -63,3 +63,7 @@
 .estoque-novo-produto-container p{
     color:red;
 }
+
+.msg-class-invalid-name{
+    border-color: red;
+}

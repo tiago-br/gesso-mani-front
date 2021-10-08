@@ -14,6 +14,8 @@ class EstoqueNovoProduto extends Component {
         msg:"",
         msgSuccess:"",
         appearMSG:true,
+        msgClassInvalidName:"",
+        msgInvalidName:""
     }
     handleChange = (e) =>{
         const {name,value}= e.target
@@ -45,8 +47,15 @@ class EstoqueNovoProduto extends Component {
             const checkExist =  data.find(e=>e.name===payload.name)
             if(checkExist){
                 this.setState({
-                msg:`O produto "${payload.name}" já está registrado no estoque`
+                msg:`O produto "${payload.name}" já está registrado no estoque`,
+                msgClassInvalidName:"msg-class-invalid-name"
              
+                })
+            }else if(!payload.name){
+                this.setState({
+                    msg:'Campo "Nome do produto" precisa ser preenchido',
+                    msgClassInvalidName:"msg-class-invalid-name"
+
                 })
             }else{this.setState({
                 msg:"Erro ao criar novo produto!"
@@ -81,7 +90,7 @@ class EstoqueNovoProduto extends Component {
                     <form>
                     <div>
                     <label>Nome do produto:</label>
-                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
+                    <input className={this.state.msgClassInvalidName} type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
                     </div>
                     <div>
                     <label>Quantidade em estoque</label>
