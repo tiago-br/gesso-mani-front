@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from '../../utils/api.util'
+import api from '../../../utils/api.util'
 import EstoqueCardProdutos from './EstoqueCardProdutos'
 import styled from 'styled-components'
 import './styles/EstoqueCardProduto.css'

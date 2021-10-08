@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import api from '../../utils/api.util'
+import api from '../../../utils/api.util'
 import './styles/EstoqueNovoProduto.css'
+
 
 
 class EstoqueNovoProduto extends Component {
