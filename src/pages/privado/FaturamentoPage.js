@@ -13,7 +13,8 @@ class FaturamentoPage extends Component {
         currentYear:"2021",
         vendasFilterByYear:[],
         meses:["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
-        vendasMesesArr:[]
+        vendasMesesArr:[],
+        msgTest:"t"
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -36,7 +37,7 @@ class FaturamentoPage extends Component {
             return objectData
         })
         const copyDateDasVendas = [...novaVendas]
-        const vendasFilterByYear = copyDateDasVendas.filter(e=>e.data.ano==="2021")
+        const vendasFilterByYear = copyDateDasVendas.filter(e=>e.data.ano==="0001")
         const todosOsAnos =[]
         copyDateDasVendas.forEach(e=>{
             if(!todosOsAnos.includes(e.data.ano)){
@@ -80,14 +81,16 @@ class FaturamentoPage extends Component {
             const vendasMes = vendasFilterByYear.filter(mes=>mes.data.mes===valorMes)
             vendasMesesArr.push(vendasMes)
         }
+        
         await this.setState({
             currentYear:e.target.value,
             vendasFilterByYear,
-            vendasMesesArr
+            vendasMesesArr:vendasMesesArr,
         })
     }
     render()
-        {
+    {
+        console.log(this.state.vendasMesesArr)
         return (
             <div>
                 <NavbarUser/>
@@ -103,13 +106,16 @@ class FaturamentoPage extends Component {
                             </div>
                             )
                         }
+                        <button onClick={this.handleChooseYear}>Pequisar</button>
                     </form>
                 </div>
                 <div>
                         <h3>Ano <b>{this.state.currentYear}</b> selecionado</h3>
                     <div>
                         {this.state.vendasMesesArr.map((e,i)=>
-                            <FatMEScard vendas={[...e]} mes={this.state.meses[i]}/>
+                            {   console.log('trocando')
+                               return <FatMEScard vendas={[...e]} mes={this.state.meses[i]} key={this.state.meses[i] + this.state.currentYear}
+                                />}
                         )}
                     </div>
                 </div>
