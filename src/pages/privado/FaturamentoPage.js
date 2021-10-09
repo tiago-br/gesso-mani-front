@@ -3,6 +3,7 @@ import NavbarUser from '../../components/privado/NavbarUser'
 import api from '../../utils/api.util'
 import '../../components/privado/faturamento/style/FaturamentoPageStyle.css'
 import FatMEScard from '../../components/privado/faturamento/FatMEScard'
+import FatDIAcard from '../../components/privado/faturamento/FatDIAcard'
 
 class FaturamentoPage extends Component {
     state={
@@ -17,7 +18,9 @@ class FaturamentoPage extends Component {
         fatTotal:"",
         load:false,
         vendasMesSelecionado:[],
-        selectedMonth:""
+        selectedMonth:"",
+        todosOsDiasComVenda:[],
+        listaDeDiasComVendas:[]
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -109,7 +112,19 @@ class FaturamentoPage extends Component {
             vendasMesSelecionado:vendas,
             selectedMonth:month
         })
-        console.log(this.state.vendasMesSelecionado,month)
+       let todosOsDiasComVenda = []
+       this.state.vendasMesSelecionado.forEach(e=>{
+           if(!todosOsDiasComVenda.includes(e.data.dia)){
+               todosOsDiasComVenda.push(e.data.dia)
+           }
+       })
+       todosOsDiasComVenda.sort((a,b)=>parseInt(a) - parseInt(b)
+       )
+       const listaDeDiasComVendas = todosOsDiasComVenda.map(e=> this.state.vendasMesSelecionado.filter(a=>a.data.dia===e))
+       await this.setState({
+           todosOsDiasComVenda,
+           listaDeDiasComVendas
+       })
     }
     backPageYears = () =>{
         this.setState({
@@ -118,7 +133,6 @@ class FaturamentoPage extends Component {
     }
     render()
     {
-        console.log(this.state.selectedMonth)
         return (
             <div className="page-Faturamento">
                 <NavbarUser/>
@@ -128,7 +142,10 @@ class FaturamentoPage extends Component {
                         
                     <div>
                     <button onClick={this.backPageYears}>Voltar</button>
-                    <h1>test</h1>
+                    <h1>{this.state.selectedMonth} de {this.state.currentYear}</h1>
+                    {this.state.todosOsDiasComVenda.map(e=>
+                        <FatDIAcard dia={e} key={e+1+this.state.selectedMonth}/>
+                    )}
                     </div>
                     :
                     <>
@@ -136,7 +153,7 @@ class FaturamentoPage extends Component {
                     <h2>Selcione um ano</h2>
                     <div>
                         
-                        <form class="faturamento-form-escolher-ano">
+                        <form className="faturamento-form-escolher-ano">
                             {
                                 this.state.todosOsAnos.map(ano=>
                                 <div key={ano}>
