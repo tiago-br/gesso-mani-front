@@ -20,7 +20,8 @@ class FaturamentoPage extends Component {
         vendasMesSelecionado:[],
         selectedMonth:"",
         todosOsDiasComVenda:[],
-        listaDeDiasComVendas:[]
+        listaDeDiasComVendas:[],
+        selectedDay:"",
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -130,6 +131,16 @@ class FaturamentoPage extends Component {
             selectedMonth:""
         })
     }
+    backPageDays = () =>{
+        this.setState({
+            selectedDay:""
+        })
+    }
+    clickDay = async (vendasDay, selectedDay) =>{
+        await this.setState({
+            selectedDay
+        })
+    }
     render()
     {
         return (
@@ -138,19 +149,41 @@ class FaturamentoPage extends Component {
                 <div>
                     {this.state.load?
                         this.state.selectedMonth?
-                        
+                            this.state.selectedDay?
+                        <div>
+                            <div className="fat-page-container-button-voltar-dia">
+                                <div>
+                                    <button onClick={this.backPageDays}>Voltar</button>
+                                    <button onClick={this.backPageYears}>Voltar página inicial</button>
+                                </div>
+                            </div>
+                            <h1>Faturamento</h1>
+                            <br/>
+                            <h2>Vendas do dia {this.state.selectedDay} de {this.state.selectedMonth} de {this.state.currentYear}</h2>
+                    <br/>
+                        </div>
+                    :
+                    //dia----------------------------
                     <div>
-                    <button onClick={this.backPageYears}>Voltar</button>
-                    <h1>{this.state.selectedMonth} de {this.state.currentYear}</h1>
+                        <div className="fat-page-container-button-voltar-dia">
+                            <div>
+                                <button onClick={this.backPageYears}>Voltar</button>
+                            </div>
+                        </div>
+                    <h1>Faturamento</h1>
+                    <br/>
+                    <h2>{this.state.selectedMonth} de {this.state.currentYear}</h2>
+                    <br/>
                     {this.state.listaDeDiasComVendas.map((e,i)=>
-                        <FatDIAcard vendas={[...e]} dia={this.state.todosOsDiasComVenda[i]} key={i+this.state.selectedMonth}/>
+                        <FatDIAcard vendas={[...e]} dia={this.state.todosOsDiasComVenda[i]} key={i+this.state.selectedMonth} click={this.clickDay}/>
                     )}
                     </div>
+                    //dia---------------------
                     :
                     <>
                     <h1>Faturamento</h1>
                     <h2>Selcione um ano</h2>
-                    <div>
+                    <div className="container-faturamento-form-escolher-ano">
                         
                         <form className="faturamento-form-escolher-ano">
                             {

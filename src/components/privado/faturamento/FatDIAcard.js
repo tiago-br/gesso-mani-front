@@ -16,7 +16,7 @@ class FatDIAcard extends Component {
         return (
             <div>
                  <div className="container-btn-fat-mes-card" >
-                <button className="btn-fat-mes-card">
+                <button className="btn-fat-mes-card" onClick={()=>{this.props.click("ola",this.props.dia)}}>
                     <div>
                     Dia {this.props.dia}
                     </div>
