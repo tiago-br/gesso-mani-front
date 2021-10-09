@@ -3,22 +3,23 @@ import './style/FaturamentoPageStyle.css'
 
 class FatMEScard extends Component {
     state={
-        fatTotalMes:""
+        fatTotalMes:"",
+        todasAsVendas:[]
     }
     componentDidMount = () =>{
-        console.log(this.props.vendas)
         const valoresDasVendasMes = this.props.vendas.map(e=>e.valor_total)
         const fatTotalMes = valoresDasVendasMes.reduce((acc,current)=>{
             return acc+current
         },0)
         this.setState({
-            fatTotalMes:fatTotalMes.toLocaleString('pt-BR')
+            fatTotalMes:fatTotalMes.toLocaleString('pt-BR'),
+            todasAsVendas:this.props.vendas
         })
         
     }
     render() {
         return (
-            <div className="container-btn-fat-mes-card">
+            <div className="container-btn-fat-mes-card" onClick={()=>this.props.click(this.state.todasAsVendas,this.props.mes)} >
                 <button className="btn-fat-mes-card">
                     <div>
                     {this.props.mes}

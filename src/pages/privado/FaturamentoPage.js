@@ -15,7 +15,9 @@ class FaturamentoPage extends Component {
         meses:["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
         vendasMesesArr:[],
         fatTotal:"",
-        load:false
+        load:false,
+        vendasMesSelecionado:[],
+        selectedMonth:""
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -72,7 +74,8 @@ class FaturamentoPage extends Component {
             vendasFilterByYear,
             vendasMesesArr,
             fatTotal:totalFormatado,
-            load:true
+            load:true,
+            
         })
     }
     handleChooseYear = async(e) =>{
@@ -101,13 +104,33 @@ class FaturamentoPage extends Component {
             fatTotal:totalFormatado
         })
     }
+    clickMonth = async (vendas,month) => {
+        await this.setState({
+            vendasMesSelecionado:vendas,
+            selectedMonth:month
+        })
+        console.log(this.state.vendasMesSelecionado,month)
+    }
+    backPageYears = () =>{
+        this.setState({
+            selectedMonth:""
+        })
+    }
     render()
     {
+        console.log(this.state.selectedMonth)
         return (
             <div className="page-Faturamento">
                 <NavbarUser/>
                 <div>
                     {this.state.load?
+                        this.state.selectedMonth?
+                        
+                    <div>
+                    <button onClick={this.backPageYears}>Voltar</button>
+                    <h1>test</h1>
+                    </div>
+                    :
                     <>
                     <h1>Faturamento</h1>
                     <h2>Selcione um ano</h2>
@@ -128,7 +151,7 @@ class FaturamentoPage extends Component {
                     <p>Ano <b>{this.state.currentYear}</b> selecionado</p>
                     <div>
                         {this.state.vendasMesesArr.map((e,i)=>
-                            <FatMEScard vendas={[...e]} mes={this.state.meses[i]} key={this.state.meses[i] + this.state.currentYear}/>
+                            <FatMEScard vendas={[...e]} mes={this.state.meses[i]} key={this.state.meses[i] + this.state.currentYear} click={this.clickMonth}/>
                         )}
                     </div>
                         <div className="container-fat-total-value">
@@ -140,6 +163,7 @@ class FaturamentoPage extends Component {
                     </>
                     :
                     <h2>Carregando ...</h2>
+                    
                     }
                 </div>   
             </div>
