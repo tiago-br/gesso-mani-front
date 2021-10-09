@@ -105,7 +105,8 @@ class ProdutosVenda extends Component {
             valor = valor + 30
         }
 
-      return valor
+      return valor.toLocaleString('pt-BR') 
+      
 
     }
 

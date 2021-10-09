@@ -134,11 +134,7 @@ class VendasPage extends Component {
         const material = this.state.listProdutos
 
         let checkProduto = false
-        let indice = this.state.produtos.findIndex(e => e.name === produtos.nome)
-
-        // if (this.state.produtos[indice].quantidade_em_estoque < produtos.quantidade) {
-        //     return alert('Não temos essa quantidade no estoque ')
-        // }
+      
 
         material.map(item => {
             if (item.nome === produtos.nome) {
@@ -201,8 +197,7 @@ class VendasPage extends Component {
 
     // Pega nome do cliente e a data
     infoVenda = async (payload) => {
-
-
+        console.log(payload)
         await this.setState({
             cliente: payload.name,
             data: payload.data
@@ -247,6 +242,12 @@ class VendasPage extends Component {
 
     novaVenda = async () => {
 
+        // let indice = this.state.produtos.findIndex(e => e.name === produtos.nome)
+
+        // if (this.state.produtos[indice].quantidade_em_estoque < produtos.quantidade) {
+        //     return alert('Não temos essa quantidade no estoque ')
+        // }
+
         let material = [...this.state.listProdutos]
         const vendedor = localStorage.getItem('user')
         const cliente = this.state.cliente
@@ -264,13 +265,13 @@ class VendasPage extends Component {
         await api.postVenda(payload)
 
         // Retirar a quantidade vendida do estoque
-        await material.map(produto => {
+        material.map(produto => {
 
             let payload = {
                 quantidade: produto.quantidade
             }
 
-            api.putVendaParaProduto(produto.nome, payload)
+             api.putVendaParaProduto(produto.nome, payload)
 
         })
 
@@ -278,8 +279,8 @@ class VendasPage extends Component {
             listProdutos: []
         }
         )
-
-        await setTimeout(function () { window.location.reload(); }, 1000)
+         
+        await setTimeout(function () { window.location.reload(true); }, 5000)
 
     }
     novoOrcamento = async () => {
