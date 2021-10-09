@@ -3,6 +3,7 @@ import NavbarUser from '../../components/privado/NavbarUser'
 import api from '../../utils/api.util'
 import '../../components/privado/faturamento/style/FaturamentoPageStyle.css'
 import FatMEScard from '../../components/privado/faturamento/FatMEScard'
+import FatDIAcard from '../../components/privado/faturamento/FatDIAcard'
 
 class FaturamentoPage extends Component {
     state={
@@ -14,7 +15,13 @@ class FaturamentoPage extends Component {
         vendasFilterByYear:[],
         meses:["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
         vendasMesesArr:[],
-        fatTotal:""
+        fatTotal:"",
+        load:false,
+        vendasMesSelecionado:[],
+        selectedMonth:"",
+        todosOsDiasComVenda:[],
+        listaDeDiasComVendas:[],
+        selectedDay:"",
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -70,7 +77,9 @@ class FaturamentoPage extends Component {
             todosOsAnos:sortTodosOsAnos,
             vendasFilterByYear,
             vendasMesesArr,
-            fatTotal:totalFormatado
+            fatTotal:totalFormatado,
+            load:true,
+            
         })
     }
     handleChooseYear = async(e) =>{
@@ -99,42 +108,113 @@ class FaturamentoPage extends Component {
             fatTotal:totalFormatado
         })
     }
+    clickMonth = async (vendasMesSelecionado,month) => {
+        
+       let todosOsDiasComVenda = []
+       vendasMesSelecionado.forEach(e=>{
+           if(!todosOsDiasComVenda.includes(e.data.dia)){
+               todosOsDiasComVenda.push(e.data.dia)
+           }
+       })
+       todosOsDiasComVenda.sort((a,b)=>parseInt(a) - parseInt(b)
+       )
+       const listaDeDiasComVendas = todosOsDiasComVenda.map(e=>vendasMesSelecionado.filter(a=>a.data.dia===e))
+       await this.setState({
+           todosOsDiasComVenda,
+           listaDeDiasComVendas,
+           selectedMonth:month,
+           vendasMesSelecionado
+       })
+    }
+    backPageYears = () =>{
+        this.setState({
+            selectedMonth:""
+        })
+    }
+    backPageDays = () =>{
+        this.setState({
+            selectedDay:""
+        })
+    }
+    clickDay = async (vendasDay, selectedDay) =>{
+        await this.setState({
+            selectedDay
+        })
+    }
     render()
     {
         return (
             <div className="page-Faturamento">
                 <NavbarUser/>
-                <h1>Faturamento</h1>
-                <h2>Selcione um ano</h2>
                 <div>
-                    <form class="faturamento-form-escolher-ano">
-                        {
-                            this.state.todosOsAnos.map(ano=>
-                            <div key={ano}>
-                            <input type="radio" value={ano} checked={`${this.state.currentYear}`===`${ano}`} onChange={this.handleChooseYear}/>
-                            <label>{`${ano}`}</label>
+                    {this.state.load?
+                        this.state.selectedMonth?
+                            this.state.selectedDay?
+                        <div>
+                            <div className="fat-page-container-button-voltar-dia">
+                                <div>
+                                    <button onClick={this.backPageDays}>Voltar</button>
+                                    <button onClick={this.backPageYears}>Voltar página inicial</button>
+                                </div>
                             </div>
-                            )
-                        }
-                    </form>
-                </div>
-                <div>
-                        <p>Ano <b>{this.state.currentYear}</b> selecionado</p>
+                            <h1>Faturamento</h1>
+                            <br/>
+                            <h2>Vendas do dia {this.state.selectedDay} de {this.state.selectedMonth} de {this.state.currentYear}</h2>
+                    <br/>
+                        </div>
+                    :
+                    //dia----------------------------
+                    <div>
+                        <div className="fat-page-container-button-voltar-dia">
+                            <div>
+                                <button onClick={this.backPageYears}>Voltar</button>
+                            </div>
+                        </div>
+                    <h1>Faturamento</h1>
+                    <br/>
+                    <h2>{this.state.selectedMonth} de {this.state.currentYear}</h2>
+                    <br/>
+                    {this.state.listaDeDiasComVendas.map((e,i)=>
+                        <FatDIAcard vendas={[...e]} dia={this.state.todosOsDiasComVenda[i]} key={i+this.state.selectedMonth} click={this.clickDay}/>
+                    )}
+                    </div>
+                    //dia---------------------
+                    :
+                    <>
+                    <h1>Faturamento</h1>
+                    <h2>Selcione um ano</h2>
+                    <div className="container-faturamento-form-escolher-ano">
+                        
+                        <form className="faturamento-form-escolher-ano">
+                            {
+                                this.state.todosOsAnos.map(ano=>
+                                <div key={ano}>
+                                <input type="radio" value={ano} checked={`${this.state.currentYear}`===`${ano}`} onChange={this.handleChooseYear}/>
+                                <label>{`${ano}`}</label>
+                                </div>
+                                )
+                            }
+                        </form>
+                    </div>
+                    <div>
+                    <p>Ano <b>{this.state.currentYear}</b> selecionado</p>
                     <div>
                         {this.state.vendasMesesArr.map((e,i)=>
-                            {  
-                               return <FatMEScard vendas={[...e]} mes={this.state.meses[i]} key={this.state.meses[i] + this.state.currentYear}
-                                />}
+                            <FatMEScard vendas={[...e]} mes={this.state.meses[i]} key={this.state.meses[i] + this.state.currentYear} click={this.clickMonth}/>
                         )}
                     </div>
-                    <div className="container-fat-total-value">
-                        <div className="fat-total-value">
-                            <h3>Faturamento total de {this.state.currentYear}: R${`${this.state.fatTotal}`}</h3>
+                        <div className="container-fat-total-value">
+                            <div className="fat-total-value">
+                                <h3>Faturamento total de {this.state.currentYear}: R${`${this.state.fatTotal}`}</h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                
+                    </>
+                    :
+                    <h2>Carregando ...</h2>
+                    
+                    }
+                </div>   
             </div>
         )
     }
