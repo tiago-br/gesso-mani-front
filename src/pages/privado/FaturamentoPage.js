@@ -14,7 +14,8 @@ class FaturamentoPage extends Component {
         vendasFilterByYear:[],
         meses:["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
         vendasMesesArr:[],
-        fatTotal:""
+        fatTotal:"",
+        load:false
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -70,7 +71,8 @@ class FaturamentoPage extends Component {
             todosOsAnos:sortTodosOsAnos,
             vendasFilterByYear,
             vendasMesesArr,
-            fatTotal:totalFormatado
+            fatTotal:totalFormatado,
+            load:true
         })
     }
     handleChooseYear = async(e) =>{
@@ -104,37 +106,42 @@ class FaturamentoPage extends Component {
         return (
             <div className="page-Faturamento">
                 <NavbarUser/>
-                <h1>Faturamento</h1>
-                <h2>Selcione um ano</h2>
                 <div>
-                    <form class="faturamento-form-escolher-ano">
-                        {
-                            this.state.todosOsAnos.map(ano=>
-                            <div key={ano}>
-                            <input type="radio" value={ano} checked={`${this.state.currentYear}`===`${ano}`} onChange={this.handleChooseYear}/>
-                            <label>{`${ano}`}</label>
-                            </div>
-                            )
-                        }
-                    </form>
-                </div>
-                <div>
-                        <p>Ano <b>{this.state.currentYear}</b> selecionado</p>
+                    {this.state.load?
+                    <>
+                    <h1>Faturamento</h1>
+                    <h2>Selcione um ano</h2>
+                    <div>
+                        
+                        <form class="faturamento-form-escolher-ano">
+                            {
+                                this.state.todosOsAnos.map(ano=>
+                                <div key={ano}>
+                                <input type="radio" value={ano} checked={`${this.state.currentYear}`===`${ano}`} onChange={this.handleChooseYear}/>
+                                <label>{`${ano}`}</label>
+                                </div>
+                                )
+                            }
+                        </form>
+                    </div>
+                    <div>
+                    <p>Ano <b>{this.state.currentYear}</b> selecionado</p>
                     <div>
                         {this.state.vendasMesesArr.map((e,i)=>
-                            {  
-                               return <FatMEScard vendas={[...e]} mes={this.state.meses[i]} key={this.state.meses[i] + this.state.currentYear}
-                                />}
+                            <FatMEScard vendas={[...e]} mes={this.state.meses[i]} key={this.state.meses[i] + this.state.currentYear}/>
                         )}
                     </div>
-                    <div className="container-fat-total-value">
-                        <div className="fat-total-value">
-                            <h3>Faturamento total de {this.state.currentYear}: R${`${this.state.fatTotal}`}</h3>
+                        <div className="container-fat-total-value">
+                            <div className="fat-total-value">
+                                <h3>Faturamento total de {this.state.currentYear}: R${`${this.state.fatTotal}`}</h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                
+                    </>
+                    :
+                    <h2>Carregando ...</h2>
+                    }
+                </div>   
             </div>
         )
     }
