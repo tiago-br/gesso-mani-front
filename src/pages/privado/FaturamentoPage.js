@@ -107,23 +107,22 @@ class FaturamentoPage extends Component {
             fatTotal:totalFormatado
         })
     }
-    clickMonth = async (vendas,month) => {
-        await this.setState({
-            vendasMesSelecionado:vendas,
-            selectedMonth:month
-        })
+    clickMonth = async (vendasMesSelecionado,month) => {
+        
        let todosOsDiasComVenda = []
-       this.state.vendasMesSelecionado.forEach(e=>{
+       vendasMesSelecionado.forEach(e=>{
            if(!todosOsDiasComVenda.includes(e.data.dia)){
                todosOsDiasComVenda.push(e.data.dia)
            }
        })
        todosOsDiasComVenda.sort((a,b)=>parseInt(a) - parseInt(b)
        )
-       const listaDeDiasComVendas = todosOsDiasComVenda.map(e=> this.state.vendasMesSelecionado.filter(a=>a.data.dia===e))
+       const listaDeDiasComVendas = todosOsDiasComVenda.map(e=>vendasMesSelecionado.filter(a=>a.data.dia===e))
        await this.setState({
            todosOsDiasComVenda,
-           listaDeDiasComVendas
+           listaDeDiasComVendas,
+           selectedMonth:month,
+           vendasMesSelecionado
        })
     }
     backPageYears = () =>{
@@ -143,8 +142,8 @@ class FaturamentoPage extends Component {
                     <div>
                     <button onClick={this.backPageYears}>Voltar</button>
                     <h1>{this.state.selectedMonth} de {this.state.currentYear}</h1>
-                    {this.state.todosOsDiasComVenda.map(e=>
-                        <FatDIAcard dia={e} key={e+1+this.state.selectedMonth}/>
+                    {this.state.listaDeDiasComVendas.map((e,i)=>
+                        <FatDIAcard vendas={[...e]} dia={this.state.todosOsDiasComVenda[i]} key={i+this.state.selectedMonth}/>
                     )}
                     </div>
                     :
