@@ -12,8 +12,6 @@ class FatDIAcard extends Component {
         })
     }
     render() {
-        console.log(this.props.vendas)
-        
         return (
             <div>
                  <div className="container-btn-fat-mes-card" >

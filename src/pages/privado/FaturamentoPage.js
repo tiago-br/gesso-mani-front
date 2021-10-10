@@ -6,6 +6,7 @@ import FatMEScard from '../../components/privado/faturamento/FatMEScard'
 import FatDIAcard from '../../components/privado/faturamento/FatDIAcard'
 import FatVENDAcard from '../../components/privado/faturamento/FatVENDAcard'
 
+
 class FaturamentoPage extends Component {
     state={
         novaVendas:[],
@@ -23,7 +24,8 @@ class FaturamentoPage extends Component {
         todosOsDiasComVenda:[],
         listaDeDiasComVendas:[],
         selectedDay:"",
-        vendasDia:[]
+        vendasDia:[],
+        msgErrorDelet:""
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -144,6 +146,23 @@ class FaturamentoPage extends Component {
             vendasDia
         })
     }
+    deleteVenda = async (id,numero,confirmNumero) =>{
+        
+        try {
+            if(numero !== confirmNumero){
+                throw new Error({msg:"Numero Invalido"})
+            }
+            await api.deleteVenda(id)
+            const vendasDia = [...this.state.vendasDia]
+            const indexVenda = vendasDia.findIndex(e=>e.id===id)
+            vendasDia.splice(indexVenda,1)
+            this.setState({
+                vendasDia
+            })
+        } catch (error) {
+            
+        }
+    }
     render()
     {
         return (
@@ -164,9 +183,9 @@ class FaturamentoPage extends Component {
                             <br/>
                             <h2>Vendas do dia {this.state.selectedDay} de {this.state.selectedMonth} de {this.state.currentYear}</h2>
                             <br/>
-                            <div>
+                            <div className="faturament-page-container-venda-card">
                                 {this.state.vendasDia.map(e=>
-                                    <FatVENDAcard key={e.id} {...e}/>
+                                    <FatVENDAcard key={e.id} {...e} deleteVenda={this.deleteVenda}/>
                                 )}
                             </div>
                         </div>
