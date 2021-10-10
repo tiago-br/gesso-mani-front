@@ -12,7 +12,8 @@ class FatVENDAcard extends Component {
         openListProdutos:false,
         toggleButtonListProdutosMsg:"Ver mais",
         load:false,
-        classNameForm:"container-form-vendas"
+        classNameForm:"container-form-vendas",
+        statusVenda:"",
     }
 
     componentDidMount = () =>{
@@ -114,7 +115,7 @@ class FatVENDAcard extends Component {
                         </div>
                     </section>
                     <div>
-                        <button type="button"onClick={this.handleToggleListProdutos}>{this.state.toggleButtonListProdutosMsg}</button>
+                        <button className="toggle-button-ver-mais-ver-menos"type="button"onClick={this.handleToggleListProdutos}>{this.state.toggleButtonListProdutosMsg}</button>
                     </div>
                     <div>
                         {this.state.openListProdutos?
