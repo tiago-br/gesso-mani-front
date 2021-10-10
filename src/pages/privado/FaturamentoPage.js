@@ -4,6 +4,7 @@ import api from '../../utils/api.util'
 import '../../components/privado/faturamento/style/FaturamentoPageStyle.css'
 import FatMEScard from '../../components/privado/faturamento/FatMEScard'
 import FatDIAcard from '../../components/privado/faturamento/FatDIAcard'
+import FatVENDAcard from '../../components/privado/faturamento/FatVENDAcard'
 
 class FaturamentoPage extends Component {
     state={
@@ -22,6 +23,7 @@ class FaturamentoPage extends Component {
         todosOsDiasComVenda:[],
         listaDeDiasComVendas:[],
         selectedDay:"",
+        vendasDia:[]
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -136,9 +138,10 @@ class FaturamentoPage extends Component {
             selectedDay:""
         })
     }
-    clickDay = async (vendasDay, selectedDay) =>{
+    clickDay = async (vendasDia, selectedDay) =>{
         await this.setState({
-            selectedDay
+            selectedDay,
+            vendasDia
         })
     }
     render()
@@ -153,14 +156,19 @@ class FaturamentoPage extends Component {
                         <div>
                             <div className="fat-page-container-button-voltar-dia">
                                 <div>
-                                    <button onClick={this.backPageDays}>Voltar</button>
                                     <button onClick={this.backPageYears}>Voltar página inicial</button>
+                                    <button onClick={this.backPageDays}>Voltar</button>
                                 </div>
                             </div>
-                            <h1>Faturamento</h1>
+                            <h1>Vendas</h1>
                             <br/>
                             <h2>Vendas do dia {this.state.selectedDay} de {this.state.selectedMonth} de {this.state.currentYear}</h2>
-                    <br/>
+                            <br/>
+                            <div>
+                                {this.state.vendasDia.map(e=>
+                                    <FatVENDAcard key={e.id} {...e}/>
+                                )}
+                            </div>
                         </div>
                     :
                     //dia----------------------------
