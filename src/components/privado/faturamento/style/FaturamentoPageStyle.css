@@ -180,3 +180,53 @@
    height: 8.5vh;
 }
 
+/* ver mais produtos */
+.container-form-vendas-ver-mais{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    justify-content: flex-start;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 3vh 3vw 3vh 3vw;
+    margin-bottom: 5vh;
+    background-color: #E5E4E2;
+    justify-content: center;
+}
+.container-form-vendas-ver-mais li{
+    text-align: start;
+    list-style-type: none;
+    margin-bottom: 1vh;
+    font-size: 1.2rem;
+}
+.container-form-vendas-ver-mais span{
+    font-weight: 700;
+}
+
+.container-form-vendas-ver-mais section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-form-vendas-ver-mais section button{
+    width: 5vw;
+    height: 8vh;
+    background-color: inherit;
+    cursor: pointer;
+    display: block;
+    margin-top: 5vh;
+    border: none;
+}
+
+
+.container-form-vendas-ver-mais section button img{
+   height: 100%;
+   width: auto;
+}
+
+.container-form-vendas-ver-mais section button:hover{
+   height: 8.5vh;
+}
+
+
+

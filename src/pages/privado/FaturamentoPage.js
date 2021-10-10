@@ -151,7 +151,8 @@ class FaturamentoPage extends Component {
         try {
             await api.deleteVenda(id)
             window.location.reload()
-            alert(`Venda id: ${id} deletada com sucesso`)
+            alert(`Venda id: ${id} deletada com sucesso 
+            a página será recarregada`)
         } catch (error) {
             alert("erro no servidor")
         }

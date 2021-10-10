@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import api from '../../../utils/api.util'
+import ListaProdutosVendasCard from './ListaProdutosVendasCard'
 const imagemLixeira = "https://2.bp.blogspot.com/-DqfqcqsH47M/UMixbjsQlnI/AAAAAAAAI_U/IQkIeo-wOaU/s1600/Lixeira+-+Premium+Design+3D+(1).png"
 class FatVENDAcard extends Component {
     state={
         deleteVenda:false,
         deletNumber:"",
         confirmDeletNumber:"",
-        msgDeletError:""
+        msgDeletError:"",
+        produtos:[],
+        openListProdutos:false,
+        toggleButtonListProdutosMsg:"Ver mais",
+        load:false,
+        classNameForm:"container-form-vendas"
     }
 
     componentDidMount = () =>{
@@ -20,7 +26,9 @@ class FatVENDAcard extends Component {
         }
     
         this.setState({
-            deletNumber:randomNumber()
+            deletNumber:randomNumber(),
+            produtos:this.props.produtos,
+            load:true
         })
     }
     handleOpenDeletVenda = () =>{
@@ -47,20 +55,37 @@ class FatVENDAcard extends Component {
         
         
     }
+    handleToggleListProdutos = async() =>{
+        await this.setState({
+            openListProdutos:!this.state.openListProdutos
+        })
+        if(this.state.toggleButtonListProdutosMsg==="Ver mais"){
+            this.setState({
+                toggleButtonListProdutosMsg:"Ver menos",
+                classNameForm:"container-form-vendas-ver-mais"
+            })
+        }else{
+            this.setState({
+                toggleButtonListProdutosMsg:"Ver mais",
+                classNameForm:"container-form-vendas"
+            })
+        }
+    }
     render() {
-        console.log(this.state.confirmDeletNumber)
+        console.log(this.state.produtos)
         return (
             <div>
-                <form className="container-form-vendas">
+                {this.state.load?
+                <form className={this.state.classNameForm}>
                     {this.state.deleteVenda?
                     <div>
                         <div>
                             <h3>Tem certeza que deseja deletar esta venda?</h3>
-                            <h3>Para deletar digite o numero abaixo e depois clique em confirmar</h3>
+                            <h3>Para deletar, digite o número abaixo e depois clique em confirmar</h3>
                             <h3>{this.state.deletNumber}</h3>
                         </div>
                         <div>
-                            <input type="text"  name="confirmDeletNumber" value={this.state.confirmDeletNumber} onChange={this.handleInputChange} placeholder="Digite o código a cima para deletar"/>
+                            <input type="text"  name="confirmDeletNumber" value={this.state.confirmDeletNumber} onChange={this.handleInputChange} placeholder="Digite aqui o número a cima para deletar"/>
                         </div>
                         <div>
                         <button type ="button" onClick={this.handleOpenDeletVenda}>Cancelar</button>
@@ -73,7 +98,7 @@ class FatVENDAcard extends Component {
                     :
                     <>
                     <div className="form-vendas-dia-e-id">
-                        <p>{this.props.data.dia}/{this.props.data.mes}/{this.props.data.ano}</p>
+                        <p>Data: {this.props.data.dia}/{this.props.data.mes}/{this.props.data.ano}</p>
                         <p>ID: {this.props.id}</p>
                     </div>
                     <section>
@@ -88,9 +113,23 @@ class FatVENDAcard extends Component {
                             <button type="button" onClick={this.handleOpenDeletVenda}><img src={imagemLixeira} alt="botao-excluir"/></button>
                         </div>
                     </section>
+                    <div>
+                        <button type="button"onClick={this.handleToggleListProdutos}>{this.state.toggleButtonListProdutosMsg}</button>
+                    </div>
+                    <div>
+                        {this.state.openListProdutos?
+                        this.state.produtos.map((e)=>
+                            <ListaProdutosVendasCard key={e.id} produtos={e}/>
+                        )
+                        :null}
+                    </div>
+
                     </>
                     }
                 </form>
+                :
+                <h1>{null}</h1>
+                }
             </div>
         )
     }

@@ -116,46 +116,47 @@ class EstoqueCardProdutos extends Component {
                 modificado_por:this.state.modificado_por
             }
             await api.putAddEstoque(payload,this.state.name)
-            if(payload.quantidade>1)
+            if(payload.quantidade>1){
             this.setState({
                 quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
                 msgAdd:`${payload.quantidade} produtos foram adicionados ao estoque!`,
                 classMsgAdd:"msg-add-success",
                 quantidade:0,
                 msg:""
-            })
-            if(payload.quantidade===1)
+            })}
+            if(payload.quantidade===1){
             this.setState({
                 quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
                 msgAdd:`${payload.quantidade} produto foi adicionado ao estoque!`,
                 classMsgAdd:"msg-add-success",
                 quantidade:0,
                 msg:""
-            })
-            if(payload.quantidade===0)
+            })}
+            if(payload.quantidade===0){
             this.setState({
                 quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
                 msgAdd:`Nenhum produto foi adicionado ao estoque!`,
                 classMsgAdd:"msg-add-success",
                 quantidade:0,
                 msg:""
-            })
-            if(payload.quantidade<-1)
+            })}
+            if(payload.quantidade<-1){
             this.setState({
                 quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
                 msgAdd:`${(-1)*payload.quantidade} produtos foram removidos do estoque!`,
                 classMsgAdd:"msg-add-success",
                 quantidade:0,
                 msg:""
-            })
-            if(payload.quantidade===-1)
+            })}
+            if(payload.quantidade===-1){
             this.setState({
                 quantidade_em_estoque:payload.quantidade + parseFloat(this.state.quantidade_em_estoque),
                 msgAdd:`${(-1)*payload.quantidade} produto foi removido do estoque!`,
                 classMsgAdd:"msg-add-success",
                 quantidade:0,
                 msg:""
-            })
+            })}
+            
 
         } catch (error) {
             this.setState({
