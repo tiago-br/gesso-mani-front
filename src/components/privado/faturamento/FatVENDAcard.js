@@ -5,7 +5,8 @@ class FatVENDAcard extends Component {
     state={
         deleteVenda:false,
         deletNumber:"",
-        confirmDeletNumber:""
+        confirmDeletNumber:"",
+        msgDeletError:""
     }
 
     componentDidMount = () =>{
@@ -34,6 +35,18 @@ class FatVENDAcard extends Component {
             [name]:value
         })
     }
+    deletVenda = async () =>{
+        if(this.state.deletNumber !==this.state.confirmDeletNumber){
+           this.setState({
+            msgDeletError:"Número de confirmamento inválido"
+           })
+        }else{
+            await this.props.deleteVenda(this.props.id,this.state.deletNumber,this.state.confirmDeletNumber)
+        }
+        setTimeout(()=>{this.setState({msgDeletError:""})}, 1500)
+        
+        
+    }
     render() {
         console.log(this.state.confirmDeletNumber)
         return (
@@ -51,7 +64,10 @@ class FatVENDAcard extends Component {
                         </div>
                         <div>
                         <button type ="button" onClick={this.handleOpenDeletVenda}>Cancelar</button>
-                        <button type ="button" onClick={()=>this.props.deleteVenda(this.props.id)}>Confirmar</button>
+                        <button type ="button" onClick={this.deletVenda}>Confirmar</button>
+                        </div>
+                        <div>
+                            {this.state.msgDeletError}
                         </div>
                     </div>
                     :

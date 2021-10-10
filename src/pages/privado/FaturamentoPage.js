@@ -149,18 +149,11 @@ class FaturamentoPage extends Component {
     deleteVenda = async (id,numero,confirmNumero) =>{
         
         try {
-            if(numero !== confirmNumero){
-                throw new Error({msg:"Numero Invalido"})
-            }
             await api.deleteVenda(id)
-            const vendasDia = [...this.state.vendasDia]
-            const indexVenda = vendasDia.findIndex(e=>e.id===id)
-            vendasDia.splice(indexVenda,1)
-            this.setState({
-                vendasDia
-            })
+            window.location.reload()
+            alert(`Venda id: ${id} deletada com sucesso`)
         } catch (error) {
-            
+            alert("erro no servidor")
         }
     }
     render()
