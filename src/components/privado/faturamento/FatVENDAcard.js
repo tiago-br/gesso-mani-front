@@ -97,16 +97,16 @@ class FatVENDAcard extends Component {
                 {this.state.load?
                 <form className={this.state.classNameForm}>
                     {this.state.deleteVenda?
-                    <div>
-                        <div>
+                    <div className="delet-venda-fat-card-venda">
+                        
                             <h3>Tem certeza que deseja deletar esta venda?</h3>
-                            <h3>Para deletar, digite o número abaixo e depois clique em confirmar</h3>
-                            <h3>{this.state.deletNumber}</h3>
-                        </div>
+                            <h3>Para deletar, digite, ou copie e cole, o número abaixo e depois clique em confirmar</h3>
+                            <p onselectstart="return false">{this.state.deletNumber}</p>
+                        
                         <div>
-                            <input type="text"  name="confirmDeletNumber" value={this.state.confirmDeletNumber} onChange={this.handleInputChange} placeholder="Digite aqui o número a cima para deletar"/>
+                            <input type="text"  name="confirmDeletNumber" value={this.state.confirmDeletNumber} onChange={this.handleInputChange} placeholder="Digite aqui"/>
                         </div>
-                        <div>
+                        <div className="bts-delet-venda-fat-card-venda">
                         <button type ="button" onClick={this.handleOpenDeletVenda}>Cancelar</button>
                         <button type ="button" onClick={this.deletVenda}>Confirmar</button>
                         </div>

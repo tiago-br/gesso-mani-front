@@ -276,3 +276,49 @@
 .status-troca{
     color:rgb(170, 170, 4)
 }
+.delet-venda-fat-card-venda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 30vh;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+.delet-venda-fat-card-venda p{
+    border: 2px dashed black;
+    width: 9vw;
+    font-weight: 700;
+}
+.delet-venda-fat-card-venda input{
+    font-size: 1.1rem;
+    text-align: center;
+    width: 8vw;
+    height: 3.5vh;
+    outline: none;
+    margin-bottom: 2vh;
+}
+
+.delet-venda-fat-card-venda input:focus{
+    border: 2px solid black
+}
+
+.bts-delet-venda-fat-card-venda button{
+    display: block;
+    width: 12vw;
+    border:2px solid black;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border-radius: 8px;
+}
+
+.bts-delet-venda-fat-card-venda button:hover{
+    background-color: black;
+    color:white
+}
+
+.bts-delet-venda-fat-card-venda{
+    display: flex;
+    justify-content: space-between;
+    width: 40vw;
+}
