@@ -12,11 +12,10 @@ class FatDIAcard extends Component {
         })
     }
     render() {
-        
         return (
             <div>
                  <div className="container-btn-fat-mes-card" >
-                <button className="btn-fat-mes-card" onClick={()=>{this.props.click("ola",this.props.dia)}}>
+                <button className="btn-fat-mes-card" onClick={()=>{this.props.click(this.props.vendas,this.props.dia)}}>
                     <div>
                     Dia {this.props.dia}
                     </div>

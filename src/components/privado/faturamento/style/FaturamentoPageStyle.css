@@ -119,3 +119,160 @@
     cursor: pointer;
     border-color: gray;
 }
+
+.form-vendas-dia-e-id{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.faturament-page-container-venda-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-form-vendas{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    height: 23vh;
+    justify-content: flex-start;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 3vh 3vw 3vh 3vw;
+    margin-bottom: 5vh;
+    background-color: #E5E4E2;
+    justify-content: center;
+}
+
+.container-form-vendas li{
+    text-align: start;
+    list-style-type: none;
+    margin-bottom: 1vh;
+    font-size: 1.2rem;
+}
+.container-form-vendas span{
+    font-weight: 700;
+}
+
+.container-form-vendas section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-form-vendas section button{
+    width: 5vw;
+    height: 8vh;
+    background-color: inherit;
+    cursor: pointer;
+    display: block;
+    margin-top: 5vh;
+    border: none;
+}
+
+
+.container-form-vendas section button img{
+   height: 100%;
+   width: auto;
+}
+
+.container-form-vendas section button:hover{
+   height: 8.5vh;
+}
+
+/* ver mais produtos */
+.container-form-vendas-ver-mais{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    justify-content: flex-start;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 3vh 3vw 3vh 3vw;
+    margin-bottom: 5vh;
+    background-color: #E5E4E2;
+    justify-content: center;
+}
+.container-form-vendas-ver-mais li{
+    text-align: start;
+    list-style-type: none;
+    margin-bottom: 1vh;
+    font-size: 1.2rem;
+}
+.container-form-vendas-ver-mais span{
+    font-weight: 700;
+}
+
+.container-form-vendas-ver-mais section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-form-vendas-ver-mais section button{
+    width: 5vw;
+    height: 8vh;
+    background-color: inherit;
+    cursor: pointer;
+    display: block;
+    margin-top: 5vh;
+    border: none;
+}
+
+
+.container-form-vendas-ver-mais section button img{
+   height: 100%;
+   width: auto;
+}
+
+.container-form-vendas-ver-mais section button:hover{
+   height: 8.5vh;
+}
+
+.faturamento-lista-ver-mais-produtos{
+    margin-top: 1vh;
+    display: flex;
+    justify-content: space-around;
+}
+.container-lista-produtos-vendas-card{
+    margin-top: 4vh;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    background-color: rgba(8, 255, 8, 0.527);
+}
+.faturamento-lista-ver-mais-produtos li{
+    width: 20vw;
+}
+
+.estorno{
+    background-color: rgb(252, 109, 109);
+}
+
+.toggle-button-ver-mais-ver-menos{
+    display: block;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    font-size: 1rem;
+    width: 13vw;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.toggle-button-ver-mais-ver-menos:hover{
+    background-color: black;
+    color:white;
+}
+
+.status-venda{
+    color:green;
+}
+.status-estorno{
+    color:red
+}
+
+.status-troca{
+    color:rgb(170, 170, 4)
+}
