@@ -14,6 +14,7 @@ class FatVENDAcard extends Component {
         load:false,
         classNameForm:"container-form-vendas",
         statusVenda:"",
+        statusVendaClassName:"",
     }
 
     componentDidMount = () =>{
@@ -31,6 +32,24 @@ class FatVENDAcard extends Component {
             produtos:this.props.produtos,
             load:true
         })
+        const checkStatusVenda = this.props.produtos.every(e=>e.quantidade>=0)
+        const checkStatusEstorno = this.props.produtos.every(e=>e.quantidade<0)
+        if(checkStatusVenda){
+            this.setState({
+                statusVenda:"venda",
+                statusVendaClassName:"status-venda"
+            })
+        }else if(checkStatusEstorno){
+            this.setState({
+                statusVenda:"estorno",
+                statusVendaClassName:"status-estorno"
+            })
+        }else{
+            this.setState({
+                statusVenda:"troca",
+                statusVendaClassName:"status-troca"
+            })
+        }
     }
     handleOpenDeletVenda = () =>{
         this.setState({
@@ -73,7 +92,6 @@ class FatVENDAcard extends Component {
         }
     }
     render() {
-        console.log(this.state.produtos)
         return (
             <div>
                 {this.state.load?
@@ -99,7 +117,7 @@ class FatVENDAcard extends Component {
                     :
                     <>
                     <div className="form-vendas-dia-e-id">
-                        <p>Data: {this.props.data.dia}/{this.props.data.mes}/{this.props.data.ano}</p>
+                        <p><b>status</b>: <span className={this.state.statusVendaClassName}>{this.state.statusVenda}</span></p>
                         <p>ID: {this.props.id}</p>
                     </div>
                     <section>

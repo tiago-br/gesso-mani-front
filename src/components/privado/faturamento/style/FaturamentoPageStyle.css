@@ -265,3 +265,14 @@
     background-color: black;
     color:white;
 }
+
+.status-venda{
+    color:green;
+}
+.status-estorno{
+    color:red
+}
+
+.status-troca{
+    color:rgb(170, 170, 4)
+}

@@ -17,14 +17,14 @@ class ListaProdutosVendasCard extends Component {
         
         if(this.props.produtos.quantidade < 0){
             let msg="retornou"
-            const valorVendaTotal=this.props.produtos.quantidade * (-1)
+            const valorVendaTotal=this.props.produtos.quantidade * this.props.produtos.valorUnitário *(-1)
             const valorVendaTotalFormatado=valorVendaTotal.toLocaleString('pt-BR')
             if(this.props.produtos.quantidade < -1){
                 msg="retornaram"
             }
             this.setState({
                 status:msg,
-                quantidade:valorVendaTotalFormatado,
+                quantidade:this.props.produtos.quantidade * (-1),
                 valorTotal:`${valorVendaTotalFormatado} estornado`,
                 statusClassName:"estorno"
             })
