@@ -122,6 +122,8 @@ class VendasPage extends Component {
 
     componentDidMount = async () => {
 
+        await console.log(this.props.match.params)
+
         let { data } = await api.getProduto()
 
         this.setState({
@@ -326,6 +328,12 @@ class VendasPage extends Component {
     }
 
     novoOrcamento = async () => {
+       
+        if(!this.state.cliente){
+            await this.setState({
+            cliente: "Consumidor"
+            })
+        }
 
         const vendedor = localStorage.getItem('user')
         const cliente = this.state.cliente
