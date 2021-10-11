@@ -5,6 +5,7 @@ import '../../components/privado/faturamento/style/FaturamentoPageStyle.css'
 import FatMEScard from '../../components/privado/faturamento/FatMEScard'
 import FatDIAcard from '../../components/privado/faturamento/FatDIAcard'
 import FatVENDAcard from '../../components/privado/faturamento/FatVENDAcard'
+import FatGraficos from '../../components/privado/faturamento/FatGraficos'
 
 
 class FaturamentoPage extends Component {
@@ -68,7 +69,7 @@ class FaturamentoPage extends Component {
             const vendasMes = vendasFilterByYear.filter(mes=>mes.data.mes===valorMes)
             vendasMesesArr.push(vendasMes)
         }
-        const copyVendasMesesArr = [...vendasMesesArr]
+        let copyVendasMesesArr = [...vendasMesesArr]
         const vendaTotalMeses = copyVendasMesesArr.flat().map(valorTotal=>valorTotal.valor_total).reduce((acc,valor)=>{
             return acc+valor
         },0)
@@ -165,6 +166,7 @@ class FaturamentoPage extends Component {
     }
     render()
     {
+        console.log(this.state.novaVendas)
         return (
             <div className="page-Faturamento">
                 <NavbarUser/>
@@ -244,7 +246,7 @@ class FaturamentoPage extends Component {
                     </div>
                     </>
                     :
-                    <div>Ola</div>
+                    <FatGraficos vendas={this.state.novaVendas} meses={this.state.meses} voltar={this.handleToggleOpenGraficos} anos={this.state.todosOsAnos}/>
                     :
                     <h2>Carregando ...</h2>
                     

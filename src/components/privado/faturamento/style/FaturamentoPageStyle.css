@@ -322,3 +322,15 @@
     justify-content: space-between;
     width: 40vw;
 }
+
+.container-grafico-fat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-grafico-fat section{
+    width: 70vw;
+    height: 70vh;
+}
