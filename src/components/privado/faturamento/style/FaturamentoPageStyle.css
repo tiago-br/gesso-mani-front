@@ -10,21 +10,7 @@
     display: flex;
     flex-wrap: wrap;
 }
-.faturamento-form-escolher-ano div{
-   width: 12vw;
-   display: flex;
-   margin-bottom: 2vh;
-   margin-right: 2vw;
-}
-.faturamento-form-escolher-ano input{
-    width: 3vw;
-    cursor: pointer;
-    height: 3vh;
-}
 
-.faturamento-form-escolher-ano label{
-    font-weight: 700;
-}
 
 .container-btn-fat-mes-card {
     display: flex;
@@ -392,4 +378,24 @@
 #botao-abrir-page-graficos-fat:hover{
     color:white;
     background-color: black;
+}
+
+.faturamento-form-escolher-ano {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.faturamento-form-escolher-ano select{
+    display: block;
+    width: 8vw;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1vw;
+}
+
+.faturamento-form-escolher-ano div{
+    margin-bottom: 3vh;
+    display: flex;
 }

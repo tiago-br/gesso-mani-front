@@ -215,25 +215,28 @@ class FaturamentoPage extends Component {
                     :
                     <>
                     <h1>Faturamento</h1>
-                    <h2>Selcione um ano</h2>
+                    <div className="container-botao-abrir-page-graficos-fat">
+                        <button  id="botao-abrir-page-graficos-fat"onClick={this.handleToggleOpenGraficos}>Gráfico Faturamento</button>
+                    </div>
                     <div className="container-faturamento-form-escolher-ano">
                         
                         <form className="faturamento-form-escolher-ano">
-                            {
-                                this.state.todosOsAnos.map(ano=>
-                                <div key={ano}>
-                                <input type="radio" value={ano} checked={`${this.state.currentYear}`===`${ano}`} onChange={this.handleChooseYear}/>
-                                <label>{`${ano}`}</label>
-                                </div>
-                                )
-                            }
+                            <div>
+                                <h3>Selecione um ano:  </h3>
+                           
+                                <select name="year" value={this.state.currentYear} onChange={this.handleChooseYear}>   
+                                {
+                                    this.state.todosOsAnos.map(ano=>
+                                        <option key={ano} value={ano}>{`${ano}`}</option>
+                                    
+                                    )
+                                }
+                                </select>
+                            </div>
                         </form>
                     </div>
                     <div>
-                    <div className="container-botao-abrir-page-graficos-fat">
-                        <button  id="botao-abrir-page-graficos-fat"onClick={this.handleToggleOpenGraficos}>Gráfico Faturamento</button>
                     
-                    </div>
                     <p>Ano <b>{this.state.currentYear}</b> selecionado</p>
                     <div>
                         {this.state.vendasMesesArr.map((e,i)=>
