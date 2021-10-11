@@ -158,6 +158,7 @@ class EstoqueCardProdutos extends Component {
             })
 
         } catch (error) {
+            console.log(error)
             this.setState({
                 msgAdd:`Erro ao adicionar!`,
                 classMsgAdd:"msg-add-fail",

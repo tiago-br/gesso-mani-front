@@ -113,7 +113,11 @@ class VendasPage extends Component {
         filterProduts: [],
         inputValue: '',
         desconto: true,
-        entrega: true
+        entrega: true,
+        booleanDesconto: false,
+        booleanEntrega : false,
+        valorDesconto : 5,
+        inputDesconto : 30
     }
 
     componentDidMount = async () => {
@@ -167,7 +171,7 @@ class VendasPage extends Component {
     handleInput = async (ev) => {
 
         const { value } = ev.target
-        this.setState({
+        await this.setState({
             inputValue: value
         })
 
@@ -197,13 +201,31 @@ class VendasPage extends Component {
 
     // Pega nome do cliente e a data
     infoVenda = async (payload) => {
-        console.log(payload)
         await this.setState({
             cliente: payload.name,
             data: payload.data
         })
     }
 
+    handleValorEntrega = (payload) => {
+
+   
+    let valorEntrega = parseInt(payload)
+    this.setState({
+
+        inputDesconto: valorEntrega
+    })
+
+    }
+
+    handleValorDesconto = (payload) => {
+
+        let valor = parseInt(payload)
+
+        this.setState({
+            valorDesconto : valor
+        })
+    }
     // Pega valor total na venda 
     valorTotal = () => {
 
@@ -211,17 +233,29 @@ class VendasPage extends Component {
 
         // map para pegar valor total da lista de compra 
         this.state.listProdutos.map(produto => valor += produto.valorUnitário * produto.quantidade)
+        
+        // condição de acresentar ou retirar a entrega 
+        if (!this.state.entrega) {
+            let a = parseInt(this.state.inputDesconto)
+            console.log(a,"entrega")
+            valor = valor + a
+        }
 
         // condição de acresentar ou retirar os 10% de desconto
-        if (!this.state.desconto) {
+        if (!this.state.desconto && this.state.valorDesconto === 10) {
             const desconto = valor / 10
+            console.log(desconto,"10")
             valor = valor - desconto
         }
 
-        // condição de acresentar ou retirar a entrega 
-        if (!this.state.entrega) {
-            valor = valor + 30
+        // condição de acresentar ou retirar os 5% de desconto
+        if (!this.state.desconto && this.state.valorDesconto === 5) {
+
+            const desconto = valor / 20 
+            console.log(desconto,"5")
+            valor = valor - desconto
         }
+        
 
         return valor
     }
@@ -242,17 +276,22 @@ class VendasPage extends Component {
 
     novaVenda = async () => {
 
-        // let indice = this.state.produtos.findIndex(e => e.name === produtos.nome)
 
-        // if (this.state.produtos[indice].quantidade_em_estoque < produtos.quantidade) {
-        //     return alert('Não temos essa quantidade no estoque ')
-        // }
+        if(!this.state.cliente){
+            await this.setState({
+            cliente: "Consumidor"
+            })
+        }
+
+       console.log(this.state.data)
 
         let material = [...this.state.listProdutos]
         const vendedor = localStorage.getItem('user')
         const cliente = this.state.cliente
         const data = this.state.data
         let valor = await this.valorTotal()
+
+        
 
         const payload = {
             vendedor,
@@ -261,6 +300,8 @@ class VendasPage extends Component {
             data,
             valor_total: valor
         }
+
+       
 
         await api.postVenda(payload)
 
@@ -280,9 +321,10 @@ class VendasPage extends Component {
         }
         )
          
-        await setTimeout(function () { window.location.reload(true); }, 5000)
+        await setTimeout(function () { window.location.reload(true); }, 1100)
 
     }
+
     novoOrcamento = async () => {
 
         const vendedor = localStorage.getItem('user')
@@ -318,11 +360,13 @@ class VendasPage extends Component {
             <div>
                 <NavbarUser />
                 <FormVenda infoVenda={this.infoVenda} />
-                <ProdutosVenda handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard} produto={this.state.listProdutos} />
+                <ProdutosVenda handleValorDesconto = {this.handleValorDesconto} handleValorEntrega = {this.handleValorEntrega} handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard} produto={this.state.listProdutos} />
 
                 <Buttons>
-                    <Bt onClick={this.novoOrcamento}> Orçamento </Bt>
+                    <Bt onClick={this.novoOrcamento}> Orçamento </Bt>  
+                    
                     <Bt onClick={this.novaVenda}> Venda </Bt>
+                   
                 </Buttons>
 
                 <ContainerSearch class="form__group field">
