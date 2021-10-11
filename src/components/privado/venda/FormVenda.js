@@ -25,6 +25,23 @@ class FormVenda extends Component {
         data: ""
        
      }
+
+     componentDidMount = async () => {
+        let data = new Date()
+
+        let dia = data.getDate()
+
+        let mes = data.getMonth() + 1
+
+        let ano = data.getFullYear()
+
+      await this.setState({
+           data : `${ano}-${mes}-${dia}`
+       })
+
+       await this.props.infoVenda(this.state)
+
+     }
    
     
     handleChange = async (ev) => {
@@ -35,13 +52,15 @@ class FormVenda extends Component {
             [name] : value
         })
 
-       await this.props.infoVenda(this.state)
+        await this.props.infoVenda(this.state)
 
+       
     }
+
+  
   
    
     render() {
-        
         return (
             <Container>        
             <Input 
