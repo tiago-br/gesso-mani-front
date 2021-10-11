@@ -31,6 +31,7 @@ const Acresentar = styled.div`
 font-size: 2.2rem;
 padding-top: 9px;
 text-align: center;
+cursor: pointer;
 
 `
 const InputQuantidade = styled.input`

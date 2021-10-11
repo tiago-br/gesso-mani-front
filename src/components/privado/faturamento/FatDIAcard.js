@@ -22,7 +22,6 @@ class FatDIAcard extends Component {
                     <div>
                     R${this.state.fatDia}
                     </div>
-
                 </button>
             </div>
             </div>
