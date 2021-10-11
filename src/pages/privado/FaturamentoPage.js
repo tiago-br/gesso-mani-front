@@ -5,6 +5,7 @@ import '../../components/privado/faturamento/style/FaturamentoPageStyle.css'
 import FatMEScard from '../../components/privado/faturamento/FatMEScard'
 import FatDIAcard from '../../components/privado/faturamento/FatDIAcard'
 import FatVENDAcard from '../../components/privado/faturamento/FatVENDAcard'
+import FatGraficos from '../../components/privado/faturamento/FatGraficos'
 
 
 class FaturamentoPage extends Component {
@@ -25,7 +26,8 @@ class FaturamentoPage extends Component {
         listaDeDiasComVendas:[],
         selectedDay:"",
         vendasDia:[],
-        msgErrorDelet:""
+        msgErrorDelet:"",
+        openGraficos:false,
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -47,8 +49,10 @@ class FaturamentoPage extends Component {
             }
             return objectData
         })
+        const dataAtual = new Date();
+        const currentYear = `${dataAtual.getFullYear()}`
         const copyDateDasVendas = [...novaVendas]
-        const vendasFilterByYear = copyDateDasVendas.filter(e=>e.data.ano==="2021")
+        const vendasFilterByYear = copyDateDasVendas.filter(e=>e.data.ano===currentYear)
         const todosOsAnos =[]
         copyDateDasVendas.forEach(e=>{
             if(!todosOsAnos.includes(e.data.ano)){
@@ -67,7 +71,7 @@ class FaturamentoPage extends Component {
             const vendasMes = vendasFilterByYear.filter(mes=>mes.data.mes===valorMes)
             vendasMesesArr.push(vendasMes)
         }
-        const copyVendasMesesArr = [...vendasMesesArr]
+        let copyVendasMesesArr = [...vendasMesesArr]
         const vendaTotalMeses = copyVendasMesesArr.flat().map(valorTotal=>valorTotal.valor_total).reduce((acc,valor)=>{
             return acc+valor
         },0)
@@ -83,6 +87,7 @@ class FaturamentoPage extends Component {
             vendasMesesArr,
             fatTotal:totalFormatado,
             load:true,
+            currentYear
             
         })
     }
@@ -157,6 +162,11 @@ class FaturamentoPage extends Component {
             alert("erro no servidor")
         }
     }
+    handleToggleOpenGraficos = () =>{
+        this.setState({
+            openGraficos:!this.state.openGraficos
+        })
+    }
     render()
     {
         return (
@@ -164,8 +174,10 @@ class FaturamentoPage extends Component {
                 <NavbarUser/>
                 <div>
                     {this.state.load?
-                        this.state.selectedMonth?
-                            this.state.selectedDay?
+                        !this.state.openGraficos?
+                            this.state.selectedMonth?
+                                this.state.selectedDay?
+                                
                         <div>
                             <div className="fat-page-container-button-voltar-dia">
                                 <div>
@@ -218,6 +230,10 @@ class FaturamentoPage extends Component {
                         </form>
                     </div>
                     <div>
+                    <div className="container-botao-abrir-page-graficos-fat">
+                        <button  id="botao-abrir-page-graficos-fat"onClick={this.handleToggleOpenGraficos}>Gráfico Faturamento</button>
+                    
+                    </div>
                     <p>Ano <b>{this.state.currentYear}</b> selecionado</p>
                     <div>
                         {this.state.vendasMesesArr.map((e,i)=>
@@ -231,6 +247,8 @@ class FaturamentoPage extends Component {
                         </div>
                     </div>
                     </>
+                    :
+                    <FatGraficos vendas={this.state.novaVendas} meses={this.state.meses} voltar={this.handleToggleOpenGraficos} anos={this.state.todosOsAnos}/>
                     :
                     <h2>Carregando ...</h2>
                     
