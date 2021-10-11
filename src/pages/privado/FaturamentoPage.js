@@ -49,8 +49,10 @@ class FaturamentoPage extends Component {
             }
             return objectData
         })
+        const dataAtual = new Date();
+        const currentYear = `${dataAtual.getFullYear()}`
         const copyDateDasVendas = [...novaVendas]
-        const vendasFilterByYear = copyDateDasVendas.filter(e=>e.data.ano==="2021")
+        const vendasFilterByYear = copyDateDasVendas.filter(e=>e.data.ano===currentYear)
         const todosOsAnos =[]
         copyDateDasVendas.forEach(e=>{
             if(!todosOsAnos.includes(e.data.ano)){
@@ -85,6 +87,7 @@ class FaturamentoPage extends Component {
             vendasMesesArr,
             fatTotal:totalFormatado,
             load:true,
+            currentYear
             
         })
     }
@@ -227,8 +230,8 @@ class FaturamentoPage extends Component {
                         </form>
                     </div>
                     <div>
-                    <div>
-                        <button onClick={this.handleToggleOpenGraficos}>Gráfico Faturamento</button>
+                    <div className="container-botao-abrir-page-graficos-fat">
+                        <button  id="botao-abrir-page-graficos-fat"onClick={this.handleToggleOpenGraficos}>Gráfico Faturamento</button>
                     
                     </div>
                     <p>Ano <b>{this.state.currentYear}</b> selecionado</p>

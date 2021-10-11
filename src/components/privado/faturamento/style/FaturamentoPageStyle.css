@@ -333,6 +333,7 @@
 .container-grafico-fat section{
     width: 80vw;
     height: 60vh;
+    margin-bottom: 28vh;
 }
 
 .container-grafico-fat button{
@@ -368,6 +369,27 @@
 }
 
 .bts-container-grafico-fat > div button:hover{
+    color:white;
+    background-color: black;
+}
+.container-botao-abrir-page-graficos-fat{
+    display: flex;
+    justify-content: center;
+}
+#botao-abrir-page-graficos-fat{
+    display: block;
+    font-size: 1.1rem;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: #E5E4E2;
+    width: 16vw;
+    color:black;
+    height: 5.5vh;
+    cursor: pointer;
+
+}
+
+#botao-abrir-page-graficos-fat:hover{
     color:white;
     background-color: black;
 }

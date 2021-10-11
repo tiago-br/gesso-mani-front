@@ -132,7 +132,7 @@ export class FatGraficos extends Component {
                 title:{
                     display:false,
                     text:'faturamento ano',
-                    fontSize:20
+                    fontSize:30
                 },
                 legend:{
                     display:true,
@@ -153,8 +153,8 @@ export class FatGraficos extends Component {
                 options={{
                 title:{
                 display:true,
-                text:'Average Rainfall per month',
-                fontSize:10
+                text:'Faturamento mês',
+                fontSize:30
                 },
                 legend:{
                 display:true,
