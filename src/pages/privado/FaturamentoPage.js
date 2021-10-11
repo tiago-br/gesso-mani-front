@@ -25,7 +25,8 @@ class FaturamentoPage extends Component {
         listaDeDiasComVendas:[],
         selectedDay:"",
         vendasDia:[],
-        msgErrorDelet:""
+        msgErrorDelet:"",
+        openGraficos:false,
     }
     componentDidMount= async () =>{
         const {data} = await api.getVendas()
@@ -157,6 +158,11 @@ class FaturamentoPage extends Component {
             alert("erro no servidor")
         }
     }
+    handleToggleOpenGraficos = () =>{
+        this.setState({
+            openGraficos:!this.state.openGraficos
+        })
+    }
     render()
     {
         return (
@@ -164,8 +170,10 @@ class FaturamentoPage extends Component {
                 <NavbarUser/>
                 <div>
                     {this.state.load?
-                        this.state.selectedMonth?
-                            this.state.selectedDay?
+                        !this.state.openGraficos?
+                            this.state.selectedMonth?
+                                this.state.selectedDay?
+                                
                         <div>
                             <div className="fat-page-container-button-voltar-dia">
                                 <div>
@@ -218,6 +226,10 @@ class FaturamentoPage extends Component {
                         </form>
                     </div>
                     <div>
+                    <div>
+                        <button onClick={this.handleToggleOpenGraficos}>Gráfico Faturamento</button>
+                    
+                    </div>
                     <p>Ano <b>{this.state.currentYear}</b> selecionado</p>
                     <div>
                         {this.state.vendasMesesArr.map((e,i)=>
@@ -231,6 +243,8 @@ class FaturamentoPage extends Component {
                         </div>
                     </div>
                     </>
+                    :
+                    <div>Ola</div>
                     :
                     <h2>Carregando ...</h2>
                     
