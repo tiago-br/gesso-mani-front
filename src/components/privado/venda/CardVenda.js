@@ -39,6 +39,7 @@ width: 18rem;
 text-align:center;
 font-size: 1.2rem;
 color: red;
+cursor: pointer;
 ` 
 const ValorTotal = styled.div`
 width: 18rem;

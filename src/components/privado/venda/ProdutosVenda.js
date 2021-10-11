@@ -17,12 +17,14 @@ const BtDesconto = styled.button`
 margin: 2rem;
 width: 9rem;
 height: 2rem;
+cursor: pointer;
 
 `
 const BtFrete = styled.button`
 
 width: 9rem;
 height: 2rem;
+cursor: pointer;
 `
 const ValorTotal = styled.div`
 
@@ -50,10 +52,12 @@ align-items: center;
 
 
 
+
 `
 const Edit = styled.div`
 
 font-size: 1rem;
+cursor: pointer;
 
 `
 const ContainerEdit = styled.div`
@@ -107,6 +111,7 @@ width: 2.3rem;
 height: 1.5rem;
 margin: 1rem;
 background-color: gray;
+cursor: pointer;
 
 `
 
@@ -144,9 +149,11 @@ class ProdutosVenda extends Component {
     }
 
     valorTotal = () => {
+        
 
-        let valor = 0
+            let valor = 0
 
+     
         // map para pegar valor total da lista de compra 
         this.state.produtos.map(produto => valor += produto.valorUnitário * produto.quantidade)
 
@@ -189,7 +196,7 @@ class ProdutosVenda extends Component {
     btDescontoColor = () => {
 
         if (this.state.desconto) {
-            return "green"
+            return "#00cc39"
         }
         return "red"
     }
@@ -202,6 +209,7 @@ class ProdutosVenda extends Component {
         })
 
     }
+
     buttonCincoDesconto = async () => {
 
         await this.setState({
@@ -221,7 +229,6 @@ class ProdutosVenda extends Component {
         this.props.handleValorDesconto(this.state.valorDesconto)
     }
 
-
     btEntrega = () => {
         this.setState({
             entrega: !this.state.entrega
@@ -233,12 +240,13 @@ class ProdutosVenda extends Component {
     btEntregaColor = () => {
 
         if (this.state.entrega) {
-            return "green"
+            return "#00cc39"
         }
 
         return "red"
 
     }
+
     btEntregaInput = () => {
 
         this.setState({
@@ -254,7 +262,7 @@ class ProdutosVenda extends Component {
             <Container>
                 <ContainerInfo2><ContainerInfo>  <h3>Delete</h3><h3>Produto</h3><h3>Quantidade</h3><h3>Valor Unidade</h3><h3>Valor</h3>    </ContainerInfo></ContainerInfo2>
 
-                {this.state.produtos.map(produto => <CardVenda key={produto.nome} name={produto.nome} valorUnitário={produto.valorUnitário} quantidade={produto.quantidade} delete={this.props.deleteCard} />)}
+                {this.state.produtos ? this.state.produtos.map(produto => <CardVenda key={produto.nome} name={produto.nome} valorUnitário={produto.valorUnitário} quantidade={produto.quantidade} delete={this.props.deleteCard} />) : null}
 
                 <ContainerDown>
 
@@ -266,7 +274,7 @@ class ProdutosVenda extends Component {
                         </ContainerEdit>
 
                         <ContainerEdit>
-                            {this.state.booleanEntrega ?<ContainerButton><Input name="entrega" value={this.state.inputDesconto} type="number" onChange={this.handleChange} /></ContainerButton>  : <BtFrete style={{ backgroundColor: this.btEntregaColor() }} onClick={this.btEntrega}>Entrega</BtFrete>}
+                            {this.state.booleanEntrega ? <ContainerButton><Input name="entrega" value={this.state.inputDesconto} type="number" onChange={this.handleChange} /></ContainerButton> : <BtFrete style={{ backgroundColor: this.btEntregaColor() }} onClick={this.btEntrega}>Entrega</BtFrete>}
                             <Edit onClick={this.btEntregaInput}><FaEdit /></Edit>
                         </ContainerEdit>
 

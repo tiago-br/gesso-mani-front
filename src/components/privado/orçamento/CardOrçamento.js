@@ -9,9 +9,8 @@ const Container = styled.div`
 margin: 2rem;
 min-height: 5rem;
 border: 2px solid black;
-display: flex;
-flex-direction: column;
-justify-content: space-around;
+border-radius: 20px;
+
 
 `
 const NomeDoProduto = styled.div`
@@ -31,12 +30,16 @@ width: 10rem ;
 
 `
 const ValorTotal = styled.div`
-
+text-decoration: underline;
+text-decoration-color: black;
+text-decoration-style: double;
+font-size: 1.2rem;
 `
 const ContainerOrçamento = styled.div`
 display: flex;
 justify-content: space-around;
-margin-top: 1rem;
+margin-top: 1.4rem;
+
 
 `
 const Valor = styled.div`
@@ -54,10 +57,65 @@ const DownContainer = styled.div`
 
 display: flex;
 justify-content: space-around;
-margin-top: 1.5rem;
+margin-top: 3rem;
 margin-bottom: 1rem;
 
 `
+
+const ContainerClienteData = styled.div`
+
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+`
+const ContainerInfo = styled.div`
+margin-top: 1.3rem;
+display: flex;
+justify-content: space-around;
+
+h4{
+    text-align: center;
+    width: 10rem;
+}
+`
+const NomeCliente =  styled.h4`
+font-size: 1.3rem;
+`
+
+const Data = styled.h4`
+font-size: 1.3rem;
+`
+const ButtonDelete = styled.button`
+
+width: 8rem;
+height: 2rem;
+background-color: grey;
+cursor: pointer;
+
+:hover{
+    background-color:  #ab212e;
+    box-shadow: 5px 5px 5px black;
+}
+
+
+`
+
+const ButtonVenda = styled.button`
+
+width: 8rem;
+text-decoration: none;
+height: 2rem;
+background-color: grey;
+cursor: pointer;
+
+:hover{
+    background-color:  #00cc39;
+    box-shadow: 5px 5px 5px black;
+}
+
+`
+
+
 
 class CardOrçamento extends Component {
 
@@ -91,15 +149,25 @@ class CardOrçamento extends Component {
 
         api.deleteOrcamento(this.state.id)
         await setTimeout(function () { window.location.reload(true); }, 1100)
-    
+
     }
+
 
     render() {
         return (
             <Container>
-                <InfoOrçamento> <h4>{this.state.cliente}</h4><h4>{this.state.data}</h4>
-                </InfoOrçamento>
+                <ContainerClienteData>
+                    <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.state.data}</Data>
+                    </InfoOrçamento>
+                </ContainerClienteData>
 
+                <ContainerInfo>
+                <h4>Nome</h4>
+                <h4>Quantidade</h4>
+                <h4>Valor Unitário</h4>
+                <h4>Valor Total</h4>
+
+                </ContainerInfo>
 
                 {this.state.produtos.map(produtos => {
                     return (
@@ -108,14 +176,31 @@ class CardOrçamento extends Component {
                             <QuantidadeDoProduto>{produtos.quantidade}</QuantidadeDoProduto>
                             <ValorUnitário>{produtos.valorUnitário}</ValorUnitário>
                             <Valor>{produtos.quantidade * produtos.valorUnitário}</Valor>
+
                         </ContainerOrçamento>
                     )
                 })}
 
                 <DownContainer>
-                    <button onClick={this.deleteOrçamento}>Apagar</button>
-                    <ValorTotal>{this.state.valorTotal}</ValorTotal>
-                    <Link to = "/sistema/vendas" params = {{testvalue: "hello"}}> Vender</Link>
+                    <ButtonDelete onClick={this.deleteOrçamento}>Apagar</ButtonDelete>
+                    
+                    <ButtonVenda><Link style = {{textDecoration : "none", color: "black"}}
+                        onClick={this.deleteOrçamento}
+                        to={{
+                            pathname: "/sistema/vendas",
+                            state: this.state
+                        }}>Editar</Link></ButtonVenda>
+
+                   <ButtonVenda><Link style = {{textDecoration : "none", color: "black"}}
+                        onClick={this.deleteOrçamento}
+                        to={{
+                            pathname: "/sistema/vendas",
+                            state: this.state
+                        }}>Vender</Link></ButtonVenda> 
+
+                    <ValorTotal>Valor Total : {this.state.valorTotal}</ValorTotal>
+                   
+
                 </DownContainer>
 
             </Container>
