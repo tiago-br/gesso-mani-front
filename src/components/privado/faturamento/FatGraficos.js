@@ -112,14 +112,17 @@ export class FatGraficos extends Component {
         return (
             <div className="container-grafico-fat">
                 <h1>Faturamento gráfico</h1>
-                <h3>{this.state.msgFat}</h3>
+                
                 {this.state.load?
                 <>
-                <div>
-                    <button onClick={this.props.voltar}>Voltar</button>
-                    <button onClick={this.graficoAnoTurnOff}>Gráfico mês</button>
-                    <button onClick={this.graficoAnoTurnOn}>Gráfico ano</button>
+                <div className="bts-container-grafico-fat">
+                    <div>
+                        <button onClick={this.props.voltar}>Voltar</button>
+                        <button onClick={this.graficoAnoTurnOff}>Gráfico mês</button>
+                        <button onClick={this.graficoAnoTurnOn}>Gráfico ano</button>
+                    </div>
                 </div>
+                <h3>{this.state.msgFat}</h3>
                 {this.state.graficoAnoOn?
                 
                 <section>
@@ -127,8 +130,8 @@ export class FatGraficos extends Component {
                 data={this.state.graficosAnos}
                 options={{
                 title:{
-                    display:true,
-                    text:'Average Rainfall per month',
+                    display:false,
+                    text:'faturamento ano',
                     fontSize:20
                 },
                 legend:{

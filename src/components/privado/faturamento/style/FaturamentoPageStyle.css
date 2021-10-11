@@ -340,3 +340,34 @@
     font-size: 1.1rem;
     display: block;
 }
+
+.bts-container-grafico-fat {
+    display: flex;
+    height: 10vh;
+    margin-top: 2vh;
+}
+
+.bts-container-grafico-fat > div{
+    display: flex;
+    width: 80vw;
+    justify-content: space-between;
+}
+
+.bts-container-grafico-fat > div button{
+    display: block;
+    font-size: 1.1rem;
+    border: 2px solid black;
+    padding: 8px 10px 8px 10px;
+    border-radius: 15px;
+    background-color: #E5E4E2;
+    width: 20vw;
+    color:black;
+    font-weight: 700;
+    height: 7vh;
+    cursor: pointer;
+}
+
+.bts-container-grafico-fat > div button:hover{
+    color:white;
+    background-color: black;
+}
