@@ -166,7 +166,6 @@ class FaturamentoPage extends Component {
     }
     render()
     {
-        console.log(this.state.novaVendas)
         return (
             <div className="page-Faturamento">
                 <NavbarUser/>
