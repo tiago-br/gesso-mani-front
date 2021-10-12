@@ -5,13 +5,37 @@ import '../../components/privado/funcionarios/styles/stylesFuncionarios.css'
 
 class FuncionariosPage extends Component {
     state={
-        signupOn:false
+        signupOn:false,
+        msgButton:"Criar novo usuário"
+    }
+    handleToggleButton = () =>{
+        if(!this.state.signupOn){
+            this.setState({
+                signupOn:true,
+                msgButton:"Gerenciar usuários"
+            })
+        }else{
+            this.setState({
+                signupOn:false,
+                msgButton:"Criar novo usuário"
+            })
+        }
+
     }
     render() {
         return (
             <div>
                 <NavbarUser/>
-                <SignupPage/>
+                <div>
+                    <div>
+                        <button onClick={this.handleToggleButton}>{this.state.msgButton}</button>
+                    </div>
+                </div>
+                {this.state.signupOn?
+                    <SignupPage/>
+                    :
+                    <h1>Ola</h1>
+                }
             </div>
         )
     }
