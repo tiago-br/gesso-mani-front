@@ -196,18 +196,20 @@ class CardOrçamento extends Component {
                     <ButtonDelete onClick={this.deleteOrçamento}>Apagar</ButtonDelete>
                     
                     <ButtonVenda><Link style = {{textDecoration : "none", color: "black"}}
-                        onClick={this.deleteOrçamento}
+                        
                         to={{
                             pathname: "/sistema/vendas",
                             state: this.state
-                        }}>Editar</Link></ButtonVenda>
+                        }} 
+                        onClick={this.deleteOrçamento}>Editar</Link></ButtonVenda>
+                        
 
                    <ButtonVenda><Link style = {{textDecoration : "none", color: "black"}}
-                        onClick={this.deleteOrçamento}
+                        
                         to={{
                             pathname: "/sistema/vendas",
                             state: this.state
-                        }}>Vender</Link></ButtonVenda> 
+                        }}onClick={this.deleteOrçamento}>Vender</Link></ButtonVenda> 
 
                     <ValorTotal>Valor Total : {this.state.valorTotal}</ValorTotal>
                    

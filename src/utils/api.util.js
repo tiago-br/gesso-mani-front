@@ -38,13 +38,16 @@ class Api {
     
     login =  async (payload) =>{
       const {data} = await this.api.post('/login',payload)
-      const {token} = data
+      const {token,senhaAdmin} = data
       localStorage.setItem('token',token)
       localStorage.setItem('user', payload.username)
+      if(payload.username.includes("admin")){
+        localStorage.setItem('admin',senhaAdmin)
+      }
     }
 
     signup = async (payload) => {
-
+      
       await this.api.post('/signup',payload)
     }
 
