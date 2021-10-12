@@ -26,7 +26,7 @@ const NavBar = styled.nav`
 const Div = styled.div`
 
     p{
-        width: 10vw;
+        width: 8.5vw;
         text-align: center;
         font-size: 1.1rem;
     }
@@ -59,7 +59,7 @@ class NavbarUser extends Component {
                 <NavLink to={"/sistema/orçamento"}>Orçamento</NavLink>
                 <NavLink to={"/sistema/estoque"}>Estoque</NavLink>
                 <NavLink to={"/sistema/faturamento"}>Faturamento</NavLink>
-                <NavLink to={"/sistema/novofuncionario"}>Novo Funcionário</NavLink>
+                <NavLink to={"/sistema/funcionarios"}>Funcionários</NavLink>
                 <Div>
                     <p>{this.state.user} / <button onClick={this.handleLogout}>Logout</button> </p>
                     {/* <Button>Logout</Button> */}

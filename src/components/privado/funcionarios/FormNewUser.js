@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import styled from 'styled-components'
-import api from '../../utils/api.util'
+import api from '../../../utils/api.util'
 require('dotenv').config()
 
 const Container = styled.div`
@@ -189,11 +189,10 @@ class FormNewUser extends Component {
 
         } catch (error) {
 
-
         }
-
-        
-
+        setTimeout(()=>{this.setState({
+            msg:""
+        })},2000)
 
     }
 
