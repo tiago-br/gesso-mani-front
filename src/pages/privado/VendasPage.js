@@ -109,8 +109,8 @@ h3{
 class VendasPage extends Component {
 
     state = {
-       
-        listProdutos: this.props.location.state ? this.props.location.state.produtos ? this.props.location.state.produtos : [] : [] ,
+
+        listProdutos: this.props.location.state ? this.props.location.state.produtos ? this.props.location.state.produtos : [] : [],
         cliente: "",
         data: "",
         valorTotal: 0,
@@ -239,27 +239,27 @@ class VendasPage extends Component {
 
         // map para pegar valor total da lista de compra 
         this.state.listProdutos.map(produto => valor += produto.valorUnitário * produto.quantidade)
-        
+
         // condição de acresentar ou retirar a entrega 
         if (!this.state.entrega) {
             let a = parseInt(this.state.inputDesconto)
             valor = valor + a
         }
-    
+
         // condição de acresentar ou retirar os 10% de desconto
-        if (!this.state.desconto && this.state.valorDesconto === 10){
+        if (!this.state.desconto && this.state.valorDesconto === 10) {
             const desconto = valor / 10
             console.log(desconto, "10")
             valor = valor - desconto
         }
-        
+
         // condição de acresentar ou retirar os 5% de desconto
         if (!this.state.desconto && this.state.valorDesconto === 5) {
             const desconto = valor / 20
             console.log(desconto, "5")
             valor = valor - desconto
         }
-       
+
         return valor
     }
 
@@ -279,12 +279,12 @@ class VendasPage extends Component {
 
     novaVenda = async () => {
 
-        
-        if(this.state.listProdutos.length === 0){
+
+        if (this.state.listProdutos.length === 0) {
             return alert('Não tem itens para efetuar a venda')
         }
 
-        if(this.props.location.state){
+        if (this.props.location.state) {
             this.setState({
                 cliente: await this.props.location.state.cliente
             })
@@ -322,28 +322,30 @@ class VendasPage extends Component {
             api.putVendaParaProduto(produto.nome, payload)
 
         })
-        
-        this.props.history.replace({ state: []}) 
+
+        this.props.history.replace({ state: [] })
 
         await this.setState({
             listProdutos: []
         }
         )
-        
+
         await setTimeout(function () { window.location.reload(true); }, 1100)
 
     }
 
     novoOrcamento = async () => {
-        
-        if(this.state.listProdutos.length === 0){
+
+        if (this.state.listProdutos.length === 0) {
             return alert('Não tem itens para efetuar o orçamento')
         }
 
-        if(this.props.location.state){
-            this.setState({
-                cliente: await this.props.location.state.cliente
-            })
+        if (this.state.cliente.length === 0) {
+            if (this.props.location.state) {
+                this.setState({
+                    cliente: await this.props.location.state.cliente
+                })
+            }
         }
 
         if (!this.state.cliente) {
@@ -358,20 +360,21 @@ class VendasPage extends Component {
         const data = this.state.data
         let valor = await this.valorTotal()
 
-    
+
         const payload = {
             vendedor,
             cliente,
             produtos: material,
             data,
-            valor_total: valor
+            valor_total: valor,
+            status: "Orçamento"
         }
 
 
         api.postOrcamento(payload)
 
-        this.props.history.replace({ state: []}) 
-        
+        this.props.history.replace({ state: [] })
+
         await this.setState({
             listProdutos: []
         }
@@ -382,18 +385,78 @@ class VendasPage extends Component {
 
     }
 
+    novoDevedor = async () => {
+        if (this.state.listProdutos.length === 0) {
+            return alert('Não tem itens para efetuar o orçamento')
+        }
+        if (this.state.cliente.length === 0) {
+            if (this.props.location.state) {
+                console.log("to 1")
+                this.setState({
+                    cliente: await this.props.location.state.cliente
+                })
+            }
+        }
+
+
+
+
+        if (!this.state.cliente) {
+            console.log("to 1")
+            await this.setState({
+                cliente: "Consumidor"
+            })
+        }
+
+
+
+
+        const vendedor = await localStorage.getItem('user')
+        const cliente = await this.state.cliente
+        let material = await [...this.state.listProdutos]
+        const data = await this.state.data
+        let valor = await this.valorTotal()
+
+
+        const payload = {
+            vendedor,
+            cliente,
+            produtos: material,
+            data,
+            valor_total: valor,
+            status: "Pendente"
+        }
+
+        console.log(payload)
+
+
+        api.postOrcamento(payload)
+
+        this.props.history.replace({ state: [] })
+
+        await this.setState({
+            listProdutos: []
+        }
+        )
+
+        await setTimeout(function () { window.location.reload(); }, 1000)
+    }
+
+
     render() {
 
         return (
             <div>
                 <NavbarUser />
                 <FormVenda infoVenda={this.infoVenda} />
-                <ProdutosVenda handleValorDesconto={this.handleValorDesconto} handleValorEntrega={this.handleValorEntrega} handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard}  produto={this.state.listProdutos} />
+                <ProdutosVenda handleValorDesconto={this.handleValorDesconto} handleValorEntrega={this.handleValorEntrega} handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard} produto={this.state.listProdutos} />
 
                 <Buttons>
                     <Bt onClick={this.novoOrcamento}> Orçamento </Bt>
 
                     <Bt onClick={this.novaVenda}> Venda </Bt>
+
+                    <Bt onClick={this.novoDevedor}> Pendente </Bt>
 
                 </Buttons>
 

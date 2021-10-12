@@ -70,7 +70,7 @@ flex-direction: column;
 justify-content: space-around;
 `
 const ContainerInfo = styled.div`
-margin-top: 1.3rem;
+margin-top: 2rem;
 display: flex;
 justify-content: space-around;
 
@@ -79,12 +79,12 @@ h4{
     width: 10rem;
 }
 `
-const NomeCliente =  styled.h4`
+const NomeCliente = styled.h4`
 font-size: 1.3rem;
 `
 
 const Data = styled.h4`
-font-size: 1.3rem;
+font-size: 1.1rem;
 `
 const ButtonDelete = styled.button`
 
@@ -116,35 +116,36 @@ cursor: pointer;
 
 `
 
-
-
 class CardOrçamento extends Component {
 
     state = {
         cliente: "",
         data: "",
         valorTotal: 0,
-        produtos: []
+        produtos: [],
+        status: ""
     }
 
     componentDidMount = async () => {
 
         let cliente = await this.props.cliente
-        let data = this.props.data
-        let valorTotal = this.props.valor_total
+        let data = await this.props.data
+        let valorTotal = await this.props.valor_total
         let produtos = await this.props.produtos
         let _id = await this.props._id
+        let status = await this.props.status
 
-        console.log(data)
 
         this.setState({
             cliente,
             data,
             valorTotal,
             produtos,
-            id: _id
+            id: _id,
+            status,
+
         })
-       
+
 
 
     }
@@ -163,21 +164,29 @@ class CardOrçamento extends Component {
         await setTimeout(function () { window.location.reload(true); }, 1100)
 
     }
+    handleCorStatus = () => {
+        if (this.state.status === "Orçamento") {
+            return "green"
+        }
+        return "red"
+    }
 
 
     render() {
         return (
             <Container>
+
+
                 <ContainerClienteData>
-                    <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.dataFormatada()}</Data>
+                    <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.dataFormatada()}</Data><Data style={{ color: this.handleCorStatus() }}>{this.state.status}</Data>
                     </InfoOrçamento>
                 </ContainerClienteData>
 
                 <ContainerInfo>
-                <h4>Nome</h4>
-                <h4>Quantidade</h4>
-                <h4>Valor Unitário</h4>
-                <h4>Valor Total</h4>
+                    <h4>Nome</h4>
+                    <h4>Quantidade</h4>
+                    <h4>Valor Unitário</h4>
+                    <h4>Valor Total</h4>
 
                 </ContainerInfo>
 
@@ -195,26 +204,32 @@ class CardOrçamento extends Component {
 
                 <DownContainer>
                     <ButtonDelete onClick={this.deleteOrçamento}>Apagar</ButtonDelete>
+
                     
-                    <ButtonVenda><Link style = {{textDecoration : "none", color: "black"}}
-                        
-                        to={{
-                            pathname: "/sistema/vendas",
-                            state: this.state
+                        <Link style={{ textDecoration: "none", color: "black"}}
+                            width="100%"
+                            to={{
+                                pathname: "/sistema/vendas",
+                                state: this.state
 
-                        }} onClick={this.deleteOrçamento}>Editar</Link></ButtonVenda>
+                            }} onClick={this.deleteOrçamento}><ButtonVenda> Editar </ButtonVenda>
+                        </Link>
+                   
 
 
-                   <ButtonVenda><Link style = {{textDecoration : "none", color: "black"}}
-                        
-                        to={{
-                            pathname: "/sistema/vendas",
-                            state: this.state
+                    
+                        <Link style={{ textDecoration: "none", color: "black"}}
 
-                        }} onClick={this.deleteOrçamento}>Vender</Link></ButtonVenda> 
+                            to={{
+                                pathname: "/sistema/vendas",
+                                state: this.state
+
+                            }} onClick={this.deleteOrçamento}> <ButtonVenda>Vender</ButtonVenda>
+                        </Link>
+                    
 
                     <ValorTotal>Valor Total : {this.state.valorTotal}</ValorTotal>
-                   
+
 
                 </DownContainer>
 
