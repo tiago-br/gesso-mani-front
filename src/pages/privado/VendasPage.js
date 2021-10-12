@@ -282,6 +282,11 @@ class VendasPage extends Component {
 
     novaVenda = async () => {
 
+        
+        if(this.state.listProdutos.length === 0){
+            return alert('Não tem itens para efetuar a venda')
+        }
+
         if(this.props.location.state){
             this.setState({
                 cliente: await this.props.location.state.cliente
@@ -334,12 +339,16 @@ class VendasPage extends Component {
 
     novoOrcamento = async () => {
         
+        if(this.state.listProdutos.length === 0){
+            return alert('Não tem itens para efetuar o orçamento')
+        }
+
         if(this.props.location.state){
             this.setState({
                 cliente: await this.props.location.state.cliente
             })
         }
-        
+
         if (!this.state.cliente) {
             await this.setState({
                 cliente: "Consumidor"

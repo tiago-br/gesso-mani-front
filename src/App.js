@@ -26,9 +26,7 @@ function App() {
 
 
       <Route exact path="/sistema/funcionarios" render={(props) => <FuncionariosPage {...props}/>}/>
-      <Route exact path="/sistema/estoque" render={(props) => <EstoquePage {...props}/>}/>
-      <Route exact path="/sistema/vendas" render={(props) => <VendasPage {...props}/>}/>
-      <Route exact path="/sistema/faturamento" render={(props) => <FaturamentoPage {...props}/>}/>
+ 
       <Route exact path="/sistema/orçamento" render={(props) => <Orcamento {...props}/>}/>
       </PrivateRoutes>
 
