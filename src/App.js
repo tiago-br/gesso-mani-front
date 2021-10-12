@@ -2,7 +2,6 @@ import { Route, Switch } from 'react-router';
 import './App.css';
 import EstoquePage from './pages/privado/EstoquePage';
 import FaturamentoPage from './pages/privado/FaturamentoPage';
-import SignupPage from './components/privado/funcionarios/SignupPage';
 import VendasPage from './pages/privado/VendasPage';
 import Home from './pages/público/Home';
 import LoginPage from './pages/público/LoginPage';
