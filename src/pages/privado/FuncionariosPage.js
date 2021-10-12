@@ -26,8 +26,10 @@ class FuncionariosPage extends Component {
         return (
             <div>
                 <NavbarUser/>
-                <div>
+                <div className="funcionarios-page-toggle-button">
+
                     <div>
+                        <h1>Funcionários</h1>
                         <button onClick={this.handleToggleButton}>{this.state.msgButton}</button>
                     </div>
                 </div>

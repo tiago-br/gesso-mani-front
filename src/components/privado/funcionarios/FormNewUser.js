@@ -10,7 +10,7 @@ width: 100vw;
 height: 80vh;
 display: flex;
 justify-content: center;
-align-items: center;
+/* align-items: center; */
 /* @media only screen and (max-width: 1200px) {  
         width: 1rem;
         margin-left: -2.4rem;
@@ -25,9 +25,9 @@ const FormUser = styled.div`
  align-items: center;
  flex-direction: column;
  width: 25rem;
- height: 30rem;
+ height: 26rem;
  border-radius: 25px;
- margin-top: 3rem;
+ margin-top: 1rem;
  background-color: grey;
  border: 2px solid black;
 
@@ -54,7 +54,7 @@ width: 20rem;
 `
 
 const ButtonSubmit = styled.button`
-
+cursor: pointer;
 margin-top: 2rem;
 display: inline-block;
 padding: .75rem 1.25rem;
@@ -192,7 +192,7 @@ class FormNewUser extends Component {
         }
         setTimeout(()=>{this.setState({
             msg:""
-        })},2000)
+        })},1500)
 
     }
 

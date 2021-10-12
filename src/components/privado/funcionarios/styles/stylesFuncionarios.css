@@ -1,0 +1,29 @@
+.funcionarios-page-toggle-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vh;
+}
+
+.funcionarios-page-toggle-button > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.funcionarios-page-toggle-button button{
+    display: block;
+    width: 15vw;
+    height: 4vh;
+    cursor: pointer;
+    background-color: #E5E4E2;
+    font-weight: 700;
+    margin-top: 2vh;
+    border: 2px solid black;
+    border-radius: 9px;
+}
+
+.funcionarios-page-toggle-button button:hover{
+    background-color: black;
+    color:white;
+}
