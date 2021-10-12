@@ -33,7 +33,7 @@ class FormLogin extends Component {
         try {
 
             await api.login(payload)
-            window.location = "/sistema/novofuncionario"
+            window.location = "/sistema/vendas"
 
         } 
         catch (e) {

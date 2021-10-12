@@ -61,8 +61,7 @@ class NavbarUser extends Component {
                 <NavLink to={"/sistema/faturamento"}>Faturamento</NavLink>
                 <NavLink to={"/sistema/funcionarios"}>Funcionários</NavLink>
                 <Div>
-                    <p>{this.state.user} / <button onClick={this.handleLogout}>Logout</button> </p>
-                    {/* <Button>Logout</Button> */}
+                    <p>{this.state.user} / <button onClick={this.handleLogout}>Logout</button></p>
                 </Div>
                 
             </NavBar>
