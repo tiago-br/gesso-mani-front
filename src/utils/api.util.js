@@ -52,6 +52,9 @@ class Api {
 
       return await this.api.get('/signup')
     }
+    deleteUsers = async (id) =>{
+      await this.api.delete(`/signup/${id}`)
+    }
     // orçamento route metodos:
       //metodo delete
     deleteOrcamento = async (id) =>{
@@ -117,6 +120,7 @@ class Api {
     putAddEstoque = async (payload,name) =>{
       await this.api.put(`/produtos/estoque/qtd/${name}`,payload)
     }
+
 }
 
 export default new Api()

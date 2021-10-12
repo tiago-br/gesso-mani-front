@@ -8,6 +8,7 @@ import VendasPage from './pages/privado/VendasPage';
 import Home from './pages/público/Home';
 import LoginPage from './pages/público/LoginPage';
 import PrivateRoutes from './utils/PrivateRoutes';
+import FuncionariosPage from './pages/privado/FuncionariosPage';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
       <PrivateRoutes>
 
 
-      <Route exact path="/sistema/novofuncionario" render={(props) => <SignupPage {...props}/>}/>
+      <Route exact path="/sistema/funcionarios" render={(props) => <FuncionariosPage {...props}/>}/>
       <Route exact path="/sistema/estoque" render={(props) => <EstoquePage {...props}/>}/>
       <Route exact path="/sistema/vendas" render={(props) => <VendasPage {...props}/>}/>
       <Route exact path="/sistema/faturamento" render={(props) => <FaturamentoPage {...props}/>}/>

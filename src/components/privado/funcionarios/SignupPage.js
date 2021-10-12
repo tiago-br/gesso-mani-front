@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import FormNewUser from '../../components/privado/FormNewUser'
-import NavbarUser from '../../components/privado/NavbarUser'
+import FormNewUser from './FormNewUser'
+
 
 
 
@@ -13,8 +13,6 @@ class SignupPage extends Component {
     render() {
         return (
             <div>
-                <NavbarUser/>
-                
                 <ContainerForm>
                     <FormNewUser/>
                 </ContainerForm>
