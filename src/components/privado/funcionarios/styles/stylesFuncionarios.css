@@ -27,3 +27,43 @@
     background-color: black;
     color:white;
 }
+
+.container-funcionarios-users-card{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-funcionarios-users-card > div {
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#E5E4E2;
+    font-size: 1.2rem;
+    margin-bottom: 3vh;
+    border:2px solid black;
+    border-radius: 12px;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    height: 9vh;
+}
+
+.container-funcionarios-users-card > div > div{
+    width: 12vw;
+    text-align: center;
+}
+
+.container-funcionarios-users-card > div img{
+   height: 6vh;
+}
+.container-funcionarios-users-card > div img:hover{
+    height: 7vh;
+ }
+
+ .container-funcionarios-users-card > div button{
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+ }

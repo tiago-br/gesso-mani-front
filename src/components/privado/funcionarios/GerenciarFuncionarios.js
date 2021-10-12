@@ -9,7 +9,6 @@ class GerenciarFuncionarios extends Component {
     }
     componentDidMount = async() =>{
         const {data} = await api.getUsers()
-
         this.setState({
             users:data,
             load:true
@@ -30,7 +29,7 @@ class GerenciarFuncionarios extends Component {
         return (
             <div>
                 {this.state.load?
-                    <section>
+                    <section className="container-funcionarios-users-card">
                         {
                             this.state.users.map(user=>
                             <UsersCard delete={this.handleDeleteUser} id={user._id} user={user.username}/>
