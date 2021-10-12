@@ -10,6 +10,7 @@ margin: 2rem;
 min-height: 5rem;
 border: 2px solid black;
 border-radius: 20px;
+background-color: #E5E4E2;
 
 
 `

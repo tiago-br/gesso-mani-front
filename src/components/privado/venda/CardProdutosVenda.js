@@ -10,6 +10,7 @@ border: 2px solid black;
 margin: 2rem;
 border-radius: 20px;
 height: 3.7rem;
+background-color: #E5E4E2;
 
 `
 const Nome = styled.div`
@@ -100,7 +101,7 @@ class CardProdutosVenda extends Component {
                 <Nome>{this.props.name}</Nome>
                 {this.state.boolean ? <InputQuantidade  type = "number" name = "quantidade" value = {this.state.quantidade} onChange = {this.handleInput} /> : <Quantidade>{this.props.quantidade}</Quantidade>}
                 <Valor> {this.props.valor}</Valor>
-                {this.state.boolean ? <Acresentar><MdOutlineAddCircle onClick = {this.handleClick}/></Acresentar> : <Acresentar><MdOutlineAddCircle onClick = {this.handleQuantidade}/></Acresentar>  }
+                {this.state.boolean ? <Acresentar ><MdOutlineAddCircle style = {{color: "green"}} onClick = {this.handleClick}/></Acresentar> : <Acresentar><MdOutlineAddCircle onClick = {this.handleQuantidade}/></Acresentar>  }
                 
             </Container>
         )
