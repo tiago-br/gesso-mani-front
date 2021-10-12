@@ -1,10 +1,22 @@
 import React, { Component } from 'react'
 
 class GerenciarFuncionarios extends Component {
+    state={
+        load:false
+    }
+    componentDidMount(){
+        
+    }
     render() {
         return (
             <div>
-                <h1>Ola</h1>
+                {this.state.load?
+                    <section>
+                        
+                    </section>
+                    :
+                    null  
+                }
             </div>
         )
     }
