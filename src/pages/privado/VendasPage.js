@@ -239,30 +239,27 @@ class VendasPage extends Component {
 
         // map para pegar valor total da lista de compra 
         this.state.listProdutos.map(produto => valor += produto.valorUnitário * produto.quantidade)
-
+        
         // condição de acresentar ou retirar a entrega 
         if (!this.state.entrega) {
             let a = parseInt(this.state.inputDesconto)
-            console.log(a, "entrega")
             valor = valor + a
         }
-
+    
         // condição de acresentar ou retirar os 10% de desconto
-        if (!this.state.desconto && this.state.valorDesconto === 10) {
+        if (!this.state.desconto && this.state.valorDesconto === 10){
             const desconto = valor / 10
             console.log(desconto, "10")
             valor = valor - desconto
         }
-
+        
         // condição de acresentar ou retirar os 5% de desconto
         if (!this.state.desconto && this.state.valorDesconto === 5) {
-
             const desconto = valor / 20
             console.log(desconto, "5")
             valor = valor - desconto
         }
-
-
+       
         return valor
     }
 
