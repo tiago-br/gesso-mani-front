@@ -10,6 +10,7 @@ margin: 2rem;
 min-height: 5rem;
 border: 2px solid black;
 border-radius: 20px;
+background-color: #E5E4E2;
 
 
 `
@@ -200,16 +201,17 @@ class CardOrçamento extends Component {
                         to={{
                             pathname: "/sistema/vendas",
                             state: this.state
-                        }} 
-                        onClick={this.deleteOrçamento}>Editar</Link></ButtonVenda>
-                        
+
+                        }} onClick={this.deleteOrçamento}>Editar</Link></ButtonVenda>
+
 
                    <ButtonVenda><Link style = {{textDecoration : "none", color: "black"}}
                         
                         to={{
                             pathname: "/sistema/vendas",
                             state: this.state
-                        }}onClick={this.deleteOrçamento}>Vender</Link></ButtonVenda> 
+
+                        }} onClick={this.deleteOrçamento}>Vender</Link></ButtonVenda> 
 
                     <ValorTotal>Valor Total : {this.state.valorTotal}</ValorTotal>
                    
