@@ -1,26 +1,26 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-function PrivateRoute({ component: Component, ...rest }) {
-    const token = localStorage.getItem('token')
-    const user = localStorage.getItem('user')
-
-    if (token && user) {
+function AdminPrivateRoute({ component: Component, ...rest }) {
+    const admin = localStorage.getItem('admin')
+    if (admin==="ebq$lS6h$@IqGbzM7jNFFZCe70gg&t*5F&9pnNRxTgPVak7Q*%") {
         return (
             <Route
                 {...rest}
                 render={(routeProps) => <Component {...routeProps} {...rest} />}
             />
         );
-    } else {
+    }else {
         return (
             <Route
                 render={(routeProps) => (
-                    <Redirect to="/area-do-funcionario" {...routeProps} {...rest} />
+                    <Redirect to="/sistema/vendas" {...routeProps} {...rest}/>
+                    
                 )}
             />
         );
     }
+   
 }
 
-export default PrivateRoute;
+export default AdminPrivateRoute;

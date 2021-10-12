@@ -9,6 +9,7 @@ import Home from './pages/público/Home';
 import LoginPage from './pages/público/LoginPage';
 import PrivateRoutes from './utils/PrivateRoutes';
 import FuncionariosPage from './pages/privado/FuncionariosPage';
+import AdminPrivateRoute from './utils/AdminPrivateRoute';
 
 function App() {
   return (
@@ -23,15 +24,17 @@ function App() {
       {/* Rotas Sistema */}
       
       <PrivateRoutes>
-
-
-      <Route exact path="/sistema/funcionarios" render={(props) => <FuncionariosPage {...props}/>}/>
-      <Route exact path="/sistema/estoque" render={(props) => <EstoquePage {...props}/>}/>
-      <Route exact path="/sistema/vendas" render={(props) => <VendasPage {...props}/>}/>
-      <Route exact path="/sistema/faturamento" render={(props) => <FaturamentoPage {...props}/>}/>
-      <Route exact path="/sistema/orçamento" render={(props) => <Orcamento {...props}/>}/>
+        <Route exact path="/sistema/vendas" render={(props) => <VendasPage {...props}/>}/>
+        <Route exact path="/sistema/orçamento" render={(props) => <Orcamento {...props}/>}/>
+      <AdminPrivateRoute>
+        <Route exact path="/sistema/funcionarios" render={(props) => <FuncionariosPage {...props}/>}/>
+        <Route exact path="/sistema/estoque" render={(props) => <EstoquePage {...props}/>}/>
+        <Route exact path="/sistema/faturamento" render={(props) => <FaturamentoPage {...props}/>}/>
+      </AdminPrivateRoute>  
+      
       </PrivateRoutes>
-
+      
+     
       
       
 

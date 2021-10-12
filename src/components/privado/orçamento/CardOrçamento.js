@@ -201,13 +201,16 @@ class CardOrçamento extends Component {
                         to={{
                             pathname: "/sistema/vendas",
                             state: this.state
+
                         }} onClick={this.deleteOrçamento}>Editar</Link></ButtonVenda>
+
 
                    <ButtonVenda><Link style = {{textDecoration : "none", color: "black"}}
                         
                         to={{
                             pathname: "/sistema/vendas",
                             state: this.state
+
                         }} onClick={this.deleteOrçamento}>Vender</Link></ButtonVenda> 
 
                     <ValorTotal>Valor Total : {this.state.valorTotal}</ValorTotal>
