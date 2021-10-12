@@ -134,6 +134,8 @@ class CardOrçamento extends Component {
         let produtos = await this.props.produtos
         let _id = await this.props._id
 
+        console.log(data)
+
         this.setState({
             cliente,
             data,
@@ -141,8 +143,17 @@ class CardOrçamento extends Component {
             produtos,
             id: _id
         })
+       
 
 
+    }
+    dataFormatada = () => {
+        let date = this.state.data.split("-")
+        let dia = date[2]
+        let mes = date[1]
+        let ano = date[0]
+
+        return `${dia}/${mes}/${ano}`
     }
 
     deleteOrçamento = async () => {
@@ -157,7 +168,7 @@ class CardOrçamento extends Component {
         return (
             <Container>
                 <ContainerClienteData>
-                    <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.state.data}</Data>
+                    <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.dataFormatada()}</Data>
                     </InfoOrçamento>
                 </ContainerClienteData>
 

@@ -333,7 +333,13 @@ class VendasPage extends Component {
     }
 
     novoOrcamento = async () => {
-
+        
+        if(this.props.location.state){
+            this.setState({
+                cliente: await this.props.location.state.cliente
+            })
+        }
+        
         if (!this.state.cliente) {
             await this.setState({
                 cliente: "Consumidor"
