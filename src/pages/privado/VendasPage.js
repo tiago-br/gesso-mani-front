@@ -15,6 +15,12 @@ const Bt = styled.button`
 margin: 5rem;
 width: 12rem;
 height: 3rem;
+cursor: pointer;
+background-color: grey;
+:hover{
+    background-color:  #00cc39;
+    box-shadow: 5px 5px 5px black;
+}
 `
 const Label = styled.label`
 
@@ -103,8 +109,8 @@ h3{
 class VendasPage extends Component {
 
     state = {
-        //produtos
-        listProdutos: [],
+       
+        listProdutos: this.props.location.state ? this.props.location.state.produtos ? this.props.location.state.produtos : [] : [] ,
         cliente: "",
         data: "",
         valorTotal: 0,
@@ -115,9 +121,10 @@ class VendasPage extends Component {
         desconto: true,
         entrega: true,
         booleanDesconto: false,
-        booleanEntrega : false,
-        valorDesconto : 5,
-        inputDesconto : 30
+        booleanEntrega: false,
+        valorDesconto: 5,
+        inputDesconto: 30,
+
     }
 
     componentDidMount = async () => {
@@ -130,7 +137,6 @@ class VendasPage extends Component {
             filterProduts: data,
             loading: true
         })
-
     }
 
     handleProdutos = async (produtos) => {
@@ -138,7 +144,7 @@ class VendasPage extends Component {
         const material = this.state.listProdutos
 
         let checkProduto = false
-      
+
 
         material.map(item => {
             if (item.nome === produtos.nome) {
@@ -209,12 +215,12 @@ class VendasPage extends Component {
 
     handleValorEntrega = (payload) => {
 
-   
-    let valorEntrega = parseInt(payload)
-    this.setState({
 
-        inputDesconto: valorEntrega
-    })
+        let valorEntrega = parseInt(payload)
+        this.setState({
+
+            inputDesconto: valorEntrega
+        })
 
     }
 
@@ -223,7 +229,7 @@ class VendasPage extends Component {
         let valor = parseInt(payload)
 
         this.setState({
-            valorDesconto : valor
+            valorDesconto: valor
         })
     }
     // Pega valor total na venda 
@@ -233,29 +239,29 @@ class VendasPage extends Component {
 
         // map para pegar valor total da lista de compra 
         this.state.listProdutos.map(produto => valor += produto.valorUnitário * produto.quantidade)
-        
+
         // condição de acresentar ou retirar a entrega 
         if (!this.state.entrega) {
             let a = parseInt(this.state.inputDesconto)
-            console.log(a,"entrega")
+            console.log(a, "entrega")
             valor = valor + a
         }
 
         // condição de acresentar ou retirar os 10% de desconto
         if (!this.state.desconto && this.state.valorDesconto === 10) {
             const desconto = valor / 10
-            console.log(desconto,"10")
+            console.log(desconto, "10")
             valor = valor - desconto
         }
 
         // condição de acresentar ou retirar os 5% de desconto
         if (!this.state.desconto && this.state.valorDesconto === 5) {
 
-            const desconto = valor / 20 
-            console.log(desconto,"5")
+            const desconto = valor / 20
+            console.log(desconto, "5")
             valor = valor - desconto
         }
-        
+
 
         return valor
     }
@@ -276,22 +282,23 @@ class VendasPage extends Component {
 
     novaVenda = async () => {
 
-
-        if(!this.state.cliente){
-            await this.setState({
-            cliente: "Consumidor"
+        if(this.props.location.state){
+            this.setState({
+                cliente: await this.props.location.state.cliente
             })
         }
 
-       console.log(this.state.data)
+        if (!this.state.cliente) {
+            await this.setState({
+                cliente: "Consumidor"
+            })
+        }
 
         let material = [...this.state.listProdutos]
         const vendedor = localStorage.getItem('user')
         const cliente = this.state.cliente
         const data = this.state.data
         let valor = await this.valorTotal()
-
-        
 
         const payload = {
             vendedor,
@@ -300,8 +307,6 @@ class VendasPage extends Component {
             data,
             valor_total: valor
         }
-
-       
 
         await api.postVenda(payload)
 
@@ -312,20 +317,34 @@ class VendasPage extends Component {
                 quantidade: produto.quantidade
             }
 
-             api.putVendaParaProduto(produto.nome, payload)
+            api.putVendaParaProduto(produto.nome, payload)
 
         })
+        
+        this.props.history.replace({ state: []}) 
 
         await this.setState({
             listProdutos: []
         }
         )
-         
+        
         await setTimeout(function () { window.location.reload(true); }, 1100)
 
     }
 
     novoOrcamento = async () => {
+        
+        if(this.props.location.state){
+            this.setState({
+                cliente: await this.props.location.state.cliente
+            })
+        }
+        
+        if (!this.state.cliente) {
+            await this.setState({
+                cliente: "Consumidor"
+            })
+        }
 
         const vendedor = localStorage.getItem('user')
         const cliente = this.state.cliente
@@ -333,6 +352,7 @@ class VendasPage extends Component {
         const data = this.state.data
         let valor = await this.valorTotal()
 
+    
         const payload = {
             vendedor,
             cliente,
@@ -344,6 +364,8 @@ class VendasPage extends Component {
 
         api.postOrcamento(payload)
 
+        this.props.history.replace({ state: []}) 
+        
         await this.setState({
             listProdutos: []
         }
@@ -360,13 +382,13 @@ class VendasPage extends Component {
             <div>
                 <NavbarUser />
                 <FormVenda infoVenda={this.infoVenda} />
-                <ProdutosVenda handleValorDesconto = {this.handleValorDesconto} handleValorEntrega = {this.handleValorEntrega} handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard} produto={this.state.listProdutos} />
+                <ProdutosVenda handleValorDesconto={this.handleValorDesconto} handleValorEntrega={this.handleValorEntrega} handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard}  produto={this.state.listProdutos} />
 
                 <Buttons>
-                    <Bt onClick={this.novoOrcamento}> Orçamento </Bt>  
-                    
+                    <Bt onClick={this.novoOrcamento}> Orçamento </Bt>
+
                     <Bt onClick={this.novaVenda}> Venda </Bt>
-                   
+
                 </Buttons>
 
                 <ContainerSearch class="form__group field">
