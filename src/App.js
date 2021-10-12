@@ -3,7 +3,6 @@ import './App.css';
 import EstoquePage from './pages/privado/EstoquePage';
 import FaturamentoPage from './pages/privado/FaturamentoPage';
 import Orcamento from './pages/privado/Orcamento';
-import SignupPage from './pages/privado/SignupPage';
 import VendasPage from './pages/privado/VendasPage';
 import Home from './pages/público/Home';
 import LoginPage from './pages/público/LoginPage';
