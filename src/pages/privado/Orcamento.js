@@ -4,11 +4,13 @@ import CardOrçamento from '../../components/privado/orçamento/CardOrçamento'
 import api from '../../utils/api.util'
 import styled from 'styled-components'
 
+
 const Bt = styled.button`
 
 width: 15rem;
 height: 3rem;
 background-color: grey;
+cursor: pointer;
 
 `
 const ContainerBt = styled.div`
@@ -87,7 +89,7 @@ class Orcamento extends Component {
             <div>
                 <NavbarUser />
                 <ContainerH1>
-                        {this.state.boolean ? <h1>Orçamentos</h1> : <h1>Pendente</h1>} 
+                        {this.state.boolean ? <h1>Orçamentos</h1> : <h1>Pendentes</h1>} 
                 </ContainerH1>
                 <ContainerBt>
 
@@ -97,7 +99,6 @@ class Orcamento extends Component {
                 {this.state.boolean ? this.state.orçamentos.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)
                     :
                     this.state.pendentes.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)}
-
 
             </div>
         )

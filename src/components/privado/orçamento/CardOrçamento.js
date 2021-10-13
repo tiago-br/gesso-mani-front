@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import api from '../../../utils/api.util'
+import PrintComponent from '../print/PrintOrcamento'
 
 
 const Container = styled.div`
@@ -123,7 +124,8 @@ class CardOrçamento extends Component {
         data: "",
         valorTotal: 0,
         produtos: [],
-        status: ""
+        status: "",
+        load:false
     }
 
     componentDidMount = async () => {
@@ -143,6 +145,7 @@ class CardOrçamento extends Component {
             produtos,
             id: _id,
             status,
+            load:true
 
         })
 
@@ -175,8 +178,8 @@ class CardOrçamento extends Component {
     render() {
         return (
             <Container>
-
-
+                {this.state.load?
+                <>
                 <ContainerClienteData>
                     <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.dataFormatada()}</Data><Data style={{ color: this.handleCorStatus() }}>{this.state.status}</Data>
                     </InfoOrçamento>
@@ -192,7 +195,7 @@ class CardOrçamento extends Component {
 
                 {this.state.produtos.map(produtos => {
                     return (
-                        <ContainerOrçamento>
+                        <ContainerOrçamento key={produtos._id}>
                             <NomeDoProduto>{produtos.nome}</NomeDoProduto>
                             <QuantidadeDoProduto>{produtos.quantidade}</QuantidadeDoProduto>
                             <ValorUnitário>{produtos.valorUnitário}</ValorUnitário>
@@ -206,14 +209,9 @@ class CardOrçamento extends Component {
                     <ButtonDelete onClick={this.deleteOrçamento}>Apagar</ButtonDelete>
 
                     
-                        <Link style={{ textDecoration: "none", color: "black"}}
-                            width="100%"
-                            to={{
-                                pathname: "/sistema/vendas",
-                                state: this.state
-
-                            }} onClick={this.deleteOrçamento}><ButtonVenda> Editar </ButtonVenda>
-                        </Link>
+                        <div className="container-button-imprimir-orcamento">
+                            <PrintComponent {...this.state}/>
+                        </div>
                    
 
 
@@ -232,7 +230,9 @@ class CardOrçamento extends Component {
 
 
                 </DownContainer>
-
+                </>
+            :
+            <h2>Carregando...</h2>}
             </Container>
         )
     }

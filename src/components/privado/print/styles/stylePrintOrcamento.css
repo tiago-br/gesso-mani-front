@@ -1,0 +1,95 @@
+.container-print-pdf-orcamento{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.container-print-pdf-orcamento h1{
+    font-size: 36px;
+}
+
+.container-print-pdf-orcamento h2{
+    margin-top: 20px;
+    font-size: 22px;
+}
+.container-data-cliente-print-pdf{
+    text-align: center;
+}
+.container-data-cliente-print-pdf div{
+    margin-top: 16px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
+}
+
+
+
+.container-table-print-pdf table{
+    margin-top: 22px;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 22px;
+
+}
+
+
+.container-table-print-pdf table thead{
+    width: 70vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.container-table-print-pdf table tbody{
+    width: 70vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.container-table-print-pdf tr{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+}
+
+
+.container-table-print-pdf td{
+    display: block;
+    width: 20vw;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+.container-table-print-pdf th{
+    width: 20vw;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+}
+.container-frete-valorTotal-print-pdf{
+    display: flex;
+    justify-content: center;
+}
+
+.container-frete-valorTotal-print-pdf div{
+    border-top: 1px solid black;
+    padding-top: 5px;
+    width: 70vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
