@@ -249,14 +249,12 @@ class VendasPage extends Component {
         // condição de acresentar ou retirar os 10% de desconto
         if (!this.state.desconto && this.state.valorDesconto === 10) {
             const desconto = valor / 10
-            console.log(desconto, "10")
             valor = valor - desconto
         }
 
         // condição de acresentar ou retirar os 5% de desconto
         if (!this.state.desconto && this.state.valorDesconto === 5) {
             const desconto = valor / 20
-            console.log(desconto, "5")
             valor = valor - desconto
         }
 
@@ -359,6 +357,8 @@ class VendasPage extends Component {
         let material = [...this.state.listProdutos]
         const data = this.state.data
         let valor = await this.valorTotal()
+        const frete = this.state.inputDesconto
+        
 
 
         const payload = {
@@ -367,7 +367,8 @@ class VendasPage extends Component {
             produtos: material,
             data,
             valor_total: valor,
-            status: "Orçamento"
+            status: "Orçamento",
+            frete
         }
 
 

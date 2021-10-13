@@ -40,7 +40,7 @@ class Orcamento extends Component {
     }
 
     componentDidMount = async () => {
-
+        
         let { data } = await api.getOrcamento()
 
         let orçamento =  data.filter(e => e.status === "Orçamento")

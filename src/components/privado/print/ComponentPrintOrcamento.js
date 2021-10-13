@@ -8,18 +8,26 @@ class ComponentPrintOrcamento extends Component {
         valorTotal:0,
         status:"",
         frete:0,
-        load:false
+        load:false,
+        desconto:""
     }
     componentDidMount= () =>{
         const data = this.props.infos.data.split("-")
         const dataFormatada =` ${data[2]}/${data[1]}/${data[0]}`
-
+        console.log(this.props.infos)
         const produtos = this.props.infos.produtos
         const valorTotalSemFrete = produtos.reduce((acc,produto)=>{
             return acc + (produto.valorUnitário * produto.quantidade)
         },0)
-        let frete = this.props.infos.valorTotal - valorTotalSemFrete
-
+        let frete = this.props.infos.frete
+        const valorTotalComFrete = valorTotalSemFrete + frete
+        let desconto = Math.round((1-(this.props.infos.valorTotal/valorTotalComFrete))*100)
+        if(desconto===0){
+            desconto=""
+        }else{
+            desconto=`Desconto: ${desconto}%`
+        }
+        
         if(frete===0){
             frete = "Frete: FOB"
         }else{
@@ -33,7 +41,8 @@ class ComponentPrintOrcamento extends Component {
             status:this.props.infos.status,
             frete,
             load:true,
-            data:dataFormatada
+            data:dataFormatada,
+            desconto
             
         })
     }
@@ -82,6 +91,7 @@ class ComponentPrintOrcamento extends Component {
                         <div className="container-frete-valorTotal-print-pdf">
                             <div>
                                 <h3>{this.state.frete}</h3>
+                                <h3>{this.state.desconto}</h3>
                                 <h3><span>Total: R${this.state.valorTotal.toLocaleString('pt-BR')}</span></h3>
                             </div>
                         </div>
