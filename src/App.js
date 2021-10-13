@@ -20,6 +20,10 @@ function App() {
       {/* Rotas Cliente */}
       <Route exact path="/area-do-funcionario" render={(props)=> <LoginPage {...props}/>}/>
       <Route exact path="/" render={(props)=><Home {...props}/>}/>
+      <Route exact path="/produtos" render={(props)=><Home {...props}/>}/>
+      <Route exact path="/serviços" render={(props)=><Home {...props}/>}/>
+      <Route exact path="/sobre" render={(props)=><Home {...props}/>}/>
+      <Route exact path="/contato" render={(props)=><Home {...props}/>}/>
       
       
       {/* Rotas Sistema */}
