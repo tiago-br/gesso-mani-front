@@ -16,6 +16,16 @@ width: 100vw;
 display: flex;
 justify-content: space-around;
 margin-top: 2rem;
+margin-bottom: 5rem;
+
+`
+const ContainerH1 = styled.div`
+
+width: 100vw;
+justify-content: center;
+margin-top: 2rem;
+align-items: center;
+text-align: center;
 
 `
 
@@ -54,14 +64,35 @@ class Orcamento extends Component {
         })
     }
 
+    handleActiveButton = () => {
+
+        if(this.state.boolean){
+            return {boxShadow : "5px 5px 5px black" }      
+        } 
+        
+       return {color: "black" }
+    }
+    handleActiveButtonPendente = () => {
+
+        if(!this.state.boolean){
+            return {boxShadow : "5px 5px 5px black" }      
+        } 
+        
+       return {color: "black" }
+    }
+
 
     render() {
         return (
             <div>
                 <NavbarUser />
+                <ContainerH1>
+                        {this.state.boolean ? <h1>Orçamentos</h1> : <h1>Pendente</h1>} 
+                </ContainerH1>
                 <ContainerBt>
-                    <Bt onClick={this.handleOrçamento}>Orçamentos</Bt>
-                    <Bt onClick={this.handlePendente}>Pendentes</Bt>
+
+                    <Bt style={this.handleActiveButton()} onClick={this.handleOrçamento}>Orçamentos</Bt>
+                    <Bt style={this.handleActiveButtonPendente()} onClick={this.handlePendente}>Pendentes</Bt>
                 </ContainerBt>
                 {this.state.boolean ? this.state.orçamentos.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)
                     :
