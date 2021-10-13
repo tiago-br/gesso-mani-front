@@ -10,6 +10,7 @@ const Bt = styled.button`
 width: 15rem;
 height: 3rem;
 background-color: grey;
+cursor: pointer;
 
 `
 const ContainerBt = styled.div`
@@ -88,7 +89,7 @@ class Orcamento extends Component {
             <div>
                 <NavbarUser />
                 <ContainerH1>
-                        {this.state.boolean ? <h1>Orçamentos</h1> : <h1>Pendente</h1>} 
+                        {this.state.boolean ? <h1>Orçamentos</h1> : <h1>Pendentes</h1>} 
                 </ContainerH1>
                 <ContainerBt>
 
