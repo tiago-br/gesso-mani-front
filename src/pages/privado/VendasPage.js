@@ -402,10 +402,7 @@ class VendasPage extends Component {
 
 
         if (!this.state.cliente) {
-            console.log("to 1")
-            await this.setState({
-                cliente: "Consumidor"
-            })
+            return alert('Nome do cliente está vazio')
         }
 
 
