@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ProdutosVenda from '../venda/ProdutosVenda'
 import './styles/stylePrintOrcamento.css'
 
 class ComponentPrintOrcamento extends Component {
@@ -24,6 +23,7 @@ class ComponentPrintOrcamento extends Component {
         if(frete===0){
             frete = "Frete: FOB"
         }else{
+            frete = frete.toLocaleString('pt-BR')
             frete = `Frete: R$${frete}`
         }
         this.setState({
@@ -38,6 +38,7 @@ class ComponentPrintOrcamento extends Component {
         })
     }
     render() {
+        console.log(this.props.infos.produtos)
         return (
             <div>
                 {this.state.load?
@@ -50,7 +51,7 @@ class ComponentPrintOrcamento extends Component {
                             <h3>Data:{this.state.data}</h3>
                         </div>
                     </section>
-                    <section>
+                    <section className="container-table-print-pdf">
                         <table>
                             <thead>
                                 <tr>
@@ -61,14 +62,29 @@ class ComponentPrintOrcamento extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Ola</td>
+                                {this.props.infos.produtos.map(produto=>
+                                <tr key={produto.nome}>
+                                    <td>
+                                        {produto.nome}
+                                    </td>
+                                    <td>
+                                        {produto.quantidade}
+                                    </td>
+                                    <td>
+                                        R${produto.valorUnitário.toLocaleString('pt-BR')}
+                                    </td>
+                                    <td>
+                                        R${(produto.valorUnitário*produto.quantidade).toLocaleString('pt-BR')}
+                                    </td>
                                 </tr>
+                                )}
                             </tbody>
                         </table>
-                        <div>
-                            <h3>{this.state.frete}</h3>
-                            <h3>Valor total: R${this.state.valorTotal}</h3>
+                        <div className="container-frete-valorTotal-print-pdf">
+                            <div>
+                                <h3>{this.state.frete}</h3>
+                                <h3><span>Total: R${this.state.valorTotal.toLocaleString('pt-BR')}</span></h3>
+                            </div>
                         </div>
                     </section>
                 </div>

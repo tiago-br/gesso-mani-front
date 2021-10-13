@@ -4,6 +4,7 @@ import CardOrçamento from '../../components/privado/orçamento/CardOrçamento'
 import api from '../../utils/api.util'
 import styled from 'styled-components'
 
+
 const Bt = styled.button`
 
 width: 15rem;
@@ -97,7 +98,6 @@ class Orcamento extends Component {
                 {this.state.boolean ? this.state.orçamentos.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)
                     :
                     this.state.pendentes.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)}
-
 
             </div>
         )
