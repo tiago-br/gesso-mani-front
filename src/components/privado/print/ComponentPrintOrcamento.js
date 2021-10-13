@@ -38,7 +38,6 @@ class ComponentPrintOrcamento extends Component {
         })
     }
     render() {
-        console.log(this.props.infos.produtos)
         return (
             <div>
                 {this.state.load?
