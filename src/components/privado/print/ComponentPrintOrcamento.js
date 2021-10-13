@@ -12,14 +12,29 @@ class ComponentPrintOrcamento extends Component {
         load:false
     }
     componentDidMount= () =>{
-        
+        const data = this.props.infos.data.split("-")
+        const dataFormatada =` ${data[2]}/${data[1]}/${data[0]}`
+
+        const produtos = this.props.infos.produtos
+        const valorTotalSemFrete = produtos.reduce((acc,produto)=>{
+            return acc + (produto.valorUnitário * produto.quantidade)
+        },0)
+        let frete = this.props.infos.valorTotal - valorTotalSemFrete
+
+        if(frete===0){
+            frete = "Frete: FOB"
+        }else{
+            frete = `Frete: R$${frete}`
+        }
         this.setState({
             protudos:this.props.infos.protudos,  //<====Array com os produtos do orcamento
-            cliente:this.props.infos.clientes,
+            cliente:this.props.infos.cliente,
             valorTotal:this.props.infos.valorTotal,
             status:this.props.infos.status,
-            frete:0,
-            load:true
+            frete,
+            load:true,
+            data:dataFormatada
+            
         })
     }
     render() {
@@ -28,15 +43,33 @@ class ComponentPrintOrcamento extends Component {
                 {this.state.load?
                 <div className="container-print-pdf-orcamento">
                     <h1>Gesso Mania</h1>
+                    <h2>{this.state.status}</h2>
+                    <section className="container-data-cliente-print-pdf">
+                        <div>
+                            <h3>Cliente: {this.state.cliente}</h3>
+                            <h3>Data:{this.state.data}</h3>
+                        </div>
+                    </section>
                     <section>
                         <table>
-                            <tr>
-                                <th>Protudo</th>
-                                <th>Quantidade</th>
-                                <th>Valor unitário</th>
-                                <th>Valor total</th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>Protudo</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor unitário</th>
+                                    <th>Valor total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Ola</td>
+                                </tr>
+                            </tbody>
                         </table>
+                        <div>
+                            <h3>{this.state.frete}</h3>
+                            <h3>Valor total: R${this.state.valorTotal}</h3>
+                        </div>
                     </section>
                 </div>
                 :

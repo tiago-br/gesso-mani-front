@@ -2,5 +2,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 35px;
+    margin-top: 32px;
+}
+
+.container-print-pdf-orcamento h1{
+    font-size: 36px;
+}
+
+.container-print-pdf-orcamento h2{
+    margin-top: 20px;
+    font-size: 22px;
+}
+.container-data-cliente-print-pdf{
+    text-align: center;
+}
+.container-data-cliente-print-pdf div{
+    margin-top: 16px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
 }
