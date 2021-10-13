@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import api from '../../../utils/api.util'
+import PrintComponent from '../print/PrintOrcamento'
 
 
 const Container = styled.div`
@@ -206,14 +207,9 @@ class CardOrçamento extends Component {
                     <ButtonDelete onClick={this.deleteOrçamento}>Apagar</ButtonDelete>
 
                     
-                        <Link style={{ textDecoration: "none", color: "black"}}
-                            width="100%"
-                            to={{
-                                pathname: "/sistema/vendas",
-                                state: this.state
-
-                            }} onClick={this.deleteOrçamento}><ButtonVenda> Editar </ButtonVenda>
-                        </Link>
+                        <div className="container-button-imprimir-orcamento">
+                            <PrintComponent/>
+                        </div>
                    
 
 

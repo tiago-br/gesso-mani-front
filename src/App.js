@@ -11,6 +11,7 @@ import PrivateRoutes from './utils/PrivateRoutes';
 import FuncionariosPage from './pages/privado/FuncionariosPage';
 import AdminPrivateRoute from './utils/AdminPrivateRoute';
 
+
 function App() {
   return (
     <div className="App">
