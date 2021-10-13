@@ -124,7 +124,8 @@ class CardOrçamento extends Component {
         data: "",
         valorTotal: 0,
         produtos: [],
-        status: ""
+        status: "",
+        load:false
     }
 
     componentDidMount = async () => {
@@ -144,6 +145,7 @@ class CardOrçamento extends Component {
             produtos,
             id: _id,
             status,
+            load:true
 
         })
 
@@ -176,8 +178,8 @@ class CardOrçamento extends Component {
     render() {
         return (
             <Container>
-
-
+                {this.state.load?
+                <>
                 <ContainerClienteData>
                     <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.dataFormatada()}</Data><Data style={{ color: this.handleCorStatus() }}>{this.state.status}</Data>
                     </InfoOrçamento>
@@ -193,7 +195,7 @@ class CardOrçamento extends Component {
 
                 {this.state.produtos.map(produtos => {
                     return (
-                        <ContainerOrçamento>
+                        <ContainerOrçamento key={produtos._id}>
                             <NomeDoProduto>{produtos.nome}</NomeDoProduto>
                             <QuantidadeDoProduto>{produtos.quantidade}</QuantidadeDoProduto>
                             <ValorUnitário>{produtos.valorUnitário}</ValorUnitário>
@@ -208,7 +210,7 @@ class CardOrçamento extends Component {
 
                     
                         <div className="container-button-imprimir-orcamento">
-                            <PrintComponent/>
+                            <PrintComponent {...this.state}/>
                         </div>
                    
 
@@ -228,7 +230,9 @@ class CardOrçamento extends Component {
 
 
                 </DownContainer>
-
+                </>
+            :
+            <h2>Carregando...</h2>}
             </Container>
         )
     }

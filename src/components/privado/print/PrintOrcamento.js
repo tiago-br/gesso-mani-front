@@ -3,9 +3,8 @@ import React, { useRef } from "react";
 import ReactToPrint from "react-to-print";
 import ComponentPrintOrcamento from "./ComponentPrintOrcamento";
 
-export default function PrintComponent() {
+export default function PrintComponent(props) {
   let componentRef = useRef();
-
   return (
     <>
       <div>
@@ -17,7 +16,7 @@ export default function PrintComponent() {
 
         {/* component to be printed */}
         <div style={{ display: "none" }}>
-        <ComponentPrintOrcamento ref={(el) => (componentRef = el)} />
+        <ComponentPrintOrcamento infos={props} ref={(el) => (componentRef = el)} />
         </div>
       </div>
     </>
