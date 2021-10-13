@@ -10,6 +10,10 @@ import LoginPage from './pages/público/LoginPage';
 import PrivateRoutes from './utils/PrivateRoutes';
 import FuncionariosPage from './pages/privado/FuncionariosPage';
 import AdminPrivateRoute from './utils/AdminPrivateRoute';
+import  ProdutosPage from './pages/público/ProdutosPage';
+import ServiçosPage from './pages/público/ServiçosPage';
+import SobrePage from './pages/público/SobrePage'
+import ContatoPage from './pages/público/ContatoPage'
 
 
 function App() {
@@ -20,10 +24,10 @@ function App() {
       {/* Rotas Cliente */}
       <Route exact path="/area-do-funcionario" render={(props)=> <LoginPage {...props}/>}/>
       <Route exact path="/" render={(props)=><Home {...props}/>}/>
-      <Route exact path="/produtos" render={(props)=><Home {...props}/>}/>
-      <Route exact path="/serviços" render={(props)=><Home {...props}/>}/>
-      <Route exact path="/sobre" render={(props)=><Home {...props}/>}/>
-      <Route exact path="/contato" render={(props)=><Home {...props}/>}/>
+      <Route exact path="/produtos" render={(props)=> <ProdutosPage {...props}/>}/>
+      <Route exact path="/serviços" render={(props)=><ServiçosPage {...props}/>}/>
+      <Route exact path="/sobre" render={(props)=><SobrePage {...props}/>}/>
+      <Route exact path="/contato" render={(props)=><ContatoPage {...props}/>}/>
       
       
       {/* Rotas Sistema */}
