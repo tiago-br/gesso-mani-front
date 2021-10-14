@@ -31,7 +31,6 @@ class ComponentPrintOrcamento extends Component {
         if(frete===0){
             frete = "Frete: FOB"
         }else{
-            frete = frete.toLocaleString('pt-BR')
             frete = `Frete: R$${frete}`
         }
         this.setState({

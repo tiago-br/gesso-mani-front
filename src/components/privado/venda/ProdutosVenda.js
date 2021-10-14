@@ -127,7 +127,7 @@ class ProdutosVenda extends Component {
         booleanDesconto: false,
         booleanEntrega: false,
         valorDesconto: 5,
-        inputDesconto: 30
+        inputDesconto: 0
     }
 
     componentDidMount = async () => {
@@ -202,7 +202,6 @@ class ProdutosVenda extends Component {
     }
 
     btDescontoInput = async () => {
-
         this.setState({
             booleanDesconto: !this.state.booleanDesconto
 
@@ -230,11 +229,14 @@ class ProdutosVenda extends Component {
     }
 
     btEntrega = () => {
+    
         this.setState({
             entrega: !this.state.entrega
+           
         })
-
-        this.props.handleEntrega(this.state.entrega)
+        
+        if(this.state.entrega)this.props.handleEntrega(this.state.entrega)
+        
     }
 
     btEntregaColor = () => {

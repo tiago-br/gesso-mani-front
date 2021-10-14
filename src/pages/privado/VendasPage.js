@@ -123,7 +123,7 @@ class VendasPage extends Component {
         booleanDesconto: false,
         booleanEntrega: false,
         valorDesconto: 5,
-        inputDesconto: 30,
+        inputDesconto: 0,
 
     }
 
@@ -269,7 +269,7 @@ class VendasPage extends Component {
     }
 
     handleEntrega = (payload) => {
-
+        
         this.setState({
             entrega: payload
         })
@@ -371,17 +371,17 @@ class VendasPage extends Component {
             frete
         }
 
+        console.log(payload)
+        // api.postOrcamento(payload)
 
-        api.postOrcamento(payload)
+        // this.props.history.replace({ state: [] })
 
-        this.props.history.replace({ state: [] })
+        // await this.setState({
+        //     listProdutos: []
+        // }
+        // )
 
-        await this.setState({
-            listProdutos: []
-        }
-        )
-
-        await setTimeout(function () { window.location.reload(); }, 1000)
+        // await setTimeout(function () { window.location.reload(); }, 1000)
 
 
     }
@@ -425,7 +425,6 @@ class VendasPage extends Component {
             status: "Pendente"
         }
 
-        console.log(payload)
 
 
         api.postOrcamento(payload)
@@ -458,10 +457,10 @@ class VendasPage extends Component {
 
                 </Buttons>
 
-                <ContainerSearch class="form__group field">
+                <ContainerSearch className="form__group field">
                     <WidthInput>
-                        <Search type="text" class="form__field" placeholder="Name" name="name" id='name' value={this.state.inputValue} onChange={this.handleInput} />
-                        <Label for="name" class="form__label">Busca</Label>
+                        <Search type="text" className="form__field" placeholder="Name" name="name" id='name' value={this.state.inputValue} onChange={this.handleInput} />
+                        <Label forHTML="name" className="form__label">Busca</Label>
                     </WidthInput>
                 </ContainerSearch>
 
