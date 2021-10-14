@@ -119,7 +119,7 @@ class VendasPage extends Component {
         filterProduts: [],
         inputValue: '',
         desconto: true,
-        entrega: true,
+        entrega: false,
         booleanDesconto: false,
         booleanEntrega: false,
         valorDesconto: 5,
@@ -217,6 +217,7 @@ class VendasPage extends Component {
 
 
         let valorEntrega = parseInt(payload)
+
         this.setState({
 
             inputDesconto: valorEntrega
@@ -227,6 +228,7 @@ class VendasPage extends Component {
     handleValorDesconto = (payload) => {
 
         let valor = parseInt(payload)
+
 
         this.setState({
             valorDesconto: valor
@@ -241,7 +243,7 @@ class VendasPage extends Component {
         this.state.listProdutos.map(produto => valor += produto.valorUnitário * produto.quantidade)
 
         // condição de acresentar ou retirar a entrega 
-        if (!this.state.entrega) {
+        if (this.state.entrega) {
             let a = parseInt(this.state.inputDesconto)
             valor = valor + a
         }
@@ -269,7 +271,7 @@ class VendasPage extends Component {
     }
 
     handleEntrega = (payload) => {
-        
+
         this.setState({
             entrega: payload
         })
@@ -334,6 +336,12 @@ class VendasPage extends Component {
 
     novoOrcamento = async () => {
 
+        if (this.state.entrega === false) {
+            await this.setState({
+                inputDesconto: 0
+            })
+        }
+
         if (this.state.listProdutos.length === 0) {
             return alert('Não tem itens para efetuar o orçamento')
         }
@@ -357,9 +365,8 @@ class VendasPage extends Component {
         let material = [...this.state.listProdutos]
         const data = this.state.data
         let valor = await this.valorTotal()
-        const frete = this.state.inputDesconto
-        
 
+        const frete = this.state.inputDesconto
 
         const payload = {
             vendedor,
@@ -371,50 +378,48 @@ class VendasPage extends Component {
             frete
         }
 
-        console.log(payload)
-        // api.postOrcamento(payload)
+        api.postOrcamento(payload)
 
-        // this.props.history.replace({ state: [] })
+        this.props.history.replace({ state: [] })
 
-        // await this.setState({
-        //     listProdutos: []
-        // }
-        // )
+        await this.setState({
+            listProdutos: []
+        })
 
-        // await setTimeout(function () { window.location.reload(); }, 1000)
-
+        await setTimeout(function () { window.location.reload(); }, 1000)
 
     }
 
     novoDevedor = async () => {
+        if (this.state.entrega === false) {
+            await this.setState({
+                inputDesconto: 0
+            })
+        }
+
         if (this.state.listProdutos.length === 0) {
             return alert('Não tem itens para efetuar o orçamento')
         }
+
         if (this.state.cliente.length === 0) {
             if (this.props.location.state) {
-                console.log("to 1")
                 this.setState({
                     cliente: await this.props.location.state.cliente
                 })
             }
         }
 
-
-
-
         if (!this.state.cliente) {
-            return alert('Nome do cliente está vazio')
+          return alert('Campo cliente vazio')
         }
 
-
-
-
-        const vendedor = await localStorage.getItem('user')
-        const cliente = await this.state.cliente
-        let material = await [...this.state.listProdutos]
-        const data = await this.state.data
+        const vendedor = localStorage.getItem('user')
+        const cliente = this.state.cliente
+        let material = [...this.state.listProdutos]
+        const data = this.state.data
         let valor = await this.valorTotal()
 
+        const frete = this.state.inputDesconto
 
         const payload = {
             vendedor,
@@ -422,10 +427,9 @@ class VendasPage extends Component {
             produtos: material,
             data,
             valor_total: valor,
-            status: "Pendente"
+            status: "Pendente",
+            frete
         }
-
-
 
         api.postOrcamento(payload)
 
@@ -433,8 +437,7 @@ class VendasPage extends Component {
 
         await this.setState({
             listProdutos: []
-        }
-        )
+        })
 
         await setTimeout(function () { window.location.reload(); }, 1000)
     }
