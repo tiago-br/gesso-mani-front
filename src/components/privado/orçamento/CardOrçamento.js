@@ -125,17 +125,19 @@ class CardOrçamento extends Component {
         valorTotal: 0,
         produtos: [],
         status: "",
-        load:false
+        load:false,
+        frete:0
     }
 
     componentDidMount = async () => {
 
-        let cliente = await this.props.cliente
-        let data = await this.props.data
-        let valorTotal = await this.props.valor_total
-        let produtos = await this.props.produtos
-        let _id = await this.props._id
-        let status = await this.props.status
+        const cliente = await this.props.cliente
+        const data = await this.props.data
+        const valorTotal = await this.props.valor_total
+        const produtos = await this.props.produtos
+        const _id = await this.props._id
+        const status = await this.props.status
+        const frete = this.props.frete
 
 
         this.setState({
@@ -145,7 +147,8 @@ class CardOrçamento extends Component {
             produtos,
             id: _id,
             status,
-            load:true
+            load:true,
+            frete
 
         })
 

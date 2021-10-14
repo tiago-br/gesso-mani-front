@@ -123,7 +123,7 @@ class VendasPage extends Component {
         booleanDesconto: false,
         booleanEntrega: false,
         valorDesconto: 5,
-        inputDesconto: 30,
+        inputDesconto: 0,
 
     }
 
@@ -249,14 +249,12 @@ class VendasPage extends Component {
         // condição de acresentar ou retirar os 10% de desconto
         if (!this.state.desconto && this.state.valorDesconto === 10) {
             const desconto = valor / 10
-            console.log(desconto, "10")
             valor = valor - desconto
         }
 
         // condição de acresentar ou retirar os 5% de desconto
         if (!this.state.desconto && this.state.valorDesconto === 5) {
             const desconto = valor / 20
-            console.log(desconto, "5")
             valor = valor - desconto
         }
 
@@ -271,7 +269,7 @@ class VendasPage extends Component {
     }
 
     handleEntrega = (payload) => {
-
+        
         this.setState({
             entrega: payload
         })
@@ -359,6 +357,8 @@ class VendasPage extends Component {
         let material = [...this.state.listProdutos]
         const data = this.state.data
         let valor = await this.valorTotal()
+        const frete = this.state.inputDesconto
+        
 
 
         const payload = {
@@ -367,20 +367,21 @@ class VendasPage extends Component {
             produtos: material,
             data,
             valor_total: valor,
-            status: "Orçamento"
+            status: "Orçamento",
+            frete
         }
 
+        console.log(payload)
+        // api.postOrcamento(payload)
 
-        api.postOrcamento(payload)
+        // this.props.history.replace({ state: [] })
 
-        this.props.history.replace({ state: [] })
+        // await this.setState({
+        //     listProdutos: []
+        // }
+        // )
 
-        await this.setState({
-            listProdutos: []
-        }
-        )
-
-        await setTimeout(function () { window.location.reload(); }, 1000)
+        // await setTimeout(function () { window.location.reload(); }, 1000)
 
 
     }
@@ -424,7 +425,6 @@ class VendasPage extends Component {
             status: "Pendente"
         }
 
-        console.log(payload)
 
 
         api.postOrcamento(payload)
@@ -457,10 +457,10 @@ class VendasPage extends Component {
 
                 </Buttons>
 
-                <ContainerSearch class="form__group field">
+                <ContainerSearch className="form__group field">
                     <WidthInput>
-                        <Search type="text" class="form__field" placeholder="Name" name="name" id='name' value={this.state.inputValue} onChange={this.handleInput} />
-                        <Label for="name" class="form__label">Busca</Label>
+                        <Search type="text" className="form__field" placeholder="Name" name="name" id='name' value={this.state.inputValue} onChange={this.handleInput} />
+                        <Label forHTML="name" className="form__label">Busca</Label>
                     </WidthInput>
                 </ContainerSearch>
 

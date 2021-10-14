@@ -5,7 +5,9 @@ import ComponentPrintOrcamento from "./ComponentPrintOrcamento";
 
 export default function PrintComponent(props) {
   let componentRef = useRef();
+  console.log(props)
   return (
+      
     <>
       <div>
         {/* button to trigger printing of target component */}
