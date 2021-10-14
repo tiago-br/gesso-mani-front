@@ -14,6 +14,10 @@ import  ProdutosPage from './pages/público/ProdutosPage';
 import ServiçosPage from './pages/público/ServiçosPage';
 import SobrePage from './pages/público/SobrePage'
 import ContatoPage from './pages/público/ContatoPage'
+import FechamentoPage from './pages/privado/FechamentoPage';
+import ComprasPage from './pages/privado/ComprasPage';
+import DespesasPage from './pages/privado/ DespesasPage';
+import ColaboradoresPage from './pages/privado/ColaboradoresPage';
 
 
 function App() {
@@ -28,6 +32,7 @@ function App() {
       <Route exact path="/serviços" render={(props)=><ServiçosPage {...props}/>}/>
       <Route exact path="/sobre" render={(props)=><SobrePage {...props}/>}/>
       <Route exact path="/contato" render={(props)=><ContatoPage {...props}/>}/>
+
       
       
       {/* Rotas Sistema */}
@@ -39,6 +44,10 @@ function App() {
         <Route exact path="/sistema/funcionarios" render={(props) => <FuncionariosPage {...props}/>}/>
         <Route exact path="/sistema/estoque" render={(props) => <EstoquePage {...props}/>}/>
         <Route exact path="/sistema/faturamento" render={(props) => <FaturamentoPage {...props}/>}/>
+        <Route exact path="/sistema/fechamento" render={(props) => <FechamentoPage {...props}/>}/>
+        <Route exact path="/sistema/compras" render={(props) => <ComprasPage {...props}/>}/>
+        <Route exact path="/sistema/despesas" render={(props) => <DespesasPage {...props}/>}/>
+        <Route exact path="/sistema/colaboradores" render={(props) => <ColaboradoresPage {...props}/>}/>
       </AdminPrivateRoute>  
       
       </PrivateRoutes>

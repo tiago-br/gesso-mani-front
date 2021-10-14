@@ -43,27 +43,30 @@ const Div = styled.div`
 `
 
 class NavbarUser extends Component {
-    state={
-        user:localStorage.getItem('user')
+    state = {
+        user: localStorage.getItem('user')
     }
 
-    handleLogout = () =>{
+    handleLogout = () => {
         localStorage.clear()
         window.location.reload()
     }
     render() {
         return (
-            
+
             <NavBar>
                 <NavLink to={"/sistema/vendas"}>Vendas</NavLink>
                 <NavLink to={"/sistema/orçamento"}>Orçamento</NavLink>
                 <NavLink to={"/sistema/estoque"}>Estoque</NavLink>
                 <NavLink to={"/sistema/faturamento"}>Faturamento</NavLink>
-                <NavLink to={"/sistema/funcionarios"}>Funcionários</NavLink>
+                <NavLink to={"/sistema/fechamento"}>Fechamento</NavLink>
+                <NavLink to={"/sistema/compras"}>Compras</NavLink>
+                <NavLink to={"/sistema/despesas"}>Despesas</NavLink>
+                <NavLink to={"/sistema/colaboradores"}>Colaboradores</NavLink>
                 <Div>
                     <p>{this.state.user} / <button onClick={this.handleLogout}>Logout</button></p>
                 </Div>
-                
+
             </NavBar>
         )
     }
