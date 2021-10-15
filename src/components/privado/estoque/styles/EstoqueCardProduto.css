@@ -298,3 +298,17 @@
 #input-valor-venda-card-produto input{
     width: 8vw;
 }
+
+#icon-hover-total-estoque span{
+    display: none;
+}
+
+#icon-hover-total-estoque:hover span{
+    display: block;
+    margin-top: 2vh;
+}
+
+
+#icon-hover-total-estoque:hover span strong{
+    text-decoration:underline;
+}

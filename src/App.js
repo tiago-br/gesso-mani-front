@@ -40,6 +40,7 @@ function App() {
       <PrivateRoutes>
         <Route exact path="/sistema/vendas" render={(props) => <VendasPage {...props}/>}/>
         <Route exact path="/sistema/orçamento" render={(props) => <Orcamento {...props}/>}/>
+      </PrivateRoutes>
       <AdminPrivateRoute>
         <Route exact path="/sistema/funcionarios" render={(props) => <FuncionariosPage {...props}/>}/>
         <Route exact path="/sistema/estoque" render={(props) => <EstoquePage {...props}/>}/>
@@ -49,12 +50,6 @@ function App() {
         <Route exact path="/sistema/despesas" render={(props) => <DespesasPage {...props}/>}/>
         <Route exact path="/sistema/colaboradores" render={(props) => <ColaboradoresPage {...props}/>}/>
       </AdminPrivateRoute>  
-      
-      </PrivateRoutes>
-      
-     
-      
-      
 
 
     </Switch>

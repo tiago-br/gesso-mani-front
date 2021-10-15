@@ -121,7 +121,6 @@ class EstoqueCardProdutos extends Component {
         }
     }
     render() {
-        console.log(this.state.valor_de_compra)
         return (
             <div>
                 {this.state.load?
@@ -149,19 +148,19 @@ class EstoqueCardProdutos extends Component {
                                 </div>
                                 <div>
                                 <label>Quantidade em estoque: </label>
-                                <input type="number" step="1" min="0" name="quantidade_em_estoque" value={this.state.quantidade_em_estoque} onChange={this.handleChange} disabled="true"></input>
+                                <input type="number" step="1" min="0" name="quantidade_em_estoque" value={this.state.quantidade_em_estoque} onChange={this.handleChange} disabled={true}></input>
                                 </div>
                                 <div>
                                 <label>Valor de compra:</label>
-                                <input type="number" step="1" min="0" name="valor_de_compra" value={this.state.valor_de_compra} onChange={this.handleChange} disabled="true"/>
+                                <input type="number" step="1" min="0" name="valor_de_compra" value={this.state.valor_de_compra} onChange={this.handleChange} disabled={true}/>
                                 </div>
                                 <div id="input-valor-venda-card-produto">
                                 <label>Valor de venda: </label>
                                 <input type="number" name="valor_de_venda" value={this.state.valor_de_venda}onChange={this.handleChange} min="0" step="0.01"></input>
                                 </div>
                                 <div>
-                                <label>Percentual de lucro:</label>
-                                <input type="text" value={`${((this.state.valor_de_venda/this.state.valor_de_compra-1)*100).toFixed(1)}%`} disabled="true"></input>
+                                <label>Margem de lucro:</label>
+                                <input type="text" value={`${((this.state.valor_de_venda/this.state.valor_de_compra-1)*100).toFixed(1)}%`} disabled={true}></input>
                                 </div>
                             </div>
                             <div className="estoque-card-field-right">

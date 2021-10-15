@@ -116,13 +116,13 @@ class EstoqueNovoProduto extends Component {
                     <input type="number" step="1" min="1" name="valor_de_compra" value={this.state.valor_de_compra} onChange={this.handleChange}></input>
                     </div>
                     <div>
-                    <label>Valor de compra:</label>
+                    <label>Valor de venda:</label>
                         <div className="porcentagem-lucro-novo-produto">
                             <input type="number" name="valor_de_venda" value={this.state.valor_de_venda}onChange={this.handleChange} min="0" step="0.1"></input>
                           
                         </div>
                     </div>
-                        <p id={this.state.classMsgPercentagem}>Percentagem de lucro:<span><strong>{this.state.porcentagemDeLucro}%</strong></span></p>
+                        <p id={this.state.classMsgPercentagem}>Margem de lucro:<span><strong>{this.state.porcentagemDeLucro}%</strong></span></p>
                     <div>
                     <label>Imagem URL </label>
                     <input type="text" name="img_Url" value={this.state.img_Url} onChange={this.handleChange}/>
