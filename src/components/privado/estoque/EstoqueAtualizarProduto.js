@@ -25,7 +25,7 @@ class EstoqueAtualizarProduto extends Component {
 
         this.setState({
             load:true,
-            produtos:data,
+            produtos:data.reverse(),
             filterProdutos:data
         })
 

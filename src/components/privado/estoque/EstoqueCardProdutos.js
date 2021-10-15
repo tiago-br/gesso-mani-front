@@ -21,7 +21,8 @@ class EstoqueCardProdutos extends Component {
         msgDelet:"",
         quantidade:0,
         msgAdd:"",
-        classMsgAdd:""
+        classMsgAdd:"",
+        valor_de_compra:this.props.valor_de_compra
 
     }
 
@@ -60,7 +61,8 @@ class EstoqueCardProdutos extends Component {
             valor_de_venda:this.state.valor_de_venda,
             descricao:this.state.descricao,
             img_Url:this.state.img_Url,
-            modificado_por:this.state.modificado_por
+            modificado_por:this.state.modificado_por,
+            valor_de_compra:this.state.valor_de_compra
         }
         try {
             if(this.state.name==="" || this.state.quantidade_em_estoque<0){
@@ -168,6 +170,7 @@ class EstoqueCardProdutos extends Component {
         }
     }
     render() {
+        console.log(this.state.valor_de_compra)
         return (
             <div>
                 {this.state.load?
@@ -193,8 +196,9 @@ class EstoqueCardProdutos extends Component {
                                 <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
             
                                 <label>Quantidade em estoque: </label>
-                                <input type="number" step="1" min="0" name="quantidade_em_estoque" value={this.state.quantidade_em_estoque} onChange={this.handleChange}></input>
-                            
+                                <input type="number" step="1" min="0" name="quantidade_em_estoque" value={this.state.quantidade_em_estoque} onChange={this.handleChange} disabled="true"></input>
+                                <label>Valor de compra:</label>
+                                <input type="number" step="1" min="0" name="valor_de_compra" value={this.state.valor_de_compra} onChange={this.handleChange} disabled="true"/>
                                 <label>Valor de venda: </label>
                                 <input type="number" name="valor_de_venda" value={this.state.valor_de_venda}onChange={this.handleChange} min="0" step="0.01"></input>
                             </div>
