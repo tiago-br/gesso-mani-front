@@ -29,7 +29,7 @@ class ComponentPrintOrcamento extends Component {
         }
         
         if(frete===0){
-            frete = "Frete: FOB"
+            frete = "Frete: isento"
         }else{
             frete = `Frete: R$${frete}`
         }

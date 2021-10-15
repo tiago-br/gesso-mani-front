@@ -5,6 +5,7 @@ import ProdutosVenda from '../../components/privado/venda/ProdutosVenda'
 import styled from 'styled-components'
 import CardProdutosVenda from '../../components/privado/venda/CardProdutosVenda'
 import api from '../../utils/api.util'
+import NavBarColaborador from '../../components/privado/NavBarColaborador'
 
 const Buttons = styled.div`
 display: flex;
@@ -124,18 +125,25 @@ class VendasPage extends Component {
         booleanEntrega: false,
         valorDesconto: 5,
         inputDesconto: 0,
+        admin:false
 
     }
-
     componentDidMount = async () => {
 
         let { data } = await api.getProduto()
+        let checkAdmin = localStorage.getItem('admin')
+        if(checkAdmin === "ebq$lS6h$@IqGbzM7jNFFZCe70gg&t*5F&9pnNRxTgPVak7Q*%"){
+           await this.setState({
+                admin: true
+            })
+        }
 
         this.setState({
 
             produtos: data,
             filterProduts: data,
-            loading: true
+            loading: true,
+            
         })
     }
 
@@ -447,7 +455,9 @@ class VendasPage extends Component {
 
         return (
             <div>
-                <NavbarUser />
+            {this.state.loading?
+            <>
+                {this.state.admin?<NavbarUser />:<NavBarColaborador/>}
                 <FormVenda infoVenda={this.infoVenda} />
                 <ProdutosVenda handleValorDesconto={this.handleValorDesconto} handleValorEntrega={this.handleValorEntrega} handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard} produto={this.state.listProdutos} />
 
@@ -479,6 +489,11 @@ class VendasPage extends Component {
                 {this.state.filterProduts.map(produto => {
                     return <CardProdutosVenda key={produto.name} name={produto.name} quantidade={produto.quantidade_em_estoque} valor={produto.valor_de_venda} function={this.handleProdutos} />
                 })}
+                </>
+
+                :
+                <h1>Carregando...</h1>
+            }
 
 
             </div>

@@ -3,6 +3,9 @@ import api from '../../../utils/api.util'
 import EstoqueCardProdutos from './EstoqueCardProdutos'
 import styled from 'styled-components'
 import './styles/EstoqueCardProduto.css'
+import { FaBeer } from 'react-icons/fa';
+import { GoQuestion } from "react-icons/go";
+//
 
 const ContainerCards = styled.div`
     display: flex;
@@ -18,15 +21,23 @@ class EstoqueAtualizarProduto extends Component {
         load:false,
         produtos:[],
         filterProdutos:[],
+        valorTotalEstoque:0
     }
 
     componentDidMount = async ()=>{
         const {data} = await api.getProduto()
-
+        const copyData = [...data]
+        let valorTotalEstoque = copyData.reduce((acc,produto)=>{
+            return acc + (produto.valor_de_compra * produto.quantidade_em_estoque)
+        },0)
+        if(valorTotalEstoque < 0){
+            valorTotalEstoque = 0
+        }
         this.setState({
             load:true,
-            produtos:data,
-            filterProdutos:data
+            produtos:data.reverse(),
+            filterProdutos:data,
+            valorTotalEstoque:valorTotalEstoque.toLocaleString('pt-BR')
         })
 
     }
@@ -38,7 +49,6 @@ class EstoqueAtualizarProduto extends Component {
             const lowNameSearch = event.target.value.toLowerCase()
                 return lowNameProduct.includes(lowNameSearch)
         })
-        console.log(produtosFiltrados)
         await this.setState({
             filterProdutos:produtosFiltrados
         })
@@ -56,6 +66,9 @@ class EstoqueAtualizarProduto extends Component {
             <div>
                 <div className="container-search-bar-att">
                     <input type="text" placeholder="Barra de pesquisa" name="searchBar" onChange={(e)=>{this.handleSearch(e)}}/>
+                </div>
+                <div style={{textAlign:"center", marginTop:"2vh"}}>
+                    <h4>Valor total do estoque:R${this.state.valorTotalEstoque} <span id="icon-hover-total-estoque"><GoQuestion/><span>Quantia total referente ao <strong>valor de compra</strong></span></span></h4>
                 </div>
                 <ContainerCards>
                 {this.state.load?

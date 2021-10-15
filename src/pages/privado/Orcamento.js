@@ -3,6 +3,7 @@ import NavbarUser from '../../components/privado/NavbarUser'
 import CardOrçamento from '../../components/privado/orçamento/CardOrçamento'
 import api from '../../utils/api.util'
 import styled from 'styled-components'
+import NavBarColaborador from '../../components/privado/NavBarColaborador'
 
 
 const Bt = styled.button`
@@ -36,19 +37,27 @@ class Orcamento extends Component {
     state = {
         orçamentos: [],
         pendentes: [],
-        boolean: true
+        boolean: true,
+        admin:false,
+        load:false
     }
 
     componentDidMount = async () => {
         
         let { data } = await api.getOrcamento()
-        console.log(data)
         let orçamento =  data.filter(e => e.status === "Orçamento")
         let Pendente = data.filter(e => e.status === "Pendente")
-
+        let checkAdmin = localStorage.getItem('admin')
+        if(checkAdmin !== "ebq$lS6h$@IqGbzM7jNFFZCe70gg&t*5F&9pnNRxTgPVak7Q*%"){
+            checkAdmin = false
+        }else{
+            checkAdmin = true
+        }
         this.setState({
-            orçamentos: orçamento,
-            pendentes: Pendente
+            orçamentos: orçamento.reverse(),
+            pendentes: Pendente.reverse(),
+            admin:checkAdmin,
+            load:true
         })
     }
 
@@ -87,7 +96,9 @@ class Orcamento extends Component {
     render() {
         return (
             <div>
-                <NavbarUser />
+            {this.state.load?
+            <>
+                {this.state.admin?<NavbarUser />:<NavBarColaborador/>}
                 <ContainerH1>
                         {this.state.boolean ? <h1>Orçamentos</h1> : <h1>Pendentes</h1>} 
                 </ContainerH1>
@@ -99,8 +110,12 @@ class Orcamento extends Component {
                 {this.state.boolean ? this.state.orçamentos.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)
                     :
                     this.state.pendentes.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)}
-
+            </>
+            :
+            <h2>Carregando...</h2>
+            }
             </div>
+            
         )
     }
 }

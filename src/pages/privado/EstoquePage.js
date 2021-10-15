@@ -10,7 +10,6 @@ const ButtonTittle = styled.button`
     width: 20vw;
     height: 8vh;
     background-color: gray;
-    border-radius: 30px;
     display: block;
     cursor: pointer;
     &:hover{

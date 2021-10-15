@@ -15,14 +15,14 @@
 .estoque-novo-produto-container form{
     width: 60vw;
     border: 1px solid black;
-    border-radius: 3px;
     background-color: #E5E4E2;
-    height: 61vh;
+    height: 68vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     font-size: 1.2rem;
+    margin-bottom: 5vh;
 }
 
 .estoque-novo-produto-container form>div>label{
@@ -32,9 +32,27 @@
 .estoque-novo-produto-container form>div>input{
     font-size: 1.1rem;
     text-align: center;
+    width: 16vw;
+}
+
+.porcentagem-lucro-novo-produto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.porcentagem-lucro-novo-produto p{
+  color:black !important;
+  width: 1vw;
+
+}
+.porcentagem-lucro-novo-produto input{
+    width: 16vw;
+    font-size: 1.1rem;
+    text-align: center;
 }
 .estoque-novo-produto-container form>div>input:focus{
     text-align: center;
+    
 }
 
 .estoque-novo-produto-container button{
@@ -45,7 +63,6 @@
     color: white;
     cursor: pointer;
     border: 2px solid gray;
-    border-radius: 15px;
 }
 .estoque-novo-produto-container button:hover{
     width: 16vw;
@@ -66,4 +83,16 @@
 
 .msg-class-invalid-name{
     border-color: red;
+}
+
+#green-msg-percentagem-estoque{
+    color:green
+}
+
+#red-msg-percentagem-estoque{
+    color:red
+}
+
+#default-black-msg-percentagem-estoque{
+    color:black
 }
