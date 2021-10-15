@@ -22,7 +22,8 @@ class EstoqueAtualizarProduto extends Component {
 
     componentDidMount = async ()=>{
         const {data} = await api.getProduto()
-
+        const copyData = [...data]
+        console.log(data)
         this.setState({
             load:true,
             produtos:data.reverse(),
@@ -56,6 +57,9 @@ class EstoqueAtualizarProduto extends Component {
             <div>
                 <div className="container-search-bar-att">
                     <input type="text" placeholder="Barra de pesquisa" name="searchBar" onChange={(e)=>{this.handleSearch(e)}}/>
+                </div>
+                <div>
+                    <h4>Valor total do estoque:</h4>
                 </div>
                 <ContainerCards>
                 {this.state.load?
