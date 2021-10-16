@@ -1,0 +1,146 @@
+.container-despesas-page{
+    background-color: #B8B4B1;
+    padding-bottom: 8vh;
+    width: 100vw;
+}
+
+.container-despesas-page textarea{
+    resize: none;
+    padding: 5px 5px 5px 5px;
+    background-color: inherit;
+    border: 2px solid black;
+    color:white;
+    cursor: pointer;
+}
+.container-despesas-page textarea:focus{
+    background-color: white;
+    color: black;
+    cursor:text;
+}
+
+.container-despesas-page h1{
+    text-align: center;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+}
+
+.container-despesas-page h2{
+    text-align: center;
+    margin-bottom: 1vh;
+}
+.container-buttons-despesa-page{
+    display: flex;
+    justify-content: space-around;
+}
+
+.container-buttons-despesa-page button{
+    width: 20vw;
+    height: 8vh;
+    color:white;
+    font-weight: 700;
+    
+    border: 3px solid black;
+    cursor: pointer;
+    background-color: #1D1D1C;
+}
+
+.container-buttons-despesa-page button:hover{
+    background-color: #727165;
+    color:black
+}
+
+.container-form-despesas-gerais{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container-form-despesas-gerais form{
+    color:white;
+    font-weight: 700;
+    background-color: #574F43;
+    width: 75vw;
+    border: 4px solid black;
+    padding-bottom: 4vh;
+    padding-top: 4vh;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-form-despesas-gerais form>div{
+    background-color: #1D1D1C;
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 65vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2vh;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+}
+
+
+.container-form-despesas-gerais form > div > label{
+    display: block;
+}
+
+.error-msg-despesas-gerais{
+    color: red;
+    height: 6vh;
+   
+}
+.success-msg-despesas-gerais {
+    color: green;
+    height: 6vh;
+}
+
+
+.container-form-despesas-gerais > div > button{
+    margin-top: 3vh;
+    width: 35vw;
+    height: 8vh;
+    color:white;
+    font-weight: 700;
+    border: 3px solid black;
+    cursor: pointer;
+    background-color: #1D1D1C;
+    
+}
+
+.container-form-despesas-gerais > div > button:hover{
+    background-color: #727165;
+    color:black
+}
+
+.container-form-despesas-gerais form > div input{
+    cursor: pointer;
+    text-align: center;
+    background-color: inherit;
+    outline: none;
+    border: 2px solid black;
+    color:white
+}
+
+.container-form-despesas-gerais form > div input:focus{
+    cursor:default;
+    background-color: white;
+    color:black
+}
+
+
+.container-radio-parcelado-despesas-gerais input{
+    width: 3vw;
+}
+
+.radio-parcelado-despesas-gerais{
+     display: flex; 
+     justify-content: space-around; 
+    width: 60vw;
+}

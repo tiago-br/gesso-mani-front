@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DespesasGerais from '../../components/privado/despesa/DespesasGerais'
 import DespesasProdutos from '../../components/privado/despesa/DespesasProdutos'
 import NavbarUser from '../../components/privado/NavbarUser'
-import api from '../../utils/api.util'
+import '../../components/privado/despesa/styles/styleDespesas.css'
 
 
  class  DespesasPage extends Component {
@@ -30,7 +30,7 @@ import api from '../../utils/api.util'
     render() {
         console.log(this.state.data)
         return (
-            <div>
+            <div className="container-despesas-page">
                 {this.state.load?
                 <>
                 <NavbarUser/>
@@ -38,7 +38,7 @@ import api from '../../utils/api.util'
                     <div>
                         <h1>Despesas</h1>
                     </div>
-                    <div>
+                    <div className="container-buttons-despesa-page">
                         <div>
                             <button onClick={()=>{this.changeComponent(true)}}>Gerais</button>
                         </div>
