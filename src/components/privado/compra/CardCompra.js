@@ -17,7 +17,7 @@ const Card = styled.div`
 width: 85vw;
 display: flex;
 align-items: center;
-border: 1px solid black;
+border: 3px solid black;
 border-radius: 20px;
 height: 3rem;
 background-color: #1D1D1C;

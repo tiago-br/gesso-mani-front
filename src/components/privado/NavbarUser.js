@@ -10,15 +10,16 @@ const NavBar = styled.nav`
     width: 100vw;
     margin: 0;
     padding: 0;
-    background-color:gray;
+    background-color: #1D1D1C;
     a{
         text-decoration: none;
-        color:black;
+        color: white;
         font-size: 1.1rem;
     }
     a:hover{
         text-decoration: none;
         color:white;
+        font-weight: 900;
         
     }
 `
@@ -29,16 +30,20 @@ const Div = styled.div`
         width: 8.5vw;
         text-align: center;
         font-size: 1.1rem;
+        color: white;
     }
 
     button{
         border: none;
         outline: none;
         cursor: pointer;
+        color: white;
         background-color: inherit;
     }
     button:hover{
         color: white;
+        font-weight: 900;
+
     }
 `
 
