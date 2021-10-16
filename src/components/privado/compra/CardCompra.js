@@ -11,6 +11,13 @@ h4{
 width: 18vw;
 text-align: center;
 }
+h3{
+width: 18vw;
+text-align: center;
+font-size: 1.5rem;
+padding-top: 3px;
+color: tomato;
+}
 
 `
 const Card = styled.div`
@@ -34,7 +41,7 @@ class CardCompra extends Component {
         return (
             <Section>
                 <Card>
-                <h4 on onClick={this.handleDelete}><FiDelete></FiDelete></h4>
+                <h3  onClick={this.handleDelete}><FiDelete></FiDelete></h3>
                 <h4>{this.props.name}</h4>
                 <h4>{this.props.valor_de_compra}</h4>
                 <h4>{this.props.quantidade}</h4>
