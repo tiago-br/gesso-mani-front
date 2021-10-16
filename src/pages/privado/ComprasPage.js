@@ -13,6 +13,8 @@ color: white;
 border: 3px solid black;
 border-radius: 10px;
 cursor: pointer;
+margin-top: -1rem;
+
 :focus{
   outline: none;
   background-color: white;
@@ -44,10 +46,12 @@ border: 3px solid black;
 `
 
 const Containerh3 = styled.div`
-margin-top: 2rem;
+margin-top: 3rem;
 display: flex;
 justify-content: space-around;
 width: 85vw;
+margin-bottom: 2rem;
+
 `
 
 const H3 = styled.h3`
@@ -194,7 +198,20 @@ const Search = styled.input`
 const ContainerList = styled.div`
 margin-bottom: 3rem;
 `
+const ContainerInfo = styled.div`
+display: flex;
+justify-content: space-around;
+margin-bottom: 3rem;
+width: 85vw;
 
+h3{
+
+width: 18vw;
+text-align: center;
+
+
+}
+`
 class ComprasPage extends Component {
 
     state = {
@@ -202,13 +219,26 @@ class ComprasPage extends Component {
         listaDeCompra: [],
         estoque: [],
         inputValue: '',
-        listaDeCompraFiltrada: []
-
+        listaDeCompraFiltrada: [],
+        valor_de_compra: 0,
+        valor_de_venda: 0
     }
 
     componentDidMount = async () => {
+        let date = new Date()
+
+        let dia = date.getDate()
+
+        let mes = date.getMonth() + 1
+
+        let ano = date.getFullYear()
+
+        await this.setState({
+            data: `${ano}-${mes}-${dia}`
+        })
 
         const { data } = await api.getProduto()
+
         await this.setState({
             estoque: data,
             listaDeCompraFiltrada: data
@@ -286,16 +316,61 @@ class ComprasPage extends Component {
 
     enviarParaCompra = async () => {
 
+
+
         const valor = await this.valorTotal()
         const data = Date.parse(this.state.data)
+        const user = localStorage.getItem('user')
+        let material = await [...this.state.listaDeCompra]
+
+
 
         const payload = {
             data,
+            user,
             valor_total_compra: valor,
             compra_produtos: this.state.listaDeCompra
         }
 
+
+
+
+        await material.map(produto => {
+
+            let estoque = this.state.estoque.filter(produtos => {
+                return produtos.name === produto.name
+            })
+
+            let id = estoque[0]._id
+
+
+            const payloadPutEstoque = {
+                name: produto.name,
+                quantidade_em_estoque: estoque[0].quantidade_em_estoque,
+                descricao: estoque[0].descricao,
+                valor_de_venda: produto.valor_de_venda,
+                img_Url: estoque[0].img_Url,
+                modificado_por: localStorage.getItem('user'),
+                valor_de_compra: produto.valor_de_compra
+            }
+
+            api.putProduto(id, payloadPutEstoque)
+
+        })
+
         await api.postCompra(payload)
+
+        await material.map(produto => {
+
+            const payload = {
+                quantidade: produto.quantidade
+            }
+
+            return api.putAddEstoque(payload, produto.name)
+        })
+
+
+
 
         this.setState({
             data: '',
@@ -375,6 +450,13 @@ class ComprasPage extends Component {
                             </WidthInput>
                         </ContainerSearch>
                         <ContainerList>
+                            <ContainerInfo>
+                                <h3>Name</h3>
+                                <h3>Valor de Compra</h3>
+                                <h3>Quantidade</h3>
+                                <h3>Valor de Venda</h3>
+                                <h3>Acrescentar</h3>
+                            </ContainerInfo>
                             {this.state.listaDeCompraFiltrada.map(estoque => <CardEstoque key={estoque.name} buscarCardsDoEstoque={this.buscarCardsDoEstoque} {...estoque} />)}
 
                         </ContainerList>

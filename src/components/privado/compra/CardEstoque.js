@@ -11,6 +11,13 @@ margin-bottom: 2.5rem;
 h4{
 width: 18vw;
 text-align: center;
+
+}
+h2{
+width: 18vw;
+text-align: center;
+font-size: 2rem;
+padding-top: 7px;
 }
 
 `
@@ -33,6 +40,7 @@ text-align: center;
 const ContainerInput = styled.div`
 text-align: center;
 width: 18vw;
+
 
 `
 
@@ -101,7 +109,7 @@ class CardEstoque extends Component {
                     {this.state.boolean ?<ContainerInput><Input name='valor_de_compra' value ={this.state.valor_de_compra} type = 'number' onChange={this.handleChange}/></ContainerInput> :<h4>{this.state.valor_de_compra}</h4> }
                     {this.state.boolean ? <ContainerInput><Input name='qtd' value ={this.state.qtd} type = 'number' onChange={this.handleChange}/></ContainerInput> : <h4>{this.state.quantidade}</h4> }
                     {this.state.boolean ? <ContainerInput><Input name='valor_de_venda' value ={this.state.valor_de_venda} type = 'number' onChange={this.handleChange}/></ContainerInput> : <h4>{this.state.valor_de_venda}</h4> }
-                    {this.state.boolean ? <h2 onClick={this.enviarCard}><MdOutlineAddCircle /></h2> : <h2 onClick={this.alterarLista}><MdOutlineAddCircle /></h2> }
+                    {this.state.boolean ? <h2 style={{color: "green"}} onClick={this.enviarCard}><MdOutlineAddCircle /></h2> : <h2 onClick={this.alterarLista}><MdOutlineAddCircle /></h2> }
                 </Card>
             </Section>
         )
