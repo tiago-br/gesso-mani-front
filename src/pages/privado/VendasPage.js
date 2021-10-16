@@ -84,6 +84,7 @@ width: 100vw;
 display: flex;
 justify-content: center;
 `
+
 const WidthInput = styled.div`
 position: relative;
   padding: 15px 0 0;
@@ -175,6 +176,9 @@ class VendasPage extends Component {
             return console.log('acresentado com sucesso')
         }
 
+
+
+        
         material.push(produtos)
 
         this.setState({
