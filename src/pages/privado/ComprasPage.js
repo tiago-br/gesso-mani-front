@@ -8,8 +8,19 @@ import CardEstoque from '../../components/privado/compra/CardEstoque'
 const Input = styled.input`
 display: flex;
 text-align: center;
-background-color: #574F43;
+background-color: #1D1D1C;
+color: white;
 border: 3px solid black;
+border-radius: 10px;
+cursor: pointer;
+:focus{
+  outline: none;
+  background-color: white;
+  color: black;
+  cursor: text;
+ 
+}
+
 `
 
 const Section = styled.section`
@@ -66,9 +77,11 @@ height: 3rem;
 background-color: #1D1D1C;
 color: white;
 border: 3px solid black;
+cursor: pointer;
 :hover{
     background-color: #727165 ;
     color: black;
+    cursor: pointer;
 }
 
 `
@@ -77,6 +90,7 @@ const InputBusca = styled.input`
 
 margin-top: 2.5rem;
 margin-bottom: 2rem;
+cursor: pointer;
 
 `
 
@@ -326,12 +340,12 @@ class ComprasPage extends Component {
                 <NavbarUser />
 
 
-                <ContainerInput><Input type='date' value={this.state.data} onChange={this.handleChange} /></ContainerInput>
+
 
                 <Section>
                     {/* <ContainerLista>  */}
                     <Container>
-
+                        <ContainerInput><Input type='date' value={this.state.data} onChange={this.handleChange} /></ContainerInput>
                         <Containerh3>
                             <H3>Delete</H3>
                             <H3>Name</H3>
