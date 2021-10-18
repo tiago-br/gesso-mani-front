@@ -1,3 +1,7 @@
+body{
+    background-color: #B8B4B1;
+}
+
 .estoque-novo-produto-container{
     text-align: center;
     margin-top: 1vh;
@@ -5,11 +9,13 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .estoque-novo-produto-container h1{
     margin-bottom: 1vh;
     font-size: 1.5rem;
+    
 }
 
 .estoque-novo-produto-container form{
@@ -23,35 +29,61 @@
     align-items: center;
     font-size: 1.2rem;
     margin-bottom: 5vh;
+    background-color: #574F43;
+    border: 3px solid black;
 }
 
 .estoque-novo-produto-container form>div>label{
   display: block;
+ margin-bottom: 0.3rem;
+ margin-top: 0.3rem;
 }
 
 .estoque-novo-produto-container form>div>input{
     font-size: 1.1rem;
     text-align: center;
     width: 16vw;
+    background-color: #1D1D1C;
+    border-radius: 10px;
+    border: 3px solid black;
+    color: white;
+
 }
 
 .porcentagem-lucro-novo-produto{
     display: flex;
     align-items: center;
     justify-content: center;
+   
+    
 }
 .porcentagem-lucro-novo-produto p{
   color:black !important;
   width: 1vw;
+  
 
 }
 .porcentagem-lucro-novo-produto input{
     width: 16vw;
     font-size: 1.1rem;
     text-align: center;
+    background-color: #1D1D1C;
+    border-radius: 10px;
+    border: 3px solid black;
+    color: white;
 }
+.porcentagem-lucro-novo-produto input:focus{
+    background-color: white;
+    color: black;
+}
+
+
 .estoque-novo-produto-container form>div>input:focus{
     text-align: center;
+    background-color: white;
+    color: black;
+    
+
     
 }
 
@@ -59,22 +91,27 @@
     width: 15vw;
     height: 5vh;
     font-size: 1.1rem;
-    background-color: black;
+    background-color: #1D1D1C;
     color: white;
     cursor: pointer;
-    border: 2px solid gray;
+    border: 3px solid black;
+    
 }
 .estoque-novo-produto-container button:hover{
-    width: 16vw;
-    height: 5.5vh;
+   
     font-size: 1.1rem;
-    background-color: green;
+    background-color:  #727165;
+    box-shadow: 5px 5px 5px black;
     color: black;
+   
 }
 
 .estoque-novo-produto-container textarea{
     resize: none;
     padding: 5px;
+    background-color: #1D1D1C;
+    border: 2px solid black;
+
 }
 
 .estoque-novo-produto-container p{

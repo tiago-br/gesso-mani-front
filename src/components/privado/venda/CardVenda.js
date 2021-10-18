@@ -10,9 +10,12 @@ display: flex;
 justify-content: space-around;
 align-items: center;
 height: 3rem;
-border: 1px solid black;
+border: 3px solid black;
 margin: 2rem;
 border-radius: 20px;
+background-color: #1D1D1C;
+color: white;
+
 
 `
 const Name = styled.div`
