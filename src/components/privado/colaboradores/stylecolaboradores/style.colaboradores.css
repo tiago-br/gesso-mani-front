@@ -1,0 +1,44 @@
+.container-colaboradores-page{
+    background-color:#B8B4B1 ;
+    color:black;
+    text-align: center;
+    padding-bottom: 3vh;
+    padding-top: 3vh;
+    min-height: 90vh;
+    width:100.05vw;
+}
+
+.colaboradores-page-container-buttons{
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-around;
+}
+.colaboradores-page-container-buttons button{
+    width: 20vw;
+    height: 8vh;
+    color:white;
+    font-weight: 700;
+    border: 3px solid black;
+    cursor: pointer;
+    background-color: #1D1D1C;
+}
+
+
+.colaboradores-page-container-buttons button:hover{
+    background-color: #727165;
+    color:black;
+}
+.container-todos-colaboradores{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3vh;
+    
+}
+.container-colaboradores-cards{
+    width: 90vw;
+    border: 3px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #574F43;
+}

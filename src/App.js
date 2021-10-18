@@ -18,6 +18,7 @@ import FechamentoPage from './pages/privado/FechamentoPage';
 import ComprasPage from './pages/privado/ComprasPage';
 import DespesasPage from './pages/privado/ DespesasPage';
 import ColaboradoresPage from './pages/privado/ColaboradoresPage';
+import SistemaPage from './pages/privado/SistemaPage';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route exact path="/sistema/compras" render={(props) => <ComprasPage {...props}/>}/>
         <Route exact path="/sistema/despesas" render={(props) => <DespesasPage {...props}/>}/>
         <Route exact path="/sistema/colaboradores" render={(props) => <ColaboradoresPage {...props}/>}/>
+        <Route exact path="/sistema/users-sistema" render={(props) => <SistemaPage {...props}/>}/>
       </AdminPrivateRoute>  
       
       </PrivateRoutes>
