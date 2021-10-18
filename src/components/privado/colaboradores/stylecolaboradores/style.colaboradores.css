@@ -1,0 +1,149 @@
+.container-colaboradores-page{
+    background-color:#B8B4B1 ;
+    color:black;
+    text-align: center;
+    padding-bottom: 3vh;
+    padding-top: 3vh;
+    min-height: 90vh;
+    width:100.05vw;
+}
+
+.colaboradores-page-container-buttons{
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-around;
+}
+.colaboradores-page-container-buttons button{
+    width: 20vw;
+    height: 8vh;
+    color:white;
+    font-weight: 700;
+    border: 3px solid black;
+    cursor: pointer;
+    background-color: #1D1D1C;
+}
+
+
+.colaboradores-page-container-buttons button:hover{
+    background-color: #727165;
+    color:black;
+}
+.container-todos-colaboradores{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3vh;
+    
+}
+.container-colaboradores-cards{
+    width: 90vw;
+    border: 3px solid black;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #574F43;
+}
+.container-form-edit-card-colaborador{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5vh;
+    
+}
+.form-edit-card-colaborador{
+    border: 3px solid black;
+    width: 75vw;
+    height: 34vh;
+    border-radius: 12px;
+    background-color: #1D1D1C;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.form-edit-card-colaborador button{
+    width: 10vw;
+    height: 6vh;
+    color:white;
+    font-weight: 700;
+    border: 3px solid white;
+    cursor: pointer;
+    background-color: black;
+}
+
+.form-edit-card-colaborador button:hover{
+    background-color: #727165;
+    color:black;
+    border-color: black;
+}
+.form-edit-card-colaborador fieldset{
+    border:none;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 5vw;
+
+}
+.form-edit-card-colaborador fieldset:disabled{
+    color:white;
+    cursor:default;
+}
+.form-edit-card-colaborador input{
+    color:black;
+    cursor:pointer;
+    margin-bottom: 1vh;
+}
+
+.form-edit-card-colaborador input:disabled{
+    color:white;
+    cursor:default;
+}
+
+.form-edit-card-colaborador button:disabled{
+    display: none;
+}
+
+.form-edit-card-colaborador fieldset >div{
+    width: 40vw;
+    text-align:start;
+}
+
+.button-edit-card-colaborador{
+    position: relative;
+    top:12vh;
+    left: 16vw;
+    
+}
+
+.container-card-buttons-excluir-att{
+    display: flex;
+    justify-content: space-around;
+}
+
+.container-form-confirm-delete-colaborador{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container-form-confirm-delete-colaborador>div>div{
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-colaborador-img{
+    position: relative;
+    left: 6vw;
+    bottom: 6vh;
+}
+
+.card-colaborador-img >div>img{
+    width: 9vw;
+    height: 8vw;
+}
+
+.card-colaborador-checkbox{
+    width: 2vw;
+}
