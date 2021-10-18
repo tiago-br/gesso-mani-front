@@ -8,14 +8,19 @@
     resize: none;
     padding: 5px 5px 5px 5px;
     background-color: inherit;
-    border: 2px solid black;
     color:white;
     cursor: pointer;
+    border: none;
+}
+
+.container-despesas-page textarea:hover{
+    background-color: #574F43;
 }
 .container-despesas-page textarea:focus{
     background-color: white;
     color: black;
     cursor:text;
+    border: 2px solid black;
 }
 
 .container-despesas-page h1{
@@ -124,14 +129,18 @@
     text-align: center;
     background-color: inherit;
     outline: none;
-    border: 2px solid black;
+    border: none;
     color:white
+}
+.container-form-despesas-gerais form > div input:hover{
+    background-color: #574F43;
 }
 
 .container-form-despesas-gerais form > div input:focus{
     cursor:default;
     background-color: white;
-    color:black
+    color:black;
+    border: 2px solid black;
 }
 
 
