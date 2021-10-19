@@ -153,7 +153,7 @@ export class ColaboradorCard extends Component {
                         </div>
 
                         <div>
-                        <label>salario:</label>
+                        <label>Salário:</label>
                         <input type="number" name="salario" value={this.state.salario} onChange={this.onChange}/>
                         </div>
 
