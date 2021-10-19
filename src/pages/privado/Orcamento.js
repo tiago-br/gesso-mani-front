@@ -31,6 +31,11 @@ align-items: center;
 text-align: center;
 
 `
+const ContainerGeral = styled.div`
+
+ background-color: #B8B4B1;
+ 
+`
 
 class Orcamento extends Component {
 
@@ -95,7 +100,7 @@ class Orcamento extends Component {
 
     render() {
         return (
-            <div>
+            <ContainerGeral>
             {this.state.load?
             <>
                 {this.state.admin?<NavbarUser />:<NavBarColaborador/>}
@@ -114,7 +119,7 @@ class Orcamento extends Component {
             :
             <h2>Carregando...</h2>
             }
-            </div>
+            </ContainerGeral>
             
         )
     }

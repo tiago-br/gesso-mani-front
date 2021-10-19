@@ -1,28 +1,35 @@
 .form-estoque-card{
     width: 90vw;
-    height: 27.5vh;
+    height: 16rem;
     border: 3px solid black;
     vertical-align: middle;
     margin-bottom: 3vh;
-    background-color: #E5E4E2;
+    background-color: #574F43;  
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+   
 
 }
 
 .estoque-card-bts{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    margin-left: 4vw;
-    margin-top: 1vh;
+  
+    
+  
 }
 
 .form-estoque-card fieldset{
     height: fit-content;
     border: none;
     vertical-align: middle;
+    margin-top: 2rem;
+   
+    
+    
 }
 
 .sucess-att-product{
@@ -30,6 +37,7 @@
     font-weight: 700;
     text-align: center;
     color: green;
+    
 }
 
 .fail-att-product{
@@ -41,14 +49,20 @@
 .form-estoque-card span{
     font-weight: 700;
     font-size: large;
+    
 }
 .form-estoque-card button{
     display: block;
+    
 }
+
 
 .estoque-card-btns{
     display: flex;
     justify-content: space-around;
+    
+    
+    
 }
 
 .opened-delet-bar{
@@ -56,13 +70,15 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+   
 }
 .opened-delet-bar{
     margin-top: 2vh;
+ 
 }
 .opened-delet-bar label{
     margin-top: 0.5vh;
-
+    
 }
 
 .opened-delet-bar input{
@@ -73,17 +89,18 @@
     background-color: #faf8f5;
     border: 2px solid gray;
     width: 30vw;
+  
+ 
 }
 .opened-delet-bar aside{
     font-size: 0.8rem;
-    color:red
+    color:red;
+ 
 }
 
 .opened-delet-bar input:focus{
     text-align: center;
-    background-color: #faf8f5;
-    
-
+   
 }
 
 .btns-opened-delet-bar{
@@ -91,6 +108,8 @@
     display: flex;
     width:50vw;
     justify-content: space-around;
+    
+   
 }
 
 .btns-opened-delet-bar button{
@@ -124,51 +143,64 @@
     justify-content: flex-end;
 }
 .estoque-card-btn-editar button{
-    display: block;
-    font-size: 1rem;
-    color:white;
-    background-color: black;
-    width: 8vw;
-    height: 2vh;
+    width: 8rem;
+    text-decoration: none;
+    height: 2rem;
+    color: white;
+    cursor: pointer;
+    border: 3px solid black;
+    background-color: #1D1D1C;
+    
     
 }
 .estoque-card-btn-editar button:hover{
-    cursor: pointer;
-    background-color: gainsboro;
-    color:black
+    
+    background-color:  #00cc39;
+    box-shadow: 5px 5px 5px black;
+    color: black;
+    
 }
+
 #estoque-btn-Adicionar{
     display: inline;
     background-color: black;
     font-size: 1rem;
     margin-left: 2vw;
+    
 }
 #estoque-btn-Adicionar:hover{
     cursor: pointer;
     background-color: gainsboro;
-    color:black
+    color:black;
+    
 }
 .div-estoque-btn-Adicionar{
     text-align: center;
     display: flex;
     align-items: center;
     margin-left: 2vw;
+   
 }
 .estoque-card-fields{
     display: flex;
+   
+    
+    
 }
 .estoque-card-field-left{
     width: 50vw;
     display: flex;
     flex-direction: column;
     margin-left: 2vw;
-    margin-top: 2vh;
+   
 }
 
 .estoque-card-field-left label,input{
     font-size: 1.2rem;
     width: 15vw;
     padding-left: 4px;
+    margin-top: 0.5rem;
+    
 }
 
 .estoque-card-field-left input:disabled{
@@ -182,11 +214,16 @@
     flex-direction: column;
     text-align: center;
     margin-right: 2vw;
-    margin-top: 2vh
+    margin-top: 1rem;
+    
+    
 }
+
 .estoque-card-field-right label,input{
     font-size: 1.05rem;
     width: 30vw;
+    
+    
 }
 
 .estoque-card-field-right textarea{
@@ -195,36 +232,58 @@
     background-color: white;
     padding: 10px;
     width: 29vw;
+    
 }
 .estoque-card-field-right textarea:disabled,input:disabled{
     background-color: inherit;
     font-weight: 300;
     resize: none;
     border: none;
+    color: black;
+   
 }
 
 .estoque-card-field-right label:disabled{
     border:none;
     background-color: inherit;
     font-weight: 300;
+    
+    
 }
 
 .estoque-card-bts button{
-    font-size: 1rem;
-    color:white;
-    background-color: black;
-    width: 12vw;
-    height: 4vh;
-    margin-left: 2vw;
+    width: 10rem;
+    text-decoration: none;
+    height: 2rem;
+    color: white;
+    cursor: pointer;
+    border: 3px solid black;
+    background-color: #1D1D1C;
+    margin: 1rem;
+    font-size: 0.9rem;
+    
+
 }
 .estoque-card-bts button:disabled{
     visibility: hidden;
 }
 
 .estoque-card-bts button:hover{
+    
+    background-color:  #727165;
+    color: black;
+
+
+}
+#btn-excluir-produto{
+    width: 10rem;
+    text-decoration: none;
+    height: 2rem;
+    color: white;
     cursor: pointer;
-    background-color: gainsboro;
-    color:black
+    border: 3px solid black;
+    background-color: #1D1D1C;
+    font-size: 0.9rem;
 }
 
 #btn-excluir-produto:hover{
@@ -232,11 +291,21 @@
     background-color: rgb(255, 38, 0);
     color:white;
 }
+#btn-atualizar-produto{
+    width: 10rem;
+    text-decoration: none;
+    height: 2rem;
+    color: white;
+    cursor: pointer;
+    border: 3px solid black;
+    background-color: #1D1D1C;
+    font-size: 0.9rem;
+}
 
 #btn-atualizar-produto:hover{
-    cursor: pointer;
-    background-color: green;
-    color:white;
+    background-color:  #00cc39;
+    color: black;
+    
 }
 
 .msg-add-success{
@@ -246,6 +315,7 @@
     background-color: inherit;
     text-align: center;
     font-size: 1rem;
+   
 }
 
 .msg-add-fail{
@@ -255,6 +325,7 @@
     background-color: inherit;
     text-align: center;
     font-size: 1rem;
+    
 }
 
 .div-estoque-btn-Adicionar input{
@@ -263,6 +334,7 @@
     font-size: 1.2rem;
     text-align: center;
     height: 5vh;
+    
 }
 
 .div-estoque-btn-Adicionar input:focus{
@@ -281,15 +353,20 @@
 .container-search-bar-att input{
     width: 40vw;
     font-size: 1.2rem;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-   
+    background-color: #1D1D1C;
+    color: white;
+    height: 2.2rem;
+    border:3px solid black;
+    border-radius: 5px;
+    margin-top: 2rem;
+ 
 }
 
 .container-search-bar-att input:focus{
-   outline: none;
-   border-bottom: 2px solid black;
+   
+    background-color: white;
+    color: black;
+   
 }
 
 .display-button-atualizar-off{

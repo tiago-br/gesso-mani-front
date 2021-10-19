@@ -263,6 +263,8 @@ class ComprasPage extends Component {
             let novaQuantidade = parseInt(payload.quantidade)
             let resultado = parseInt(listaDeCompras[indice].quantidade += novaQuantidade)
 
+
+
             const listaDeCompraAtualizada = [{
                 name: payload.name,
                 valor_de_compra: payload.valor_de_compra,
@@ -316,14 +318,10 @@ class ComprasPage extends Component {
 
     enviarParaCompra = async () => {
 
-
-
         const valor = await this.valorTotal()
         const data = Date.parse(this.state.data)
         const user = localStorage.getItem('user')
         let material = await [...this.state.listaDeCompra]
-
-
 
         const payload = {
             data,
@@ -331,9 +329,6 @@ class ComprasPage extends Component {
             valor_total_compra: valor,
             compra_produtos: this.state.listaDeCompra
         }
-
-
-
 
         await material.map(produto => {
 
@@ -343,15 +338,25 @@ class ComprasPage extends Component {
 
             let id = estoque[0]._id
 
+            const soma = produto.quantidade + estoque[0].quantidade_em_estoque
+
+            let valorCompra = produto.valor_de_compra;
+
+            if (valorCompra < estoque[0].valor_de_compra) {
+
+                const valorTotalProduto = (produto.quantidade * produto.valor_de_compra) + (estoque[0].quantidade_em_estoque * estoque[0].valor_de_compra)
+
+                valorCompra = valorTotalProduto / soma
+            }
 
             const payloadPutEstoque = {
                 name: produto.name,
-                quantidade_em_estoque: estoque[0].quantidade_em_estoque,
+                quantidade_em_estoque: soma,
                 descricao: estoque[0].descricao,
                 valor_de_venda: produto.valor_de_venda,
                 img_Url: estoque[0].img_Url,
                 modificado_por: localStorage.getItem('user'),
-                valor_de_compra: produto.valor_de_compra
+                valor_de_compra: Number(valorCompra.toFixed(2))
             }
 
             api.putProduto(id, payloadPutEstoque)
@@ -359,18 +364,6 @@ class ComprasPage extends Component {
         })
 
         await api.postCompra(payload)
-
-        await material.map(produto => {
-
-            const payload = {
-                quantidade: produto.quantidade
-            }
-
-            return api.putAddEstoque(payload, produto.name)
-        })
-
-
-
 
         this.setState({
             data: '',
