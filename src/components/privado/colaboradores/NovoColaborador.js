@@ -35,7 +35,7 @@ export class NovoColaborador extends Component {
                         <input type="text" name="cargo" value={this.state.cargo} onChange={this.onChange}/>
                         </div>
                         <div>
-                        <label>Salario:</label>
+                        <label>Salário:</label>
                         <input type="number" name="salario" value={this.state.salario} onChange={this.onChange}/>
                         </div>
                         <div>
