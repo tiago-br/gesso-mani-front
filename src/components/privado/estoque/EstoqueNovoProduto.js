@@ -104,9 +104,9 @@ class EstoqueNovoProduto extends Component {
         console.log(this.state.descricao)
         return (
             <div className="estoque-novo-produto-container">
-                <h1>Novo Produto</h1>
                 {this.state.appearMSG?
                     <form>
+                        <h1 className='h1-novo-produto'>Novo Produto</h1>
                     <div>
                     <label>Nome do produto:</label>
                     <input className={this.state.msgClassInvalidName} type="text" name="name" value={this.state.name} onChange={this.handleChange}/>

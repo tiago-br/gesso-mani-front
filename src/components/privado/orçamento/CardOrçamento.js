@@ -10,7 +10,7 @@ const Container = styled.div`
 margin: 2rem;
 min-height: 5rem;
 border: 2px solid black;
-border-radius: 20px;
+border-radius: 5px;
 background-color: #574F43;
 border: 3px solid black;
 
