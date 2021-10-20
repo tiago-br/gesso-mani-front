@@ -15,7 +15,8 @@ export class ColaboradorCard extends Component {
         msgAtualizar:'',
         msgColorAtualizar:'',
         editOn:true,
-        openExcluir:false
+        openExcluir:false,
+        file:''
     }
     componentDidMount = () =>{
         const {nome,cargo,data_de_saida,data_de_entrada,img,ativo,salario,_id} =this.props
@@ -110,8 +111,42 @@ export class ColaboradorCard extends Component {
             alert('erro ao excluir')
         }
     }
+    onChangeFoto = async(e) =>{
+        e.preventDefault()
+        const file = e.target.files[0]
+        const imgUrl = URL.createObjectURL(file);
+        await this.setState({
+            img:imgUrl,
+            file
+
+        })
+        
+    }
+    onClickAlterarImg = async () =>{
+        if(this.state.file){
+        try {
+           const foto = await apiUtil.postImgColaborador(this.state.file,this.state.id)
+           this.setState({
+            msgAtualizar:'Imagem atualizada com sucesso',
+            msgColorAtualizar:'green',
+            editOn:true
+        })
+        } catch (error) {   
+            await this.setState({
+                msgAtualizar:'Erro ao atualizar imagem colaborador',
+                msgColorAtualizar:'red',
+                editOn:true
+            })
+        }
+        }else{
+            alert('Insira uma foto')
+        }
+    }
+    onClickImg = async () =>{
+        document.getElementById("input-colaborador-file-button").click()
+    }
     render() {
-        console.log(this.state.openExcluir)
+        
         return (
             <div>
                 {this.state.load?
@@ -156,20 +191,30 @@ export class ColaboradorCard extends Component {
                         <label>Salário:</label>
                         <input type="number" name="salario" value={this.state.salario} onChange={this.onChange}/>
                         </div>
-
+                        
                         <div>
                         <label>Ativo:</label>
                         <input className="card-colaborador-checkbox"type="checkbox" onChange={this.handleCheckBox} defaultChecked={this.state.ativo}/>
                         <span>{this.state.msgAtivo}</span>
                         </div>
                         <div className="container-card-buttons-excluir-att">
-                            <div>
-                                <button type="button" onClick={this.handleAtualizarForm}>Atualizar</button>
-                                <span style={{color:this.state.msgColorAtualizar}}>{this.state.msgAtualizar}</span>
+                            <div className="container-card-buttons-att">
+                                <div>
+                                    <button type="button" onClick={this.handleAtualizarForm}>Atualizar</button>
+                                    <span style={{color:this.state.msgColorAtualizar}}>{this.state.msgAtualizar}</span>
+                                </div>
+                                <div>
+                                    <button type="button" onClick={this.handleOpenExcluir}>Excluir</button>
+                                </div>
+                                <div>
+                                    <button type="button" onClick={this.onClickAlterarImg}>Alterar foto</button>
+                                </div>
                             </div>
-                            <div>
-                                <button type="button" onClick={this.handleOpenExcluir}>Excluir</button>
-                            </div>
+                            <div id="colaborador-file-button">
+                                <div>
+                                    <button type="button" onClick={this.onClickImg}>Selecione a foto</button>
+                                    <input id="input-colaborador-file-button" type="file" name="arquivo" onChange={this.onChangeFoto}/></div>
+                                </div>
                         </div>
                         </fieldset>
                         
@@ -177,6 +222,7 @@ export class ColaboradorCard extends Component {
                         <button type="button" className='button-edit-card-colaborador'onClick={this.handleEditar}>Editar</button>
                         <div className="card-colaborador-img">
                             <div><img src={this.state.img} alt={this.state.nome}/></div>
+                            
                         </div>
                         </>
                     }
