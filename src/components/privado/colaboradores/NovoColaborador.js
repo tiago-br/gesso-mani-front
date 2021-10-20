@@ -9,7 +9,7 @@ export class NovoColaborador extends Component {
         data_de_entrada:'',
         salario:0,
         img:'',
-        file:''
+        msg:''
     }
     componentDidMount= ()=>{
         const date= new Date()
@@ -35,16 +35,6 @@ export class NovoColaborador extends Component {
             [name] : value
         })
     }
-    onChangeFoto = (e) =>{
-        e.preventDefault()
-        const file = e.target.files[0]
-        const imgUrl = URL.createObjectURL(file);
-        this.setState({
-            img:imgUrl,
-            file
-
-        })
-    }
     onClickSubmit = async() =>{
         const payload ={
             nome:this.state.nome,
@@ -56,9 +46,21 @@ export class NovoColaborador extends Component {
         }
         try {
             await apiUtil.postColaborador(payload)
+            this.setState({
+                msg:'Criado com sucesso',
+                nome:'',
+                cargo:'',
+                salario:0
+
+            })
         } catch (error) {
-            alert('erro ao criar novo colaborador')
+           this.setState({
+                msg:'Erro ao cadastrar novo colaborador'
+            })
+            
         }
+        setTimeout(()=>{this.setState({msg:''})},2000)
+        
     }
 
     
@@ -67,6 +69,7 @@ export class NovoColaborador extends Component {
             <div>
                 <div>
                     <h2>Novo colaborador</h2>
+                    <div className="container-form-novo-colaborador">
                     <form>
                         <div>
                         <label>Nome:</label>
@@ -84,12 +87,18 @@ export class NovoColaborador extends Component {
                         <label>Salário:</label>
                         <input type="number" name="salario" value={this.state.salario} onChange={this.onChange}/>
                         </div>
+                        </form>
+                        <div>
+                            <h3>{this.state.msg}</h3>
+                        </div>
                         <div>
                             <div>
                                 <button type="button"onClick={this.onClickSubmit}>Criar novo colaborador</button>
                             </div>
                         </div>
-                    </form>
+                        
+                   
+                    </div>
                 </div>
             </div>
         )

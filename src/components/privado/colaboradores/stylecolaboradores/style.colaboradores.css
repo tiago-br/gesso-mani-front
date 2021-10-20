@@ -183,3 +183,89 @@
 #input-colaborador-file-button{
     display: none;
 }
+
+.container-form-novo-colaborador{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container-form-novo-colaborador form{
+    width: 75vw;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+
+    border: 3px solid black;
+    background-color:#574F43;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-form-novo-colaborador form div{
+    width: 65vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3vh;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 3px solid black;
+    background-color: #1D1D1C;
+    border-radius: 15px;
+    color: white;
+    
+}
+
+.container-form-novo-colaborador form div>label{
+    font-weight: 700;
+  
+    margin-bottom: 0.5rem;
+}
+
+.container-form-novo-colaborador form div>input{
+    
+    text-align: center;
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+    color: white;
+    
+    
+}
+.container-form-novo-colaborador form div>input:hover{
+    background-color: #574F43;
+}
+.container-form-novo-colaborador form div>input:focus{
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+
+
+
+.container-form-novo-colaborador form div>input[type="date"]{
+    text-align: right;
+    width: 14vw;
+    
+}
+
+.container-form-novo-colaborador button{
+    margin-top: 3vh;
+    width: 15vw;
+    height: 7vh;
+    color:white;
+    font-weight: 700;
+    border: 3px solid black;
+    cursor: pointer;
+    background-color: #1D1D1C;
+}
+
+.container-form-novo-colaborador button:hover{
+    background-color: #727165;
+    color:black;
+}
