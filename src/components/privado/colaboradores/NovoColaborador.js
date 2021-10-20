@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import apiUtil from '../../../utils/api.util'
 
 export class NovoColaborador extends Component {
     state={
@@ -7,7 +8,25 @@ export class NovoColaborador extends Component {
         ativo:true,
         data_de_entrada:'',
         salario:0,
-        img:''
+        img:'',
+        file:''
+    }
+    componentDidMount= ()=>{
+        const date= new Date()
+        let dia = date.getDate()
+        if(`${dia}`.length<2){
+            dia = `0${dia}`
+        }
+ 
+        let mes = date.getMonth() + 1
+        if(`${mes}`.length<2){
+            mes = `0${mes}`
+        }
+        const ano = date.getFullYear()
+ 
+        this.setState({
+            data_de_entrada:`${ano}-${mes}-${dia}`
+        })
     }
     onChange = (e) =>{
         e.preventDefault()
@@ -16,6 +35,33 @@ export class NovoColaborador extends Component {
             [name] : value
         })
     }
+    onChangeFoto = (e) =>{
+        e.preventDefault()
+        const file = e.target.files[0]
+        const imgUrl = URL.createObjectURL(file);
+        this.setState({
+            img:imgUrl,
+            file
+
+        })
+    }
+    onClickSubmit = async() =>{
+        const payload ={
+            nome:this.state.nome,
+            cargo:this.state.cargo,
+            ativo:true,
+            data_de_entrada:this.state.data_de_entrada,
+            salario:this.state.salario,
+            img:'',
+        }
+        try {
+            await apiUtil.postColaborador(payload)
+        } catch (error) {
+            alert('erro ao criar novo colaborador')
+        }
+    }
+
+    
     render() {
         return (
             <div>
@@ -39,8 +85,9 @@ export class NovoColaborador extends Component {
                         <input type="number" name="salario" value={this.state.salario} onChange={this.onChange}/>
                         </div>
                         <div>
-                        <label>Salario:</label>
-                        <input type="number" name="salario" value={this.state.salario} onChange={this.onChange}/>
+                            <div>
+                                <button type="button"onClick={this.onClickSubmit}>Criar novo colaborador</button>
+                            </div>
                         </div>
                     </form>
                 </div>

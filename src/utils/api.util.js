@@ -203,6 +203,17 @@ class Api {
     await this.api.delete(`/fechamento/${id}`)
   }
 
+  postImgColaborador = async(file,id) =>{
+    const uploadData = new FormData();
+    uploadData.append('image',file)
+    try {
+      const {data}= await this.api.post(`/colaborador/foto/${id}`, uploadData)
+      return data
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
 
 
 }

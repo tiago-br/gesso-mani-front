@@ -5,7 +5,7 @@
     padding-bottom: 3vh;
     padding-top: 3vh;
     min-height: 90vh;
-    width:100.05vw;
+    width:100vw;
 }
 
 .colaboradores-page-container-buttons{
@@ -51,7 +51,7 @@
 }
 .form-edit-card-colaborador{
     border: 3px solid black;
-    width: 75vw;
+    width: 85vw;
     height: 34vh;
     border-radius: 12px;
     background-color: #1D1D1C;
@@ -61,7 +61,7 @@
     justify-content: flex-start;
 }
 .form-edit-card-colaborador button{
-    width: 10vw;
+    width: 11vw;
     height: 6vh;
     color:white;
     font-weight: 700;
@@ -109,14 +109,16 @@
 
 .button-edit-card-colaborador{
     position: relative;
-    top:12vh;
-    left: 16vw;
+    top:13.25vh;
+
+    
     
 }
 
 .container-card-buttons-excluir-att{
     display: flex;
     justify-content: space-around;
+    width: 30vw;
 }
 
 .container-form-confirm-delete-colaborador{
@@ -135,15 +137,49 @@
 
 .card-colaborador-img{
     position: relative;
-    left: 6vw;
-    bottom: 6vh;
+    left: 15vw;
+    bottom: 3vh;
 }
 
 .card-colaborador-img >div>img{
-    width: 9vw;
-    height: 8vw;
+    width: 10vw;
+    height: 10vw;
 }
 
 .card-colaborador-checkbox{
     width: 2vw;
+}
+
+.container-card-buttons-excluir-att input:disabled{
+    display: none;
+}
+
+#colaborador-file-button{
+    position: relative;
+    left:29vw;
+    top:0.5rem
+
+    
+}
+
+.container-card-buttons-att{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 8vw;
+    margin-top: 1.2rem;
+
+}
+
+
+.container-card-buttons-att button{
+    margin-left: 1vw;
+}
+
+#file-upload-button{
+    width: 12vw;
+    display: block !important;
+}
+
+#input-colaborador-file-button{
+    display: none;
 }
