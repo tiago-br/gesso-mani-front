@@ -138,9 +138,7 @@
     justify-content: space-between;
 }
 
-.section-container-colaborador-inputs{
 
-}
 .container-card-merged-img-form{
     display: flex;
     justify-content: space-between;
@@ -279,9 +277,7 @@
     background-color: #727165;
     color:black;
 }
-#button-edit-form-colaborador{
-  
-}
+
 .container-button-edit-form-colaborador{
    margin-bottom: 1rem;
     width: 100%;

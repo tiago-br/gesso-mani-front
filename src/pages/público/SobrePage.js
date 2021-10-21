@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import NavBarClient from '../../components/público/NavBarClient'
 
 export class SobrePage extends Component {
