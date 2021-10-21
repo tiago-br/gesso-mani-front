@@ -3,16 +3,10 @@ import './App.css';
 import EstoquePage from './pages/privado/EstoquePage';
 import FaturamentoPage from './pages/privado/FaturamentoPage';
 import Orcamento from './pages/privado/Orcamento';
-
 import VendasPage from './pages/privado/VendasPage';
-import Home from './pages/público/Home';
 import LoginPage from './pages/público/LoginPage';
 import PrivateRoutes from './utils/PrivateRoutes';
 import AdminPrivateRoute from './utils/AdminPrivateRoute';
-import  ProdutosPage from './pages/público/ProdutosPage';
-import ServiçosPage from './pages/público/ServiçosPage';
-import SobrePage from './pages/público/SobrePage'
-import ContatoPage from './pages/público/ContatoPage'
 import FechamentoPage from './pages/privado/FechamentoPage';
 import ComprasPage from './pages/privado/ComprasPage';
 import DespesasPage from './pages/privado/ DespesasPage';
@@ -26,14 +20,9 @@ function App() {
     <Switch>
       
       {/* Rotas Cliente */}
-      <Route exact path="/area-do-funcionario" render={(props)=> <LoginPage {...props}/>}/>
-      <Route exact path="/" render={(props)=><Home {...props}/>}/>
-      <Route exact path="/produtos" render={(props)=> <ProdutosPage {...props}/>}/>
-      <Route exact path="/serviços" render={(props)=><ServiçosPage {...props}/>}/>
-      <Route exact path="/sobre" render={(props)=><SobrePage {...props}/>}/>
-      <Route exact path="/contato" render={(props)=><ContatoPage {...props}/>}/>
+      <Route exact path="/" render={(props)=> <LoginPage {...props}/>}/>
 
-      
+
       
       {/* Rotas Sistema */}
       
