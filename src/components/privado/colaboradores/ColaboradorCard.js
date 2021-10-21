@@ -230,10 +230,10 @@ export class ColaboradorCard extends Component {
                                                         <button type="button" onClick={this.handleOpenExcluir}>Excluir</button>
                                                     </div>
                                                     <div>
-                                                        <button type="button" onClick={this.onClickAlterarImg}>Alterar foto</button>
+                                                        <button type="button" onClick={this.handleEditar}>Editar</button>
                                                     </div>
                                                     <div>
-                                                        <button type="button" onClick={this.handleEditar}>Editar</button>
+                                                        <button type="button" onClick={this.onClickAlterarImg}>Alterar foto</button>
                                                     </div>
                                                     <div id="colaborador-file-button">
 
