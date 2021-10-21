@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NavbarUser from '../../components/privado/navbar/Navbar'
 
 
-export class FechamentoPage extends Component {
+class FechamentoPage extends Component {
     render() {
         return (
             <div>
