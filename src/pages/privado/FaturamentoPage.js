@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavbarUser from '../../components/privado/NavbarUser'
+import NavbarUser from '../../components/privado/navbar/Navbar'
 import api from '../../utils/api.util'
 import '../../components/privado/faturamento/style/FaturamentoPageStyle.css'
 import FatMEScard from '../../components/privado/faturamento/FatMEScard'

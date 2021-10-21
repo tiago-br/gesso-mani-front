@@ -14,3 +14,11 @@
     color: black;
 }
 
+@media screen and (max-width: 960px){
+
+    .container-button-imprimir-orcamento button{
+       width: 20vw;
+    }
+
+}
+

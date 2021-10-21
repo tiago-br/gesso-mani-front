@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavbarUser from '../../components/privado/NavbarUser'
+import NavbarUser from '../../components/privado/navbar/Navbar'
 import styled from 'styled-components'
 import CardCompra from '../../components/privado/compra/CardCompra'
 import api from '../../utils/api.util'
@@ -23,6 +23,13 @@ margin-top: -1rem;
  
 }
 
+@media (max-width: 960px) {
+    
+    width: 10rem;
+    font-size: 1rem;
+       
+     }
+
 `
 
 const Section = styled.section`
@@ -30,6 +37,7 @@ margin-top: 4rem;
 display: flex;
 flex-direction: column;
 align-items: center;
+
 
 `
 
@@ -43,6 +51,7 @@ align-items: center;
 background-color: #574F43;
 border: 3px solid black;
 
+
 `
 
 const Containerh3 = styled.div`
@@ -52,6 +61,7 @@ justify-content: space-around;
 width: 85vw;
 margin-bottom: 2rem;
 
+
 `
 
 const H3 = styled.h3`
@@ -59,6 +69,15 @@ const H3 = styled.h3`
 
 width: 18vw;
 text-align: center;
+@media (max-width: 960px) {
+    display: flex;
+    justify-content: center;
+    border: 2px solid transparent;
+    width: 20vw;
+    
+   
+    font-size: 1rem;
+  }
 
 `
 
@@ -90,14 +109,6 @@ cursor: pointer;
 
 `
 
-const InputBusca = styled.input`
-
-margin-top: 2.5rem;
-margin-bottom: 2rem;
-cursor: pointer;
-
-`
-
 const SectionEstoque = styled.section`
 margin-top: 2rem;
 background-color: #574F43;
@@ -124,13 +135,7 @@ background-color: #B8B4B1 ;
 
 `
 
-const ContainerLista = styled.div`
 
-
-width: 98vw;
-background-color: #574F43;
-
-`
 const ContainerSearch = styled.div`
 
 width: 100vw;
@@ -197,6 +202,7 @@ const Search = styled.input`
 `
 const ContainerList = styled.div`
 margin-bottom: 3rem;
+
 `
 const ContainerInfo = styled.div`
 display: flex;
@@ -204,13 +210,20 @@ justify-content: space-around;
 margin-bottom: 3rem;
 width: 85vw;
 
+@media (max-width: 960px) {
+   width: 90vw;
+   
+ }
 h3{
 
 width: 18vw;
 text-align: center;
-
-
+@media (max-width: 960px) {
+    font-size: 1rem ;
+    width: 20vw;
+ }
 }
+
 `
 class ComprasPage extends Component {
 
@@ -254,6 +267,7 @@ class ComprasPage extends Component {
 
         listaDeCompras.map(item => {
             if (item.name === payload.name) {
+                
                 return checkProduto = true
             }
         })
@@ -378,7 +392,7 @@ class ComprasPage extends Component {
         const array = this.state.listaDeCompra
         const i = array.findIndex(e => e.name === value)
         array.splice(i, 1)
-        console.log(array)
+        
 
         await this.setState({
             listaDeCompra: array

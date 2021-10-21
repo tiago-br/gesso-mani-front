@@ -4,20 +4,21 @@ import { MdOutlineAddCircle } from 'react-icons/md'
 
 const Section = styled.section`
 margin-top: 1rem;
+
 display: flex;
 justify-content: space-around;
 margin-bottom: 2.5rem;
 
 h4{
-width: 18vw;
-text-align: center;
-
+    width: 18vw;
+    text-align: center;
+    
 }
 h2{
-width: 18vw;
-text-align: center;
-font-size: 2rem;
-padding-top: 7px;
+    width: 18vw;
+    text-align: center;
+    font-size: 2rem;
+    padding-top: 7px;
 }
 
 `
@@ -45,8 +46,8 @@ width: 18vw;
 `
 
 class CardEstoque extends Component {
-
-
+    
+    
     state = {
         name: this.props.name,
         valor_de_compra: this.props.valor_de_compra,

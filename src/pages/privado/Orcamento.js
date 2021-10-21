@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavbarUser from '../../components/privado/NavbarUser'
+import NavbarUser from '../../components/privado/navbar/Navbar'
 import CardOrçamento from '../../components/privado/orçamento/CardOrçamento'
 import api from '../../utils/api.util'
 import styled from 'styled-components'
@@ -10,8 +10,15 @@ const Bt = styled.button`
 
 width: 15rem;
 height: 3rem;
-background-color: grey;
+color: white;
+background-color: #1d1d1c;
 cursor: pointer;
+border: 3px solid black;
+
+
+@media (max-width: 960px) {  
+    width: 10rem;
+    }
 
 `
 const ContainerBt = styled.div`
@@ -20,6 +27,7 @@ display: flex;
 justify-content: space-around;
 margin-top: 2rem;
 margin-bottom: 5rem;
+
 
 `
 const ContainerH1 = styled.div`
@@ -83,18 +91,18 @@ class Orcamento extends Component {
     handleActiveButton = () => {
 
         if(this.state.boolean){
-            return {boxShadow : "5px 5px 5px black" }      
+            return {backgroundColor: '#727165',color: 'black' }     
         } 
         
-       return {color: "black" }
+       return {color: "white" }
     }
     handleActiveButtonPendente = () => {
 
         if(!this.state.boolean){
-            return {boxShadow : "5px 5px 5px black" }      
+            return {backgroundColor: '#727165',color: 'black' }      
         } 
         
-       return {color: "black" }
+       return {color: "white" }
     }
 
 

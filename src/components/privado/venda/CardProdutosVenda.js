@@ -40,6 +40,11 @@ cursor: pointer;
 const InputQuantidade = styled.input`
 width: 12rem;
 text-align: center;
+@media (max-width: 960px) {
+    
+    width: 4rem;
+    margin-top: 0;
+    }
 
 `
 

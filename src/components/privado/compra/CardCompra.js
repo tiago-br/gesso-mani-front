@@ -7,6 +7,7 @@ margin-top: 2rem;
 display: flex;
 justify-content: space-around;
 
+
 h4{
 width: 18vw;
 text-align: center;
@@ -19,6 +20,8 @@ padding-top: 3px;
 color: tomato;
 }
 
+
+
 `
 const Card = styled.div`
 width: 85vw;
@@ -29,6 +32,8 @@ border-radius: 20px;
 height: 3rem;
 background-color: #1D1D1C;
 color: white;
+
+
 `
 
 class CardCompra extends Component {
