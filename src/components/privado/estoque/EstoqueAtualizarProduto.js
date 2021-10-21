@@ -3,7 +3,6 @@ import api from '../../../utils/api.util'
 import EstoqueCardProdutos from './EstoqueCardProdutos'
 import styled from 'styled-components'
 import './styles/EstoqueCardProduto.css'
-import { FaBeer } from 'react-icons/fa';
 import { GoQuestion } from "react-icons/go";
 //
 

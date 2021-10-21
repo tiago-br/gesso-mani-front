@@ -15,8 +15,11 @@ margin: 2rem;
 border-radius: 20px;
 background-color: #1D1D1C;
 color: white;
-
-
+@media (max-width: 960px) {
+    
+   width: 99%;
+   margin-left: 0;
+   }
 `
 const Name = styled.div`
 

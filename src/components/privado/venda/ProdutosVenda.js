@@ -10,12 +10,24 @@ width: 90vw;
 
 margin-top: 2rem;
 
+@media (max-width: 960px) {
+    
+    min-height: 12rem;
+     
+   }
+
+
 `
 const BtDesconto = styled.button`
 
 width: 9rem;
 height: 2rem;
 cursor: pointer;
+@media (max-width: 960px) {
+    
+    margin-right: 0.5rem;
+   }
+
 
 `
 const BtFrete = styled.button`
@@ -23,6 +35,10 @@ const BtFrete = styled.button`
 width: 9rem;
 height: 2rem;
 cursor: pointer;
+@media (max-width: 960px) {
+    
+    margin-right: 0.5rem;
+   }
 `
 const ValorTotal = styled.div`
 
@@ -30,6 +46,15 @@ text-decoration: underline;
 text-decoration-color: black;
 text-decoration-style: double;
 font-size: 1.2rem;
+@media (max-width: 960px) {
+    
+    font-size: 1.1rem;
+    width: 8rem;
+    margin-left: 1rem;
+    text-align: center;
+    
+     
+   }
 
 `
 const ContainerDown = styled.div`
@@ -37,22 +62,51 @@ const ContainerDown = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-between;
+@media (max-width: 960px) {
+    
+    margin-top: 3rem;
+   
+     
+   }
 
 
 `
 const ContainerValorTotal = styled.div`
-margin-right: 7rem;
+margin-right: 5rem;
+@media (max-width: 960px) {
+    
+ 
+    margin-right: 0;
+ 
+     
+   }
+`
+const ConteinerBt = styled.div`
+display: flex;
+@media (max-width: 960px) {
+    
+  
+   width: 25rem;
+   justify-content: space-around;
+   }
 `
 const Descontos = styled.div`
 display: flex;
+justify-content: space-between;
+width: 100%;
+
 align-items: center;
-margin-left: 2rem;
+
 
 `
 const Edit = styled.div`
 
 font-size: 1rem;
 cursor: pointer;
+@media (max-width: 960px) {
+    
+    margin-right: 0.5rem;
+   }
 
 `
 const ContainerEdit = styled.div`
@@ -63,6 +117,13 @@ text-align: center;
 width: 17vw;
 height: 5rem;
 margin-left: 1rem;
+
+
+@media (max-width: 960px) {
+    
+    width: 25vw;
+    margin-left: 0;
+   }
 `
 
 const ContainerInfo = styled.div`
@@ -75,9 +136,13 @@ width: 70rem;
 
 h3{
     width: 17vw;
-
-
 }
+@media (max-width: 960px) {
+    
+    
+    font-size: 0.8rem;
+
+   }
 
 `
 const ContainerInfo2 = styled.div`
@@ -85,12 +150,19 @@ const ContainerInfo2 = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
+
 `
 
 const Input = styled.input`
 text-align: center;
 width:5rem;
+border: 2px solid black;
+@media (max-width: 960px) {
+    
+    width: 2rem;
+    margin-top: -0.1rem;
 
+   }
 
 `
 const ContainerButton = styled.div`
@@ -98,6 +170,14 @@ const ContainerButton = styled.div`
 display: flex;
 justify-content: center;
 width: 10rem;
+
+@media (max-width: 960px) {
+    
+    
+    width: 4.5rem;
+  
+
+   }
 
 `
 
@@ -108,6 +188,11 @@ height: 1.5rem;
 margin: 1rem;
 background-color: gray;
 cursor: pointer;
+@media (max-width: 960px) {
+    
+    margin: 0.1rem;
+
+   }
 
 `
 
@@ -262,18 +347,21 @@ class ProdutosVenda extends Component {
                 {this.state.produtos ? this.state.produtos.map(produto => <CardVenda key={produto.nome} name={produto.nome} valorUnitário={produto.valorUnitário} quantidade={produto.quantidade} delete={this.props.deleteCard} />) : null}
                 <ContainerDown>
                     <Descontos>
-                        <ContainerEdit>
-                            {this.state.booleanDesconto ? <ContainerButton><Button onClick={this.buttonCincoDesconto}>5%</Button>   <Button onClick={this.buttonDezDesconto} >10%</Button></ContainerButton> : <BtDesconto style={{ backgroundColor: this.btDescontoColor() }} onClick={this.btDesconto}>Desconto</BtDesconto>}
-                            <Edit onClick={this.btDescontoInput}><FaEdit /></Edit>
-                        </ContainerEdit>
-                        <ContainerEdit>
-                            {this.state.booleanEntrega ? <ContainerButton ><Input name="entrega" value={this.state.inputDesconto} type="number" onChange={this.handleChange} /></ContainerButton> : <BtFrete style={{ backgroundColor: this.btEntregaColor() }} onClick={this.btEntrega}>Entrega</BtFrete>}
-                            <Edit onClick={this.btEntregaInput}><FaEdit /></Edit>
-                        </ContainerEdit>
+                        <ConteinerBt>
+                            <ContainerEdit>
+                                {this.state.booleanDesconto ? <ContainerButton><Button onClick={this.buttonCincoDesconto}>5%</Button>   <Button onClick={this.buttonDezDesconto} >10%</Button></ContainerButton> : <BtDesconto style={{ backgroundColor: this.btDescontoColor() }} onClick={this.btDesconto}>Desconto</BtDesconto>}
+                                <Edit onClick={this.btDescontoInput}><FaEdit /></Edit>
+                            </ContainerEdit>
+                            <ContainerEdit>
+                                {this.state.booleanEntrega ? <ContainerButton ><Input name="entrega" value={this.state.inputDesconto} type="number" onChange={this.handleChange} /></ContainerButton> : <BtFrete style={{ backgroundColor: this.btEntregaColor() }} onClick={this.btEntrega}>Entrega</BtFrete>}
+                                <Edit onClick={this.btEntregaInput}><FaEdit /></Edit>
+                            </ContainerEdit>
+                        </ConteinerBt>
+
+                        <ContainerValorTotal>
+                            <ValorTotal>Valor Total : {this.valorTotal()} </ValorTotal>
+                        </ContainerValorTotal>
                     </Descontos>
-                    <ContainerValorTotal>
-                        <ValorTotal>Valor Total : {this.valorTotal()} </ValorTotal>
-                    </ContainerValorTotal>
 
                 </ContainerDown>
 

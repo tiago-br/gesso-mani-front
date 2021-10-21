@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FormVenda from '../../components/privado/venda/FormVenda'
-import NavbarUser from '../../components/privado/NavbarUser'
+import NavbarUser from '../../components/privado/navbar/Navbar'
 import ProdutosVenda from '../../components/privado/venda/ProdutosVenda'
 import styled from 'styled-components'
 import CardProdutosVenda from '../../components/privado/venda/CardProdutosVenda'
@@ -11,6 +11,7 @@ const Buttons = styled.div`
 display: flex;
 justify-content: center;
 margin-top: 2rem;
+
 `
 const Bt = styled.button`
 margin: 5rem;
@@ -21,10 +22,17 @@ background-color: #1D1D1C;
 border: 3px solid black;
 color: white;
 
+
 :hover{
     background-color:  #727165;
     color: black;
 }
+@media (max-width: 960px) {
+    
+   width: 9rem;
+   margin: 1rem;
+     
+   }
 `
 const Label = styled.label`
 
@@ -114,6 +122,7 @@ display: flex;
 justify-content: center;
 margin-top: 3rem;
 
+
 `
 const ContainerList = styled.div`
 display: flex;
@@ -140,6 +149,8 @@ const ContainerCardEstoque = styled.div`
 
 min-height: 30rem;
 padding-bottom: 2rem;
+
+
 
 `
 

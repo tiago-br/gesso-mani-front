@@ -10,6 +10,7 @@ align-items: center;
 width: 100vw;
 
 
+
 `
 const Input =  styled.input`
 
@@ -25,6 +26,7 @@ padding-left: 10px;
 font-size: 0.9rem;
 
 
+
 :focus{
   outline: none;
   background-color: white;
@@ -32,6 +34,11 @@ font-size: 0.9rem;
   cursor: text;
  
 }
+@media (max-width: 960px) {
+    
+   width: 10rem;
+    
+  }
 
 `
 const InputName =  styled.input`
@@ -50,6 +57,11 @@ padding-left: 7px;
   cursor: text;
  
 }
+@media (max-width: 960px) {
+    
+    width: 10rem;
+     
+   }
 
 `
 

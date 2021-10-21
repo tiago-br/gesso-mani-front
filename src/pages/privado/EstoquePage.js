@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import EstoqueNovoProduto from '../../components/privado/estoque/EstoqueNovoProduto'
-import NavbarUser from '../../components/privado/NavbarUser'
+import NavbarUser from '../../components/privado/navbar/Navbar'
 import styled from 'styled-components'
 import EstoqueAtualizarProduto from '../../components/privado/estoque/EstoqueAtualizarProduto'
 

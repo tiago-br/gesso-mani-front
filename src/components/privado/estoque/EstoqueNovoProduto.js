@@ -101,7 +101,7 @@ class EstoqueNovoProduto extends Component {
 
 
     render() {
-        console.log(this.state.descricao)
+      
         return (
             <div className="estoque-novo-produto-container">
                 {this.state.appearMSG?

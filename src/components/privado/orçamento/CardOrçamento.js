@@ -14,6 +14,8 @@ border-radius: 5px;
 background-color: #574F43;
 border: 3px solid black;
 
+
+
 `
 
 const NomeDoProduto = styled.div`
@@ -37,6 +39,9 @@ text-decoration: underline;
 text-decoration-color: black;
 text-decoration-style: double;
 font-size: 1.2rem;
+@media (max-width: 960px) {
+    margin-top: -1rem;
+    }
 `
 const ContainerOrçamento = styled.div`
 display: flex;
@@ -45,16 +50,19 @@ margin-top: 1.4rem;
 text-decoration: solid;
 
 
+
 `
 const Valor = styled.div`
 text-align: center;
 width: 10rem ;
+
 `
 const InfoOrçamento = styled.div`
 
 display: flex;
 justify-content: space-around;
 margin: 1rem;
+
 
 `
 const DownContainer = styled.div`
@@ -63,6 +71,11 @@ display: flex;
 justify-content: space-around;
 margin-top: 3rem;
 margin-bottom: 1rem;
+@media (max-width: 960px) {
+    align-items: center ;
+    flex-direction: column-reverse;
+    
+    }
 
 `
 
@@ -71,11 +84,15 @@ const ContainerClienteData = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: space-around;
+
 `
 const ContainerInfo = styled.div`
 margin-top: 2rem;
 display: flex;
 justify-content: space-around;
+@media (max-width: 960px) {
+    align-items: center;
+    }
 
 h4{
     text-align: center;
@@ -98,15 +115,31 @@ border: 3px solid black;
 color: white;
 cursor: pointer;
 
+
 :hover{
     background-color:  #ab212e;
     box-shadow: 5px 5px 5px black;
     color: black;
 }
+@media (max-width: 960px) {
+            
+    width: 20vw;
+    
+    
+    }
 
 
 `
-
+const DownContainerBt = styled.div`
+display: flex;
+width: 30rem;
+justify-content: space-around;
+@media (max-width: 960px) {
+    margin-top: 2rem;
+    width: 100%;
+    
+    }
+`
 const ButtonVenda = styled.button`
 
 width: 8rem;
@@ -123,6 +156,11 @@ background-color: #1D1D1C;
     color: black;
 }
 
+@media (max-width: 960px) {
+    width: 20vw;
+    
+    }
+
 `
 const Hr = styled.div`
 
@@ -130,9 +168,6 @@ color: black;
 width: 80vw;
 background-color: black;
 height: 2px;
-
-
-
 
 `
 const ContainerHr = styled.div`
@@ -143,10 +178,13 @@ justify-content: center;
 margin-top: 1rem;
 
 
+
 `
 const PrintButton = styled.div`
 
-
+@media (max-width: 960px) {
+  
+    }
 
 `
 
@@ -215,7 +253,7 @@ class CardOrçamento extends Component {
                 {this.state.load ?
                     <>
                         <ContainerClienteData>
-                            <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.dataFormatada()}</Data><Data >{this.state.status}</Data>
+                            <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.dataFormatada()}</Data>
                             </InfoOrçamento>
                         </ContainerClienteData>
 
@@ -254,7 +292,7 @@ class CardOrçamento extends Component {
 
 
                         <DownContainer>
-                            
+                            <DownContainerBt>
                             <ButtonDelete onClick={this.deleteOrçamento}>Apagar</ButtonDelete>
 
 
@@ -272,8 +310,9 @@ class CardOrçamento extends Component {
 
                                 }} onClick={this.deleteOrçamento}> <ButtonVenda>Vender</ButtonVenda>
                             </Link>
+                            </DownContainerBt>
 
-
+                            
                             <ValorTotal>Valor Total : {this.state.valorTotal.toFixed(2)}</ValorTotal>
 
 
