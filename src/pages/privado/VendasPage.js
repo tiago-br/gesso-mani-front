@@ -5,6 +5,7 @@ import ProdutosVenda from '../../components/privado/venda/ProdutosVenda'
 import styled from 'styled-components'
 import CardProdutosVenda from '../../components/privado/venda/CardProdutosVenda'
 import api from '../../utils/api.util'
+import NavBarColaborador from '../../components/privado/NavBarColaborador'
 
 const Buttons = styled.div`
 display: flex;
@@ -16,10 +17,13 @@ margin: 5rem;
 width: 12rem;
 height: 3rem;
 cursor: pointer;
-background-color: grey;
+background-color: #1D1D1C;
+border: 3px solid black;
+color: white;
+
 :hover{
-    background-color:  #00cc39;
-    box-shadow: 5px 5px 5px black;
+    background-color:  #727165;
+    color: black;
 }
 `
 const Label = styled.label`
@@ -68,7 +72,7 @@ const Search = styled.input`
   padding-bottom: 6px;  
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, black,red);
+  border-image: linear-gradient(to right, black,grey);
   border-image-slice: 1;
 }
 
@@ -105,6 +109,39 @@ h3{
 }
 
 `
+const Container = styled.div`
+display: flex;
+justify-content: center;
+margin-top: 3rem;
+
+`
+const ContainerList = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+
+background-color: #574F43;
+border: 2px solid black;
+height: 100%;
+
+width: 90vw;
+
+
+
+`
+const ContainerGeral = styled.div`
+
+background-color: #B8B4B1;
+height: 100%;
+margin-bottom: -2rem;
+
+`
+const ContainerCardEstoque = styled.div`
+
+min-height: 30rem;
+padding-bottom: 2rem;
+
+`
 
 class VendasPage extends Component {
 
@@ -124,18 +161,25 @@ class VendasPage extends Component {
         booleanEntrega: false,
         valorDesconto: 5,
         inputDesconto: 0,
+        admin: false
 
     }
-
     componentDidMount = async () => {
 
         let { data } = await api.getProduto()
+        let checkAdmin = localStorage.getItem('admin')
+        if (checkAdmin === "ebq$lS6h$@IqGbzM7jNFFZCe70gg&t*5F&9pnNRxTgPVak7Q*%") {
+            await this.setState({
+                admin: true
+            })
+        }
 
         this.setState({
 
             produtos: data,
             filterProduts: data,
-            loading: true
+            loading: true,
+
         })
     }
 
@@ -204,7 +248,6 @@ class VendasPage extends Component {
         })
 
     }
-
     // Pega nome do cliente e a data
     infoVenda = async (payload) => {
         await this.setState({
@@ -212,7 +255,6 @@ class VendasPage extends Component {
             data: payload.data
         })
     }
-
     handleValorEntrega = (payload) => {
 
 
@@ -224,7 +266,6 @@ class VendasPage extends Component {
         })
 
     }
-
     handleValorDesconto = (payload) => {
 
         let valor = parseInt(payload)
@@ -262,21 +303,18 @@ class VendasPage extends Component {
 
         return valor
     }
-
     handleDesconto = (payload) => {
 
         this.setState({
             desconto: payload
         })
     }
-
     handleEntrega = (payload) => {
 
         this.setState({
             entrega: payload
         })
     }
-
     novaVenda = async () => {
 
 
@@ -410,7 +448,7 @@ class VendasPage extends Component {
         }
 
         if (!this.state.cliente) {
-          return alert('Campo cliente vazio')
+            return alert('Campo cliente vazio')
         }
 
         const vendedor = localStorage.getItem('user')
@@ -446,42 +484,57 @@ class VendasPage extends Component {
     render() {
 
         return (
-            <div>
-                <NavbarUser />
-                <FormVenda infoVenda={this.infoVenda} />
-                <ProdutosVenda handleValorDesconto={this.handleValorDesconto} handleValorEntrega={this.handleValorEntrega} handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard} produto={this.state.listProdutos} />
+            <ContainerGeral>
+                {this.state.loading ?
+                    <>
+                        {this.state.admin ? <NavbarUser /> : <NavBarColaborador />}
+                        <Container>
+                            <ContainerList>
+                                <FormVenda infoVenda={this.infoVenda} />
+                                <ProdutosVenda handleValorDesconto={this.handleValorDesconto} handleValorEntrega={this.handleValorEntrega} handleDesconto={this.handleDesconto} handleEntrega={this.handleEntrega} deleteCard={this.deleteCard} produto={this.state.listProdutos} />
+                            </ContainerList>
+                        </Container>
+                        <Buttons>
+                            <Bt onClick={this.novoOrcamento}> Orçamento </Bt>
 
-                <Buttons>
-                    <Bt onClick={this.novoOrcamento}> Orçamento </Bt>
+                            <Bt onClick={this.novaVenda}> Venda </Bt>
 
-                    <Bt onClick={this.novaVenda}> Venda </Bt>
+                            <Bt onClick={this.novoDevedor}> Pendente </Bt>
 
-                    <Bt onClick={this.novoDevedor}> Pendente </Bt>
+                        </Buttons>
 
-                </Buttons>
+                        <ContainerSearch className="form__group field">
+                            <WidthInput>
+                                <Search type="text" className="form__field" placeholder="Name" name="name" id='name' value={this.state.inputValue} onChange={this.handleInput} />
+                                <Label forHTML="name" className="form__label">Busca</Label>
+                            </WidthInput>
+                        </ContainerSearch>
 
-                <ContainerSearch className="form__group field">
-                    <WidthInput>
-                        <Search type="text" className="form__field" placeholder="Name" name="name" id='name' value={this.state.inputValue} onChange={this.handleInput} />
-                        <Label forHTML="name" className="form__label">Busca</Label>
-                    </WidthInput>
-                </ContainerSearch>
+                        <ContainerInfo>
 
-                <ContainerInfo>
+                            <h3>Nome</h3>
+                            <h3>Quantidade</h3>
+                            <h3>Valor</h3>
+                            <h3>Acrescentar</h3>
 
-                    <h3>Nome</h3>
-                    <h3>Quantidade</h3>
-                    <h3>Valor</h3>
-                    <h3>Acrescentar</h3>
+                        </ContainerInfo>
+                        <ContainerCardEstoque>
+                        {
+                            this.state.filterProduts.map(produto => {
+                                return <CardProdutosVenda key={produto.name} name={produto.name} quantidade={produto.quantidade_em_estoque} valor={produto.valor_de_venda} function={this.handleProdutos} />
+                            })
+                        }
+                        </ContainerCardEstoque>
 
-                </ContainerInfo>
+                    </>
+                    :
 
-                {this.state.filterProduts.map(produto => {
-                    return <CardProdutosVenda key={produto.name} name={produto.name} quantidade={produto.quantidade_em_estoque} valor={produto.valor_de_venda} function={this.handleProdutos} />
-                })}
+                    <h1>Carregando...</h1>
 
+                }
 
-            </div>
+            </ContainerGeral>
+
         )
     }
 }

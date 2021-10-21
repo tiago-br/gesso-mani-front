@@ -13,8 +13,43 @@ width: 100vw;
 `
 const Input =  styled.input`
 
+display: flex;
+text-align: center;
+background-color: #1D1D1C;
+color: white;
+border: 3px solid black;
+border-radius: 10px;
+cursor: pointer;
 margin-top: 2rem;
-width: 20rem;
+padding-left: 10px;
+font-size: 0.9rem;
+
+
+:focus{
+  outline: none;
+  background-color: white;
+  color: black;
+  cursor: text;
+ 
+}
+
+`
+const InputName =  styled.input`
+
+margin-top: 2rem;
+
+background-color: #1D1D1C;
+color: white;
+border-radius: 10px;
+border: 3px solid black;
+padding-left: 7px;
+:focus{
+  outline: none;
+  background-color: white;
+  color: black;
+  cursor: text;
+ 
+}
 
 `
 
@@ -63,7 +98,14 @@ class FormVenda extends Component {
     render() {
         return (
             <Container>        
-            <Input 
+              <Input 
+              placeholder = "data"
+               name = "data"
+              type="date"
+              onChange={this.handleChange}
+              value = {this.state.data}
+              />
+            <InputName 
             name = "name"
             type="text"
             placeholder = "Nome do Cliente"
@@ -71,13 +113,6 @@ class FormVenda extends Component {
             value = {this.state.name}
             />
             
-            <Input 
-            placeholder = "data"
-             name = "data"
-            type="date"
-            onChange={this.handleChange}
-            value = {this.state.data}
-            />
             </Container>
         )
     }

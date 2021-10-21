@@ -1,11 +1,16 @@
 .container-button-imprimir-orcamento button{
     width: 8rem;
+    text-decoration: none;
     height: 2rem;
-    background-color: grey;
+    color: white;
     cursor: pointer;
+    border: 3px solid black;
+    background-color: #1D1D1C;
 }
 
 .container-button-imprimir-orcamento :hover{
     background-color:  yellow;
     box-shadow: 5px 5px 5px black;
+    color: black;
 }
+

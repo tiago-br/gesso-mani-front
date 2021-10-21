@@ -6,11 +6,13 @@ const Container = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-border: 2px solid black;
+border: 3px solid black;
 margin: 2rem;
 border-radius: 20px;
 height: 3.7rem;
-background-color: #E5E4E2;
+background-color: #1D1D1C;
+color: white;
+
 
 `
 const Nome = styled.div`

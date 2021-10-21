@@ -10,11 +10,12 @@ const Container = styled.div`
 margin: 2rem;
 min-height: 5rem;
 border: 2px solid black;
-border-radius: 20px;
-background-color: #E5E4E2;
-
+border-radius: 5px;
+background-color: #574F43;
+border: 3px solid black;
 
 `
+
 const NomeDoProduto = styled.div`
 text-align: center;
 width: 10rem ;
@@ -41,6 +42,7 @@ const ContainerOrçamento = styled.div`
 display: flex;
 justify-content: space-around;
 margin-top: 1.4rem;
+text-decoration: solid;
 
 
 `
@@ -91,12 +93,15 @@ const ButtonDelete = styled.button`
 
 width: 8rem;
 height: 2rem;
-background-color: grey;
+background-color: #1D1D1C;
+border: 3px solid black;
+color: white;
 cursor: pointer;
 
 :hover{
     background-color:  #ab212e;
     box-shadow: 5px 5px 5px black;
+    color: black;
 }
 
 
@@ -107,13 +112,41 @@ const ButtonVenda = styled.button`
 width: 8rem;
 text-decoration: none;
 height: 2rem;
-background-color: grey;
+color: white;
 cursor: pointer;
+border: 3px solid black;
+background-color: #1D1D1C;
 
 :hover{
     background-color:  #00cc39;
     box-shadow: 5px 5px 5px black;
+    color: black;
 }
+
+`
+const Hr = styled.div`
+
+color: black;
+width: 80vw;
+background-color: black;
+height: 2px;
+
+
+
+
+`
+const ContainerHr = styled.div`
+
+width: auto;
+display: flex;
+justify-content: center;
+margin-top: 1rem;
+
+
+`
+const PrintButton = styled.div`
+
+
 
 `
 
@@ -125,8 +158,8 @@ class CardOrçamento extends Component {
         valorTotal: 0,
         produtos: [],
         status: "",
-        load:false,
-        frete:0
+        load: false,
+        frete: 0
     }
 
     componentDidMount = async () => {
@@ -140,20 +173,17 @@ class CardOrçamento extends Component {
         const frete = this.props.frete
 
 
-        this.setState({
+        await this.setState({
             cliente,
             data,
             valorTotal,
             produtos,
             id: _id,
             status,
-            load:true,
+            load: true,
             frete
 
         })
-
-
-
     }
     dataFormatada = () => {
         let date = this.state.data.split("-")
@@ -178,64 +208,79 @@ class CardOrçamento extends Component {
     }
 
 
+
     render() {
         return (
             <Container>
-                {this.state.load?
-                <>
-                <ContainerClienteData>
-                    <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.dataFormatada()}</Data><Data style={{ color: this.handleCorStatus() }}>{this.state.status}</Data>
-                    </InfoOrçamento>
-                </ContainerClienteData>
+                {this.state.load ?
+                    <>
+                        <ContainerClienteData>
+                            <InfoOrçamento><NomeCliente>{this.state.cliente}</NomeCliente><Data>{this.dataFormatada()}</Data><Data >{this.state.status}</Data>
+                            </InfoOrçamento>
+                        </ContainerClienteData>
 
-                <ContainerInfo>
-                    <h4>Nome</h4>
-                    <h4>Quantidade</h4>
-                    <h4>Valor Unitário</h4>
-                    <h4>Valor Total</h4>
+                        <ContainerInfo>
+                            <h4>Nome</h4>
+                            <h4>Quantidade</h4>
+                            <h4>Valor Unitário</h4>
+                            <h4>Valor Total</h4>
 
-                </ContainerInfo>
+                        </ContainerInfo>
 
-                {this.state.produtos.map(produtos => {
-                    return (
-                        <ContainerOrçamento key={produtos._id}>
-                            <NomeDoProduto>{produtos.nome}</NomeDoProduto>
-                            <QuantidadeDoProduto>{produtos.quantidade}</QuantidadeDoProduto>
-                            <ValorUnitário>{produtos.valorUnitário}</ValorUnitário>
-                            <Valor>{produtos.quantidade * produtos.valorUnitário}</Valor>
+                        {this.state.produtos.map(produtos => {
+                            return (
+                                <>
+                                <ContainerOrçamento key={produtos._id}>
+                                    <NomeDoProduto>{produtos.nome}</NomeDoProduto>
+                                    <QuantidadeDoProduto>{produtos.quantidade}</QuantidadeDoProduto>
+                                    <ValorUnitário>{produtos.valorUnitário}</ValorUnitário>
+                                    <Valor>{(produtos.quantidade * produtos.valorUnitário).toFixed(2)}</Valor>
+                                </ContainerOrçamento>
+                                
+                                </>
+                            )
+                        })}
 
+                        <ContainerOrçamento>
+                            <NomeDoProduto>Taxa de entrega</NomeDoProduto>
+                            <QuantidadeDoProduto></QuantidadeDoProduto>
+                            <ValorUnitário></ValorUnitário>
+                            <Valor>{this.state.frete}</Valor>
                         </ContainerOrçamento>
-                    )
-                })}
-
-                <DownContainer>
-                    <ButtonDelete onClick={this.deleteOrçamento}>Apagar</ButtonDelete>
-
-                    
-                        <div className="container-button-imprimir-orcamento">
-                            <PrintComponent {...this.state}/>
-                        </div>
-                   
+                        <ContainerHr>
+                                <Hr></Hr>
+                                </ContainerHr>
+                        
 
 
-                    
-                        <Link style={{ textDecoration: "none", color: "black"}}
-
-                            to={{
-                                pathname: "/sistema/vendas",
-                                state: this.state
-
-                            }} onClick={this.deleteOrçamento}> <ButtonVenda>Vender</ButtonVenda>
-                        </Link>
-                    
-
-                    <ValorTotal>Valor Total : {this.state.valorTotal}</ValorTotal>
+                        <DownContainer>
+                            
+                            <ButtonDelete onClick={this.deleteOrçamento}>Apagar</ButtonDelete>
 
 
-                </DownContainer>
-                </>
-            :
-            <h2>Carregando...</h2>}
+                            <PrintButton className="container-button-imprimir-orcamento">
+                                <PrintComponent {...this.state} />
+                            </PrintButton>
+
+
+
+
+                            <Link style={{ textDecoration: "none", color: "black" }}
+                                to={{
+                                    pathname: "/sistema/vendas",
+                                    state: this.state
+
+                                }} onClick={this.deleteOrçamento}> <ButtonVenda>Vender</ButtonVenda>
+                            </Link>
+
+
+                            <ValorTotal>Valor Total : {this.state.valorTotal.toFixed(2)}</ValorTotal>
+
+
+                        </DownContainer>
+                    </>
+                    :
+                    <h2>Carregando...</h2>}
             </Container>
         )
     }

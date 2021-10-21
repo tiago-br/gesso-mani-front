@@ -5,16 +5,14 @@ import { FaEdit } from 'react-icons/fa'
 
 const Container = styled.div`
 
-border: 2px solid black;
 height: 100%;
 width: 90vw;
-margin-left: 5vw;
+
 margin-top: 2rem;
 
 `
 const BtDesconto = styled.button`
 
-margin: 2rem;
 width: 9rem;
 height: 2rem;
 cursor: pointer;
@@ -46,12 +44,9 @@ const ContainerValorTotal = styled.div`
 margin-right: 7rem;
 `
 const Descontos = styled.div`
-
 display: flex;
 align-items: center;
-
-
-
+margin-left: 2rem;
 
 `
 const Edit = styled.div`
@@ -62,12 +57,12 @@ cursor: pointer;
 `
 const ContainerEdit = styled.div`
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 align-items: center;
-
-width: 12rem;
+text-align: center;
+width: 17vw;
 height: 5rem;
-margin-left: 2rem;
+margin-left: 1rem;
 `
 
 const ContainerInfo = styled.div`
@@ -79,7 +74,8 @@ margin-top: 2rem;
 width: 70rem;
 
 h3{
-    width: 17rem;
+    width: 17vw;
+
 
 }
 
