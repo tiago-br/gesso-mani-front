@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DespesasGerais from '../../components/privado/despesa/DespesasGerais'
 import DespesasProdutos from '../../components/privado/despesa/DespesasProdutos'
-import NavbarUser from '../../components/privado/NavbarUser'
+import NavbarUser from '../../components/privado/navbar/Navbar'
 import '../../components/privado/despesa/styles/styleDespesas.css'
 
 

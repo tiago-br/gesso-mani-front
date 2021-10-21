@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NovoColaborador from '../../components/privado/colaboradores/NovoColaborador'
 import TodosColaboradores from '../../components/privado/colaboradores/TodosColaboradores'
-import NavbarUser from '../../components/privado/NavbarUser'
+import NavbarUser from '../../components/privado/navbar/Navbar'
 import '../../components/privado/colaboradores/stylecolaboradores/style.colaboradores.css'
 
 
