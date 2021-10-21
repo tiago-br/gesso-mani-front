@@ -58,8 +58,9 @@
     background-color: #1D1D1C;
     color:white;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
+    flex-direction: column;
 }
 .form-edit-card-colaborador button{
     width: 11vw;
@@ -104,7 +105,7 @@
 }
 
 .form-edit-card-colaborador fieldset >div{
-    width: 40vw;
+    
     text-align:start;
 }
 
@@ -116,7 +117,10 @@
 .container-card-buttons-excluir-att{
     display: flex;
     justify-content: space-around;
-    width: 30vw;
+    align-items: center;
+    width: 100%;
+    margin-top: -1rem;
+    height: 4rem;
 }
 
 .container-form-confirm-delete-colaborador{
@@ -133,16 +137,25 @@
     justify-content: space-between;
 }
 
-.card-colaborador-img{
-    position: relative;
-    left: 15vw;
-    bottom: 3vh;
+.section-container-colaborador-inputs{
+
+}
+.container-card-merged-img-form{
+    display: flex;
+    justify-content: space-between;
+    width: 75vw;
+  
+    margin-top: 1rem;
+}
+.container-image-form-colaborador img{
+    width: 8rem;
+    height: 10rem;
+}
+.container-field-colaborador{
+    width: 90vw;
+ 
 }
 
-.card-colaborador-img >div>img{
-    width: 10vw;
-    height: 11vw;
-}
 
 .card-colaborador-checkbox{
     width: 2vw;
@@ -154,10 +167,8 @@
 
 #colaborador-file-button{
     position: relative;
-    left:29vw; 
-    top:0.8vh
-
-    
+   
+     
 }
 
 .container-card-buttons-att{
@@ -170,9 +181,7 @@
 
 
 .container-card-buttons-att button{
-    margin-left: 1vw;
-    position: relative;
-    bottom: 2.5vh;
+   margin: 1rem;
 }
 
 #file-upload-button{
@@ -268,4 +277,12 @@
 .container-form-novo-colaborador button:hover{
     background-color: #727165;
     color:black;
+}
+#button-edit-form-colaborador{
+  
+}
+.container-button-edit-form-colaborador{
+   
+    width: 100%;
+
 }
