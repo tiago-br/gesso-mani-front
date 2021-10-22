@@ -125,7 +125,7 @@ export class ColaboradorCard extends Component {
     onClickAlterarImg = async () => {
         if (this.state.file) {
             try {
-                const foto = await apiUtil.postImgColaborador(this.state.file, this.state.id)
+                // const foto = await apiUtil.postImgColaborador(this.state.file, this.state.id)
                 this.setState({
                     msgAtualizar: 'Imagem atualizada com sucesso',
                     msgColorAtualizar: 'green',

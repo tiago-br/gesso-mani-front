@@ -4,7 +4,7 @@ import axios from "axios";
 class Api {
   constructor() {
     this.api = axios.create({
-      baseURL: "https://gesso-mania-api.herokuapp.com/"
+      baseURL: "https://gesso-mania-api.herokuapp.com"
     })
     this.api.interceptors.request.use(
       (config) => {

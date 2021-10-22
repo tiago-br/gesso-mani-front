@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import api from '../../../utils/api.util'
 import ListaProdutosVendasCard from './ListaProdutosVendasCard'
 const imagemLixeira = "https://2.bp.blogspot.com/-DqfqcqsH47M/UMixbjsQlnI/AAAAAAAAI_U/IQkIeo-wOaU/s1600/Lixeira+-+Premium+Design+3D+(1).png"
 class FatVENDAcard extends Component {

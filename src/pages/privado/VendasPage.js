@@ -201,7 +201,7 @@ class VendasPage extends Component {
         let checkProduto = false
 
 
-        material.map(item => {
+        material.forEach(item => {
             if (item.nome === produtos.nome) {
                 return checkProduto = true
             }
@@ -362,7 +362,7 @@ class VendasPage extends Component {
         await api.postVenda(payload)
 
         // Retirar a quantidade vendida do estoque
-        material.map(produto => {
+        material.forEach(produto => {
 
             let payload = {
                 quantidade: produto.quantidade

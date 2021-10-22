@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import NavbarUser from '../navbar/Navbar'
 import styled from 'styled-components'
 import CardCompra from '../compra/CardCompra'
 import api from '../../../utils/api.util'
-import CardEstoque from '../compra/CardEstoque'
 import DespesaProdutoCard from './DespesaProdutoCard'
 
 const Input = styled.input`
@@ -266,7 +264,7 @@ class DespesaProdutos extends Component {
 
         let checkProduto = false
 
-        listaDeCompras.map(item => {
+        listaDeCompras.forEach(item => {
             if (item.name === payload.name) {
                 
                 return checkProduto = true
@@ -322,7 +320,7 @@ class DespesaProdutos extends Component {
 
         let valor = 0
 
-        this.state.listaDeCompra.map(e => {
+        this.state.listaDeCompra.forEach(e => {
 
             let quantidadeXValor = e.valor_de_compra * e.quantidade
             valor += quantidadeXValor
