@@ -13,6 +13,7 @@ import DespesasPage from './pages/privado/ DespesasPage';
 import ColaboradoresPage from './pages/privado/ColaboradoresPage';
 import SistemaPage from './pages/privado/SistemaPage';
 import FechamentoMesAnoPage from './components/privado/FechamentoMesAno/FechamentoMesAnoPage';
+import FechamentoTotal from './components/privado/FechamentoMesAno/FechamentoTotal';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/sistema/colaboradores" render={(props) => <ColaboradoresPage {...props}/>}/>
         <Route exact path="/sistema/users-sistema" render={(props) => <SistemaPage {...props}/>}/>
         <Route exact path="/sistema/fechamento/:mes/:ano" render={(props) => <FechamentoMesAnoPage {...props}/>}/>
+        <Route exact path="/sistema/fechamento/:mes/:ano/fechamento" render={(props) => <FechamentoTotal {...props}/>}/>
       </AdminPrivateRoute>  
       
       </PrivateRoutes>

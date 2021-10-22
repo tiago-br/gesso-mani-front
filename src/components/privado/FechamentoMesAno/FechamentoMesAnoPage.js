@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import apiUtil from '../../../utils/api.util'
 import Navbar from '../navbar/Navbar'
@@ -256,6 +257,8 @@ class FechamentoMesAnoPage extends Component {
         await setTimeout(function () { window.location.reload(); }, 1000)
     }
 
+
+
     render() {
         return (
             <div>
@@ -263,7 +266,7 @@ class FechamentoMesAnoPage extends Component {
                 <ContainerBackAndFechamento>
                     <ButtonBack onClick={this.handleButtonBack}>Voltar</ButtonBack>
                         <Data>{this.state.mes}/{this.state.ano}</Data>
-                    <ButtonBack onClick={this.handleButtonBack}>Fechamento</ButtonBack>
+                    <Link to= {`/sistema/fechamento/${this.state.mes}/${this.state.ano}/fechamento`}><ButtonBack>Fechamento</ButtonBack></Link>
                 </ContainerBackAndFechamento>
 
                 <ContainerComprasAndDespesas>
