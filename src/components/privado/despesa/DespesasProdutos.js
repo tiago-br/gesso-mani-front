@@ -340,7 +340,7 @@ class DespesaProdutos extends Component {
         
         const descricao = material.map(e=>
             `${e.quantidade} do produto ${e.name} foram removidas do estoque`
-            ).join('/br/')
+            ).join(',')
 
         const payload = {
             name:"Despesa Produtos",
@@ -349,12 +349,20 @@ class DespesaProdutos extends Component {
             descricao,
             user,
         }
-
-        await material.forEach(produto => {
-
-            api.putVendaParaProduto(produto.name,produto.quantidade)
-
-        })
+        try {
+            await material.forEach(produto => {
+                const payloadProduto={
+                    quantidade:produto.quantidade
+                }
+                
+                api.putVendaParaProduto(produto.name,payloadProduto)
+    
+            })
+        } catch (error) {
+            return alert('erro')
+            
+        }
+       
 
         await api.postDespesa(payload)
 
@@ -362,6 +370,7 @@ class DespesaProdutos extends Component {
             data: '',
             listaDeCompra: []
         })
+        // window.location.reload()
 
     }
 

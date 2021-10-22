@@ -92,7 +92,7 @@ class Despesas extends Component {
          return fechamento.data.split('T')[0].includes(`${this.state.ano}-${this.state.mes}`)
         })
         const despesasGerais = filtered.map(e=>e.DespesasGerais).flat()
-        console.log(despesasGerais)
+        
         await this.setState({
             despesas:despesasGerais,
             load:true
