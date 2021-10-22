@@ -265,7 +265,7 @@ class ComprasPage extends Component {
 
         let checkProduto = false
 
-        listaDeCompras.map(item => {
+        listaDeCompras.forEach(item => {
             if (item.name === payload.name) {
                 
                 return checkProduto = true
@@ -321,7 +321,7 @@ class ComprasPage extends Component {
 
         let valor = 0
 
-        this.state.listaDeCompra.map(e => {
+        this.state.listaDeCompra.forEach(e => {
 
             let quantidadeXValor = e.valor_de_compra * e.quantidade
             valor += quantidadeXValor
@@ -332,10 +332,10 @@ class ComprasPage extends Component {
 
     enviarParaCompra = async () => {
 
-        const valor = await this.valorTotal()
+        const valor = this.valorTotal()
         const data = Date.parse(this.state.data)
         const user = localStorage.getItem('user')
-        let material = await [...this.state.listaDeCompra]
+        let material = [...this.state.listaDeCompra]
 
         const payload = {
             data,
@@ -344,7 +344,7 @@ class ComprasPage extends Component {
             compra_produtos: this.state.listaDeCompra
         }
 
-        await material.map(produto => {
+        await material.forEach(produto => {
 
             let estoque = this.state.estoque.filter(produtos => {
                 return produtos.name === produto.name
@@ -407,7 +407,7 @@ class ComprasPage extends Component {
             inputValue: value
         })
 
-        let filtered = await this.state.estoque.filter(produto => {
+        let filtered = this.state.estoque.filter(produto => {
             return produto.name.toLocaleLowerCase().includes(this.state.inputValue.toLocaleLowerCase())
         })
 
