@@ -152,7 +152,7 @@ class EstoqueCardProdutos extends Component {
                                 </div>
                                 <div>
                                 <label>Valor de compra:</label>
-                                <input type="number" step="1" min="0" name="valor_de_compra" value={this.state.valor_de_compra} onChange={this.handleChange} disabled={true}/>
+                                <input type="number" step="1" min="0" name="valor_de_compra" value={this.state.valor_de_compra} onChange={this.handleChange}/>
                                 </div>
                                 <div id="input-valor-venda-card-produto">
                                 <label>Valor de venda: </label>
