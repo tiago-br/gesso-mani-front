@@ -3,6 +3,7 @@ import DespesasGerais from '../../components/privado/despesa/DespesasGerais'
 import DespesasProdutos from '../../components/privado/despesa/DespesasProdutos'
 import NavbarUser from '../../components/privado/navbar/Navbar'
 import '../../components/privado/despesa/styles/styleDespesas.css'
+import { NavLink } from 'react-router-dom'
 
 
  class  DespesasPage extends Component {
@@ -28,7 +29,7 @@ import '../../components/privado/despesa/styles/styleDespesas.css'
         })
      }
     render() {
-        console.log(this.state.data)
+        
         return (
             <div className="container-despesas-page">
                 {this.state.load?
@@ -44,6 +45,12 @@ import '../../components/privado/despesa/styles/styleDespesas.css'
                         </div>
                         <div>
                             <button onClick={()=>{this.changeComponent(false)}}>Produtos</button>
+                        </div>
+                        <div>
+                            <NavLink to='/sistema/desepsas/todas-as-compras'>Todas as compras</NavLink>
+                        </div>
+                        <div>
+                            <button onClick={()=>{this.changeComponent(false)}}>Todas as despesas</button>
                         </div>
                     </div>
                 </div>
