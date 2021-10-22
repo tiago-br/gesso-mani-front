@@ -28,7 +28,7 @@ text-align: center;
 
 
 `
-const Valor_Unitario = styled.div`
+const ValorUnitario = styled.div`
 
 width: 18rem;
 text-align:center;
@@ -74,7 +74,7 @@ class CardVenda extends Component {
                 <ButtonDelete onClick = {this.handleDelete}><FiDelete/></ButtonDelete>
                 <Name>{this.props.name}</Name>
                 <Quantidade>{this.props.quantidade}</Quantidade>
-                <Valor_Unitario>{this.props.valorUnitário}</Valor_Unitario>
+                <ValorUnitario>{this.props.valorUnitário}</ValorUnitario>
                 <ValorTotal>{this.props.valorUnitário * this.props.quantidade}</ValorTotal>
                 
             </Card>
