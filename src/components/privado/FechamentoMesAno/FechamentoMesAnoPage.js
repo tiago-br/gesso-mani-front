@@ -4,20 +4,23 @@ import apiUtil from '../../../utils/api.util'
 import Navbar from '../navbar/Navbar'
 import Despesas from './Despesas'
 
+const ContainerBackAndFechamento = styled.section`
 
-const ContainerButtonBack = styled.section`
 width: 100vw;
+height: 8rem;
 display: flex;
-justify-content: center;
-margin-top: 3rem;
+align-items: center;
+justify-content: space-around;
 `
+
+
 
 const ButtonBack = styled.button`
 cursor: pointer;
-width: 9rem;
-height: 3.5rem;
-margin-left: 4rem;
-margin-top: 3rem;
+width: 14rem;
+height: 4rem;
+
+
 background-color: #1D1D1C;
 color: white;
 border: 3px solid black;
@@ -26,11 +29,11 @@ border: 3px solid black;
     background-color: #727165;
     color: black;
 }
+
 @media (max-width: 960px) {
-   margin-left: 1rem;
-   margin-top: 2rem;
-   width: 5rem;
-   height: 2.5rem;
+ 
+   width: 8rem;
+   height: 3rem;
    
  }
 
@@ -161,15 +164,7 @@ text-align: center;
  }
 `
 
-const Delete = styled.div`
-width: 10rem;
-text-align: center;
-cursor: pointer;
-@media (max-width: 960px) {
-    text-align: center;
-    width: 6rem;
- }
-`
+
 const Info = styled.div`
 width: 90vw ;
 display: flex;
@@ -244,7 +239,7 @@ class FechamentoMesAnoPage extends Component {
 
     handleFiltrosDespesas = () => {
         this.setState({
-            corButton : false
+            corButton: false
         })
     }
 
@@ -252,12 +247,11 @@ class FechamentoMesAnoPage extends Component {
         //    const ano = data.split('T')[0].split('-')[0] se algum dia por ventura quiser adicionar o ano
         const mes = data.split('T')[0].split('-')[1]
         const dia = data.split('T')[0].split('-')[2]
-
         return `${dia}/${mes}`
     }
 
-    handleDeleteCard = async (id) => {
 
+    handleDeleteCard = async (id) => {
         apiUtil.deleteCompra(id)
         await setTimeout(function () { window.location.reload(); }, 1000)
     }
@@ -266,20 +260,22 @@ class FechamentoMesAnoPage extends Component {
         return (
             <div>
                 <Navbar />
-                <ButtonBack onClick={this.handleButtonBack}>Voltar</ButtonBack>
-                <ContainerButtonBack>
-                    <Data>{this.state.mes}/{this.state.ano}</Data>
-                </ContainerButtonBack>
+                <ContainerBackAndFechamento>
+                    <ButtonBack onClick={this.handleButtonBack}>Voltar</ButtonBack>
+                        <Data>{this.state.mes}/{this.state.ano}</Data>
+                    <ButtonBack onClick={this.handleButtonBack}>Fechamento</ButtonBack>
+                </ContainerBackAndFechamento>
+
                 <ContainerComprasAndDespesas>
                     <ButtonDespesasAndCompras onClick={this.handleFiltrosCompras} style={this.corButtonAtivoCompras()}> Compras </ButtonDespesasAndCompras>
                     <ButtonDespesasAndCompras onClick={this.handleFiltrosDespesas} style={this.corButtonAtivoDespesas()} > Despesas </ButtonDespesasAndCompras>
                 </ContainerComprasAndDespesas>
                 <SectionContainerFundoCard>
                     <DivContainerFundoCard>
-
                         <Info>
                             <InfoCard>Nome</InfoCard>
                             <InfoCard>Data</InfoCard>
+
                             {this.state.corButton ?
                                 <>
                                     <InfoCard>Quantidade</InfoCard>
@@ -290,21 +286,20 @@ class FechamentoMesAnoPage extends Component {
                             }
 
                             <InfoCard>Total</InfoCard>
-                            <InfoCard>Delete</InfoCard>
                         </Info>
+
                         {this.state.corButton ? this.state.listCompras.map(item => <Card>
                             <Name>{item.compra_produtos[0].name}</Name>
                             <DataCompra>{this.data(item.data)}</DataCompra>
                             <Quantidade>{item.compra_produtos[0].quantidade}</Quantidade>
                             <ValorDeCompra>R${item.compra_produtos[0].valor_de_compra.toLocaleString('pt-BR')}</ValorDeCompra>
                             <ValorTotalDaCompra>R${item.valor_total_compra.toLocaleString('pt-BR')}</ValorTotalDaCompra>
-                            <Delete onClick={() => { this.handleDeleteCard(item._id) }} >Delete</Delete>
+
                         </Card>
                         )
                             :
-                            <Despesas mes = {this.state.mes} ano = {this.state.ano} />
+                            <Despesas mes={this.state.mes} ano={this.state.ano} />
                         }
-
 
                     </DivContainerFundoCard>
                 </SectionContainerFundoCard>

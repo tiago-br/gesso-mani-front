@@ -34,26 +34,8 @@ text-align: center;
     width: 6rem;
  }
 `
-const Quantidade = styled.div`
-width: 10rem;
-text-align: center;
 
-@media (max-width: 960px) {
-    text-align: center;
-    width: 6rem;
- }
-`
 
-const ValorDeCompra = styled.div`
-width: 10rem;
-text-align: center;
-
-@media (max-width: 960px) {
-    text-align: center;
-    width: 6rem;
-
- }
-`
 const ValorTotalDaCompra = styled.div`
 width: 10rem;
 text-align: center;
@@ -64,15 +46,7 @@ text-align: center;
  }
 `
 
-const Delete = styled.div`
-width: 10rem;
-text-align: center;
-cursor: pointer;
-@media (max-width: 960px) {
-    text-align: center;
-    width: 6rem;
- }
-`
+
 
 
 class Despesas extends Component {
@@ -108,15 +82,7 @@ class Despesas extends Component {
         return `${dia}/${mes}`
     }
 
-    // handleDeleteCard = async (id) => {
 
-    //     apiUtil.deleteDespesa(id)
-        
-    //     const despesas = await apiUtil.getDespesa()
-    //     await this.setState({
-    //         despesas
-    //     })
-    // }
 
 
     render () {
@@ -130,7 +96,6 @@ class Despesas extends Component {
                      <Name>{item.nome}</Name>
                      <DataCompra>{`${this.state.mes}/${this.state.ano}`}</DataCompra>
                      <ValorTotalDaCompra>R${item.valor}</ValorTotalDaCompra>
-                    <Delete>Delete</Delete>
                  </Card>}
             )}
             </>
