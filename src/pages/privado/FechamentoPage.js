@@ -6,7 +6,7 @@ import NavbarUser from '../../components/privado/navbar/Navbar'
 
 class FechamentoPage extends Component {
     state={
-        fechamentoOn:true,
+        fechamentoOn:false,
         load:false
     }
     componentDidMount = async () =>{

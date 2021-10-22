@@ -28,8 +28,8 @@ export class FechamentoResultadoCard extends Component {
         return (
             <div>
                 <NavLink to={`/sistema/fechamento/${this.state.mes}/${this.state.ano}`}>
-                    <div>{this.state.mes}</div>
-                    <div>{this.props.resultado}</div>
+                    <div>{this.state.mesEscrito}</div>
+                    <div>R${this.props.resultado.toLocaleString('pt-BR')}</div>
                 </NavLink>
             </div>
         )

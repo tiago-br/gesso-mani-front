@@ -16,7 +16,8 @@ class FechamentoForm extends Component {
         resultado: 0,
         user: localStorage.getItem('user'),
         msg:'',
-        dataAnoMes:''
+        dataAnoMes:'',
+        idDespesas:[]
     }
     onChangeData = async(e) =>{
         e.preventDefault()
@@ -36,13 +37,24 @@ class FechamentoForm extends Component {
         //Valor total das Despesas
         const todasAsDespesas =  await api.getDespesa()
         const filterDespesas = todasAsDespesas.filter(e=>e.data.includes(dataAnoMes))//<-----Despesas filtrada pela data
+        const mapIdFilterDespesas = filterDespesas.map(e=>e._id)
+        const DespesasGerais = filterDespesas.map(e=>{
+            const objectDespesa ={
+                nome:e.name,
+                valor:e.gasto_total,
+                descricao:e.descricao
+            }
+            return objectDespesa
+        })
         const despesas_gerais_valor = filterDespesas.reduce((acc,e)=>{return acc + e.gasto_total},0)//<--Valor total das despesas
+        console.log(DespesasGerais)
+        
 
         //Salario Colaboradores
         const {data:colaboradores} = await api.getColaborador()
         const filterColaborador = colaboradores.filter(e=>e.ativo===true)
         const salarios_colaboradores = filterColaborador.reduce((acc,e)=>{return acc + e.salario},0)
-        
+       
         //Vendas Mes
         const {data:vendas} = await api.getVendas()
         const filterVendas = vendas.filter(e=>e.data.includes(dataAnoMes))
@@ -52,12 +64,15 @@ class FechamentoForm extends Component {
         const comprasMes = await api.getCompra()
         const filterComprasMes = comprasMes.filter(e=>e.data.includes(dataAnoMes))
         const valor_total_compras_do_mes = filterComprasMes.reduce((acc,e)=>{return acc + e.valor_total_compra},0)
-
+        console.log(valor_total_compras_do_mes)
         await this.setState({
             valor_total_vendas_do_mes,
             salarios_colaboradores,
             valor_total_compras_do_mes,
             despesas_gerais_valor,
+            DespesasGerais,
+            idDespesas:mapIdFilterDespesas
+            
             
         })
 
@@ -65,9 +80,11 @@ class FechamentoForm extends Component {
     onChangeAluguel = async (e) =>{
         e.preventDefault()
         const {name,value} = e.target
-        this.setState({
-            [name]:value
+        await this.setState({
+            [name]:Number(value)
         })
+        
+        
 
     }
     onClickSubmit = async () =>{
@@ -94,13 +111,16 @@ class FechamentoForm extends Component {
                     salarios_colaboradores: this.state.salarios_colaboradores,
                     aluguel: this.state.aluguel,
                     valor_total_compras_do_mes: this.state.valor_total_compras_do_mes,
-                    DespesasGerais: [],
+                    DespesasGerais: this.state.DespesasGerais,
                     despesas_gerais_valor: this.state.despesas_gerais_valor,
                     despesas_totais:this.state.salarios_colaboradores + this.state.aluguel +  this.state.valor_total_compras_do_mes +this.state.despesas_gerais_valor,
                     resultado:this.state.valor_total_vendas_do_mes - (this.state.salarios_colaboradores + this.state.aluguel +  this.state.valor_total_compras_do_mes +this.state.despesas_gerais_valor),
                     user: localStorage.getItem('user'),
                 }
                 await api.postFechamento(payload)
+                await this.state.idDespesas.forEach(e=>{
+                    api.deleteDespesa(e)
+                })
                 this.setState({
                     msg:`Fechamento cadastrado com sucesso`
                 })

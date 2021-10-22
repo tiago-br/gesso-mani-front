@@ -85,16 +85,19 @@ class Despesas extends Component {
 
     componentDidMount = async () => {
 
-        const despesas = await apiUtil.getDespesa()
+        const fechamentos = await apiUtil.getFechamento()
 
-        let filtered = await despesas.filter(compra => {
+        let filtered = fechamentos.filter(fechamento => {
            
-         return compra.data.split('T')[0].includes(`${this.state.ano}-${this.state.mes}`)
+         return fechamento.data.split('T')[0].includes(`${this.state.ano}-${this.state.mes}`)
         })
-
+        const despesasGerais = filtered.map(e=>e.DespesasGerais).flat()
+        
         await this.setState({
-            despesas:filtered
+            despesas:despesasGerais,
+            load:true
         })
+       
 
     }
 
@@ -105,27 +108,35 @@ class Despesas extends Component {
         return `${dia}/${mes}`
     }
 
-    handleDeleteCard = async (id) => {
+    // handleDeleteCard = async (id) => {
 
-        apiUtil.deleteDespesa(id)
+    //     apiUtil.deleteDespesa(id)
         
-        const despesas = await apiUtil.getDespesa()
-        await this.setState({
-            despesas
-        })
-    }
+    //     const despesas = await apiUtil.getDespesa()
+    //     await this.setState({
+    //         despesas
+    //     })
+    // }
 
 
     render () {
-        return (<>
+        return (
+        <>
+        {this.state.load?
+            <>
             {this.state.despesas.map(item =>
-                 <Card>
-                     <Name>{item.name}</Name>
-                     <DataCompra>{this.data(item.data)}</DataCompra>
-                     <ValorTotalDaCompra>R${item.gasto_total.toLocaleString('pt-BR')}</ValorTotalDaCompra>
-                    <Delete onClick={() => {this.handleDeleteCard(item._id)}}>Delete</Delete>
-                 </Card>
+               {console.log(item)
+                    return <Card>
+                     <Name>{item.nome}</Name>
+                     <DataCompra>{`${this.state.mes}/${this.state.ano}`}</DataCompra>
+                     <ValorTotalDaCompra>R${item.valor}</ValorTotalDaCompra>
+                    <Delete>Delete</Delete>
+                 </Card>}
             )}
+            </>
+        :
+        <h2>carregando...</h2>
+        }
         </>
         )
     }
