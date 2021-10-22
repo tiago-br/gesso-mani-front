@@ -14,6 +14,9 @@ import ColaboradoresPage from './pages/privado/ColaboradoresPage';
 import SistemaPage from './pages/privado/SistemaPage';
 import FechamentoMesAnoPage from './components/privado/FechamentoMesAno/FechamentoMesAnoPage';
 import FechamentoTotal from './components/privado/FechamentoMesAno/FechamentoTotal';
+import TodasAsDespesas from './components/privado/despesa/TodasAsDespesas';
+import TodasAsCompras from './components/privado/despesa/TodasAsCompras';
+import React from 'react';
 
 
 function App() {
@@ -41,6 +44,8 @@ function App() {
         <Route exact path="/sistema/users-sistema" render={(props) => <SistemaPage {...props}/>}/>
         <Route exact path="/sistema/fechamento/:mes/:ano" render={(props) => <FechamentoMesAnoPage {...props}/>}/>
         <Route exact path="/sistema/fechamento/:mes/:ano/fechamento" render={(props) => <FechamentoTotal {...props}/>}/>
+        <Route exact path="/sistema/desepsas/todas-as-despesas" render={(props) => <TodasAsDespesas {...props}/>}/>
+        <Route exact path="/sistema/desepsas/todas-as-compras" render={(props) => <TodasAsCompras {...props}/>}/>
       </AdminPrivateRoute>  
       
       </PrivateRoutes>
