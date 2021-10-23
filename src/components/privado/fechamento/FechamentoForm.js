@@ -25,14 +25,8 @@ class FechamentoForm extends Component {
         await this.setState({
             data:value
         })
-        const splitData = value.split('-')
-        const mes = splitData[1]
-        const ano = splitData[0]
-        const dataAnoMes = `${ano}-${mes}`
+        const dataAnoMes = value
 
-        await this.setState({
-            dataAnoMes
-        })
 
         //Valor total das Despesas
         const todasAsDespesas =  await api.getDespesa()
@@ -47,7 +41,6 @@ class FechamentoForm extends Component {
             return objectDespesa
         })
         const despesas_gerais_valor = filterDespesas.reduce((acc,e)=>{return acc + e.gasto_total},0)//<--Valor total das despesas
-        console.log(DespesasGerais)
         
 
         //Salario Colaboradores
@@ -150,7 +143,7 @@ class FechamentoForm extends Component {
                 <form>
                     <div>
                         <label>Data:</label>
-                        <input type='date' value={this.state.data} onChange={this.onChangeData}/>
+                        <input type='month' value={this.state.data} onChange={this.onChangeData}/>
                         
                     </div>
                     <div>
