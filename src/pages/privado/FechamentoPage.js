@@ -34,6 +34,10 @@ class FechamentoPage extends Component {
                 <>
                 <NavbarUser/>
                 <div>
+                    <h1>Fechamento</h1>
+                </div>
+                
+                <div>
                     <div>
                         <button onClick={()=>{this.handleFechamentoOn("sim")}}>Fechamento</button>
                     </div>
