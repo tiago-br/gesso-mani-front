@@ -213,7 +213,7 @@ class FechamentoMesAnoPage extends Component {
     }
 
     handleButtonBack = () => {
-        window.location = '/sistema/faturamento'
+        window.location = '/sistema/fechamento'
     }
 
     corButtonAtivoCompras = () => {
