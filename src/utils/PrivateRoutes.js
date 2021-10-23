@@ -16,7 +16,7 @@ function PrivateRoute({ component: Component, ...rest }) {
         return (
             <Route
                 render={(routeProps) => (
-                    <Redirect to="/area-do-funcionario" {...routeProps} {...rest} />
+                    <Redirect to="/" {...routeProps} {...rest} />
                 )}
             />
         );
