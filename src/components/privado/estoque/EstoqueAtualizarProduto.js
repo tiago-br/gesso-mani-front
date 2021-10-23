@@ -68,7 +68,7 @@ class EstoqueAtualizarProduto extends Component {
                     <input type="text" placeholder="Barra de pesquisa" name="searchBar" onChange={(e)=>{this.handleSearch(e)}}/>
                 </div>
                 <div style={{textAlign:"center", marginTop:"2vh"}}>
-                    <h4>Valor total do estoque:R${this.state.valorTotalEstoque} <span id="icon-hover-total-estoque"><GoQuestion/><span>Quantia total referente ao <strong>Valor de venda</strong></span></span></h4>
+                    <h4>Valor total do estoque:R${this.state.valorTotalEstoque} <span id="icon-hover-total-estoque"><GoQuestion/><span>Quantia total referente ao <strong>valor de venda</strong></span></span></h4>
                 </div>
                 <ContainerCards>
                 {this.state.load?
