@@ -50,7 +50,7 @@ import { NavLink } from 'react-router-dom'
                             <NavLink to='/sistema/despesas/todas-as-compras'>Todas as compras</NavLink>
                         
                         
-                            <NavLink to='/sistema/despesas/todas-as-vendas'>Todas as vendas</NavLink>
+                            <NavLink to='/sistema/despesas/todas-as-despesas'>Todas as despesas</NavLink>
                         
                     </div>
                 </div>

@@ -278,3 +278,93 @@
 .produto-list-todas-as-compras p{
     width: 10rem;
 }
+
+.info-todas-as-despesas{
+    text-align: center;
+    cursor: pointer;
+}
+.info-todas-as-despesas span{
+    display: none;
+}
+
+.info-todas-as-despesas:hover span{
+    display: block;
+    font-size: smaller;
+}
+
+.descricao-despesa-todas-as-despesas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-direction: column;
+}
+
+.descricao-despesa-todas-as-despesas >p{
+    margin-top: 1.5rem;
+    border: 3px solid white;
+    background-color: black;
+    text-align: left;
+    width: 40vw;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.red-despesa-produto{
+    color:red !important;
+}
+
+.btn-todas-as-despesas-card-delet{
+    width: 12rem;
+    height: 3rem;
+    color:white;
+    font-weight: 700;
+    border: 3px solid white;
+    cursor: pointer;
+    background-color: black;
+}
+
+.btn-todas-as-despesas-card-delet:hover{
+    color:black;
+    font-weight: 700;
+    border: 3px solid black;
+    cursor: pointer;
+    background-color: white;
+}
+.container-btn-todas-as-despesas-card-delet{
+    text-align: center;
+}
+.container-btn-todas-as-despesas-card-delet >div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+.info-despesa-produto-tittle{
+    cursor: pointer;
+    color: red;
+}
+.info-despesa-produto-tittle span{
+    display: none;
+}
+
+.info-despesa-produto-tittle:hover span{
+    display: block;
+    color: red;
+    font-size: 1.3rem;
+}
+
+.todas-as-despesas-filtro-nome-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.todas-as-despesas-filtro-nome-container input{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    background-color: inherit;
+}

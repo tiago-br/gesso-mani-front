@@ -9,7 +9,7 @@ export class TodasAsComprasCard extends Component {
     }
     componentDidMount =async ()=>{
         const data = this.props.data.split('T')[0].split('-')
-        const dataFormatada = `${data[2]}-${data[1]}-${data[0]}`
+        const dataFormatada = `${data[2]}/${data[1]}/${data[0]}`
         this.setState({
             dataFormatada
         })

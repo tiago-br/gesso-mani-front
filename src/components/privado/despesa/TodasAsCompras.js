@@ -70,7 +70,7 @@ export class TodasAsCompras extends Component {
                     
                                 <NavLink to='/sistema/despesas/todas-as-compras'>Todas as compras</NavLink>
                             
-                                <NavLink to='/sistema/despesas/todas-as-vendas'>Todas as vendas</NavLink>
+                                <NavLink to='/sistema/despesas/todas-as-despesas'>Todas as despesas</NavLink>
                         </div>
                         <h1>Todas as compras</h1>
                     </div>

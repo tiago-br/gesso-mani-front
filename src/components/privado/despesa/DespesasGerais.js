@@ -43,6 +43,9 @@ export class DespesasGerais extends Component {
         })
     }
     handleSubmitDespesa = async () =>{
+        await this.setState({
+            msg:'Carregando...'
+        })
         if(this.state.gasto_total===0){
             await this.setState({
                 msg:"Erro: insira um valor no campo de gasto total",
@@ -180,7 +183,7 @@ export class DespesasGerais extends Component {
                <div>
                    <div>
                        <div>
-                           <h2>Despesas gerais</h2>
+                           <h1>Despesas gerais</h1>
                        </div>
                        <div className="container-form-despesas-gerais">
                            <form>
