@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import CardCompra from '../compra/CardCompra'
 import api from '../../../utils/api.util'
 import DespesaProdutoCard from './DespesaProdutoCard'
+import {TiInfoOutline} from 'react-icons/ti'
 
 const Input = styled.input`
 display: flex;
@@ -32,7 +33,7 @@ margin-top: -1rem;
 `
 
 const Section = styled.section`
-margin-top: 4rem;
+
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -93,7 +94,7 @@ padding-right: 4rem;
 
 const Button = styled.button`
 
-margin-top: 5rem;
+margin-top: 1rem;
 width: 10rem;
 height: 3rem;
 background-color: #1D1D1C;
@@ -406,7 +407,8 @@ class DespesaProdutos extends Component {
         return (
             <ContainerGeral>
 
-            <h2>Despesas Produtos</h2>
+            <h1>Despesas produtos</h1>
+            <h1 className="info-despesa-produto-tittle"><TiInfoOutline/><span>Ao adicionar uma despesa produto, não é possível remove-lá posteriormente!</span></h1>
                 <Section>
                     {/* <ContainerLista>  */}
                     <Container>

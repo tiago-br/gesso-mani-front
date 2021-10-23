@@ -47,10 +47,10 @@ import { NavLink } from 'react-router-dom'
                             <button onClick={()=>{this.changeComponent(false)}}>Produtos</button>
                         </div>
                         
-                            <NavLink to='/sistema/desepsas/todas-as-compras'>Todas as compras</NavLink>
+                            <NavLink to='/sistema/despesas/todas-as-compras'>Todas as compras</NavLink>
                         
                         
-                            <NavLink to='/sistema/desepsas/todas-as-vendas'>Todas as vendas</NavLink>
+                            <NavLink to='/sistema/despesas/todas-as-despesas'>Todas as despesas</NavLink>
                         
                     </div>
                 </div>
