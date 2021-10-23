@@ -52,12 +52,33 @@
     background-color: #727165;
     color:black
 }
+.container-buttons-despesa-page a{
+    width: 20vw;
+    height: 7vh;
+    color:white;
+    font-weight: 700;
+    border: 3px solid black;
+    cursor: pointer;
+    background-color: #1D1D1C;
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 0;
+}
+
+.container-buttons-despesa-page a:hover{
+    background-color: #727165;
+    color:black
+}
 
 .container-form-despesas-gerais{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    
 }
 
 .container-form-despesas-gerais form{
