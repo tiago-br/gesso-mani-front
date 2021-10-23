@@ -27,7 +27,6 @@ function App() {
       {/* Rotas Cliente */}
       <Route exact path="/" render={(props)=> <LoginPage {...props}/>}/>
 
-
       
       {/* Rotas Sistema */}
       

@@ -1,10 +1,10 @@
 export const MenuItems = [
   
-    {
-        title: 'Funcionarios',
-        path: '/sistema/funcionarios',
-        cName: 'dropdown-link'
-    },
+    // {
+    //     title: 'Funcionarios',
+    //     path: '/sistema/funcionarios',
+    //     cName: 'dropdown-link'
+    // },
     {
         title: 'Faturamento',
         path: '/sistema/faturamento',
