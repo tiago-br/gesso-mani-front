@@ -16,11 +16,6 @@ export const MenuItems = [
         cName: 'dropdown-link'
     },
     {
-        title: 'Compras',
-        path: '/sistema/compras',
-        cName: 'dropdown-link'
-    },
-    {
         title: 'Despesas',
         path: '/sistema/despesas',
         cName: 'dropdown-link'

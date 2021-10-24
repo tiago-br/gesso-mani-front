@@ -23,21 +23,20 @@ class FechamentoTotal extends Component {
     render() {
         return (
             <div>
-                <Navbar/>
+                <Navbar />
                 <ContainerGeral>
                     <ContainerFundo>
 
-                        <h1> data: 
-  valor_total_vendas_do_mes: Number,
-  salarios_colaboradores: Number,
-  aluguel: Number,
-  valor_total_compras_do_mes: Number,
- 
-  despesas_gerais_valor: Number,
-  despesas_totais: Number,
-  resultado: Number,
-  user:
-</h1>
+                        <h1>  <h1>valor_total_vendas_do_mes</h1>
+                            <h1>salarios_colaboradores</h1>
+                            <h1>aluguel</h1>
+                            <h1>valor_total_compras_do_mes</h1>
+                            <h1>despesas_gerais_valor</h1>
+                            <h1>despesas_totais</h1>
+                            <h1>resultado</h1>
+                            <h1>user</h1>
+
+                        </h1>
 
                     </ContainerFundo>
                 </ContainerGeral>
