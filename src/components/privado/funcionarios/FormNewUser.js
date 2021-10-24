@@ -26,9 +26,8 @@ const FormUser = styled.div`
  flex-direction: column;
  width: 25rem;
  height: 26rem;
- border-radius: 25px;
  margin-top: 1rem;
- background-color: grey;
+ background-color: #574F43;
  border: 2px solid black;
 
  
@@ -202,7 +201,7 @@ class FormNewUser extends Component {
                 <FormUser>
                     <Tittle>Novo Usuário</Tittle>
                     <FormContent>
-                        <LabelUsername>Username</LabelUsername>
+                        <LabelUsername>Nome do usuário</LabelUsername>
                         <Input type="text" value={this.state.username} name="username" onChange={this.handleUsername}></Input>
                         <LabelPassword>Senha</LabelPassword>
                         <Input type="password" value={this.state.password} name="password" onChange={this.handleUsername}></Input>
