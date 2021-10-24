@@ -215,6 +215,7 @@ export class ColaboradorCard extends Component {
 
                                     {this.state.editOn ?
                                         <div className='container-button-edit-form-colaborador'>
+                                            <h3 style={{color:this.state.msgColorAtualizar}}>{this.state.msgAtualizar}</h3><br/>
                                             <button type="button" id='button-edit-form-colaborador' onClick={this.handleEditar}>Editar</button>
                                         </div>
                                         :
