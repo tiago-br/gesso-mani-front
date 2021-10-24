@@ -7,7 +7,13 @@ import GerenciarFuncionarios from '../../components/privado/funcionarios/Gerenci
 class SistemaPage extends Component {
     state={
         signupOn:false,
-        msgButton:"Criar novo usuário"
+        msgButton:"Criar novo usuário",
+        load:false
+    }
+    componentDidMount = () =>{
+        this.setState({
+            load:true
+        })
     }
     handleToggleButton = () =>{
         if(!this.state.signupOn){
@@ -27,7 +33,8 @@ class SistemaPage extends Component {
         return (
             <div>
                 <NavbarUser/>
-                
+                {this.state.load?
+                <>
                 <div className="funcionarios-page-toggle-button">
 
                     <div>
@@ -39,6 +46,10 @@ class SistemaPage extends Component {
                     <SignupPage/>
                     :
                     <GerenciarFuncionarios/>
+                }
+                </>
+                :
+                <h1>Carregnado</h1>
                 }
             </div>
         )

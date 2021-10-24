@@ -234,7 +234,9 @@ class ComprasPage extends Component {
         inputValue: '',
         listaDeCompraFiltrada: [],
         valor_de_compra: 0,
-        valor_de_venda: 0
+        valor_de_venda: 0,
+        btnEnviar:"Enviar",
+        
     }
 
     componentDidMount = async () => {
@@ -331,7 +333,9 @@ class ComprasPage extends Component {
     }
 
     enviarParaCompra = async () => {
-
+        await this.setState({
+            btnEnviar:"Enviando compra, aguarde!"
+        })
         const valor = this.valorTotal()
         const data = Date.parse(this.state.data)
         const user = localStorage.getItem('user')
@@ -381,7 +385,8 @@ class ComprasPage extends Component {
 
         this.setState({
             data: '',
-            listaDeCompra: []
+            listaDeCompra: [],
+            btnEnviar:"Enviar"
         })
 
     }
@@ -442,7 +447,7 @@ class ComprasPage extends Component {
 
                     </Container>
 
-                    <Button onClick={this.enviarParaCompra}>Enviar</Button>
+                    <Button onClick={this.enviarParaCompra}>{this.state.btnEnviar}</Button>
                     {/* 
                     </ContainerLista> */}
 
