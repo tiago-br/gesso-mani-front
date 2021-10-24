@@ -29,6 +29,7 @@ class GerenciarFuncionarios extends Component {
         return (
             <div>
                 {this.state.load?
+                <div style={{display:'flex',justifyContent:'center'}}>
                     <section className="container-funcionarios-users-card">
                         {
                             this.state.users.map(user=>
@@ -36,6 +37,7 @@ class GerenciarFuncionarios extends Component {
                             )
                         }
                     </section>
+                </div>
                     :
                     null  
                 }
