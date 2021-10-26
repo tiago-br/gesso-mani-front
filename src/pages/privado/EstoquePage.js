@@ -9,7 +9,9 @@ const ButtonTittle = styled.button`
 margin-top: 2rem;
 width: 15rem;
 height: 3rem;
-background-color: grey;
+background-color: #1D1D1C;
+color: white;
+border: 3px solid black;
 cursor: pointer;
    
 `
@@ -23,6 +25,11 @@ const PageTittle = styled.h2`
     text-align: center;
     font-size: 2rem;
     margin-top: 2rem;
+`
+const ContainerGeral = styled.div`
+
+
+
 `
 
 class EstoquePage extends Component {
@@ -56,11 +63,11 @@ class EstoquePage extends Component {
             <>
                 <NavbarUser />
                 {this.state.load ?
-                    <div>
+                    <ContainerGeral>
                         <PageTittle>Estoque</PageTittle>
                         <DivButton>
-                            {this.state.novoProduto ? <ButtonTittle onClick={this.handleChangeNovoProduto} style={{ boxShadow: "5px 5px 5px black" }}>Novo Produto</ButtonTittle> : <ButtonTittle onClick={this.handleChangeNovoProduto}>Novo Produto</ButtonTittle>}
-                            {this.state.novoProduto ? <ButtonTittle onClick={this.handleChangeAtualizarProduto}>Atualizar Produto</ButtonTittle> : <ButtonTittle style={{ boxShadow: "5px 5px 5px black" }} onClick={this.handleChangeAtualizarProduto}>Atualizar Produto</ButtonTittle>}
+                            {this.state.novoProduto ? <ButtonTittle onClick={this.handleChangeNovoProduto} style={{ backgroundColor: "#727165" , color: 'black' }}>Novo Produto</ButtonTittle> : <ButtonTittle onClick={this.handleChangeNovoProduto}>Novo Produto</ButtonTittle>}
+                            {this.state.novoProduto ? <ButtonTittle onClick={this.handleChangeAtualizarProduto}>Atualizar Produto</ButtonTittle> : <ButtonTittle style={{ backgroundColor: "#727165" , color: 'black'}} onClick={this.handleChangeAtualizarProduto}>Atualizar Produto</ButtonTittle>}
                         </DivButton>
 
                         <div>
@@ -71,7 +78,7 @@ class EstoquePage extends Component {
                             }
 
                         </div>
-                    </div>
+                    </ContainerGeral>
                     :
                     <h1>Carregando ...</h1>
                 }

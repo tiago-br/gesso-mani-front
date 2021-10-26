@@ -1,6 +1,7 @@
 .form-estoque-card{
     width: 90vw;
-    height: 16rem;
+    min-height: 100%;
+    height: 19rem;
     border: 3px solid black;
     vertical-align: middle;
     margin-bottom: 3vh;
@@ -184,6 +185,9 @@
 .estoque-card-fields{
     display: flex;
    
+  
+    
+   
     
     
 }
@@ -192,8 +196,11 @@
     display: flex;
     flex-direction: column;
     margin-left: 2vw;
-   
+    
+    
 }
+
+
 
 .estoque-card-field-left label,input{
     font-size: 1.2rem;
@@ -214,8 +221,7 @@
     flex-direction: column;
     text-align: center;
     margin-right: 2vw;
-    margin-top: 1rem;
-    
+    margin-top: 1rem;   
     
 }
 
@@ -261,11 +267,15 @@
     background-color: #1D1D1C;
     margin: 1rem;
     font-size: 0.9rem;
+   
     
 
 }
+
+
 .estoque-card-bts button:disabled{
     visibility: hidden;
+    
 }
 
 .estoque-card-bts button:hover{
@@ -307,7 +317,40 @@
     color: black;
     
 }
+@media (max-width: 960px) {  
+    
+    .estoque-card-fields{
+        margin-top: 1rem;
+        
+       
+    }
+    .estoque-card-field-left{
+        text-align: start;
+        width: 100%;
+        font-size: 10px;
+       
+    }
+   
+    .estoque-card-field-right{
 
+        display: none;
+
+    }
+    #btn-excluir-produto{
+        margin-left: 9px;
+        width:6rem;
+        font-size: 0.8rem;
+    }
+    #btn-atualizar-produto{
+        width:6rem;
+        font-size: 0.8rem;
+    }
+    .estoque-card-bts button{
+        width:6rem;
+        font-size: 0.8rem;
+    }
+    
+    }
 .msg-add-success{
     margin-left: 1vw;
     color: green;

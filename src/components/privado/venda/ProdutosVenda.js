@@ -279,7 +279,13 @@ class ProdutosVenda extends Component {
         if (this.state.desconto) {
             return "#00cc39"
         }
-        return "red"
+        return "#1D1D1C"
+    }
+    btDescontoColorLetter = () => {
+        if (this.state.desconto) {
+            return "black"
+        }
+        return "white"
     }
 
     btDescontoInput = async () => {
@@ -326,8 +332,14 @@ class ProdutosVenda extends Component {
             return "#00cc39"
         }
 
-        return "red"
+        return "#1D1D1C"
 
+    }
+    btEntregaColorLetter = () => {
+        if (this.state.entrega) {
+            return "black"
+        }
+        return "white"
     }
 
     btEntregaInput = () => {
@@ -349,11 +361,11 @@ class ProdutosVenda extends Component {
                     <Descontos>
                         <ConteinerBt>
                             <ContainerEdit>
-                                {this.state.booleanDesconto ? <ContainerButton><Button onClick={this.buttonCincoDesconto}>5%</Button>   <Button onClick={this.buttonDezDesconto} >10%</Button></ContainerButton> : <BtDesconto style={{ backgroundColor: this.btDescontoColor() }} onClick={this.btDesconto}>Desconto</BtDesconto>}
+                                {this.state.booleanDesconto ? <ContainerButton><Button onClick={this.buttonCincoDesconto}>5%</Button>   <Button onClick={this.buttonDezDesconto} >10%</Button></ContainerButton> : <BtDesconto style={{ backgroundColor: this.btDescontoColor(),border: "3px solid black",color: this.btDescontoColorLetter() }} onClick={this.btDesconto}>Desconto</BtDesconto>}
                                 <Edit onClick={this.btDescontoInput}><FaEdit /></Edit>
                             </ContainerEdit>
                             <ContainerEdit>
-                                {this.state.booleanEntrega ? <ContainerButton ><Input name="entrega" value={this.state.inputDesconto} type="number" onChange={this.handleChange} /></ContainerButton> : <BtFrete style={{ backgroundColor: this.btEntregaColor() }} onClick={this.btEntrega}>Entrega</BtFrete>}
+                                {this.state.booleanEntrega ? <ContainerButton ><Input name="entrega" value={this.state.inputDesconto} type="number" onChange={this.handleChange} /></ContainerButton> : <BtFrete style={{ backgroundColor: this.btEntregaColor(),border: "3px solid black",color: this.btEntregaColorLetter() }} onClick={this.btEntrega}>Entrega</BtFrete>}
                                 <Edit onClick={this.btEntregaInput}><FaEdit /></Edit>
                             </ContainerEdit>
                         </ConteinerBt>

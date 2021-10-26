@@ -131,10 +131,10 @@ class FatVENDAcard extends Component {
                             <button type="button" onClick={this.handleOpenDeletVenda}><img src={imagemLixeira} alt="botao-excluir"/></button>
                         </div>
                     </section>
-                    <div>
+                    <div className='toogle-container-button'>
                         <button className="toggle-button-ver-mais-ver-menos"type="button"onClick={this.handleToggleListProdutos}>{this.state.toggleButtonListProdutosMsg}</button>
                     </div>
-                    <div>
+                    <div className='container-lista-vendas'>
                         {this.state.openListProdutos?
                         this.state.produtos.map((e)=>
                             <ListaProdutosVendasCard key={e.id} produtos={e}/>

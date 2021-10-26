@@ -14,8 +14,6 @@ align-items: center;
 justify-content: space-around;
 `
 
-
-
 const ButtonBack = styled.button`
 cursor: pointer;
 width: 14rem;
@@ -69,7 +67,7 @@ const ButtonDespesasAndCompras = styled.button`
 
 cursor: pointer;
 width: 14rem;
-height: 4rem;
+height: 3rem;
 background-color: #1D1D1C;
 color: white;
 border: 3px solid black;
@@ -117,6 +115,7 @@ color: white;
 margin-bottom: 1rem;
 border: 3px solid black;
 `
+
 const Name = styled.div`
 width: 10rem;
 text-align: center;
@@ -127,6 +126,7 @@ text-align: center;
  }
 
 `
+
 const DataCompra = styled.div`
 width: 10rem;
 text-align: center;
@@ -135,6 +135,7 @@ text-align: center;
     width: 6rem;
  }
 `
+
 const Quantidade = styled.div`
 width: 10rem;
 text-align: center;
@@ -155,6 +156,7 @@ text-align: center;
 
  }
 `
+
 const ValorTotalDaCompra = styled.div`
 width: 10rem;
 text-align: center;
@@ -164,7 +166,6 @@ text-align: center;
     width: 6rem;
  }
 `
-
 
 const Info = styled.div`
 width: 90vw ;

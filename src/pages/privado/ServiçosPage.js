@@ -13,6 +13,7 @@ align-items: center;
 justify-content: space-around;
 `
 const Card = styled.div`
+
 display: flex;
 justify-content: center;
 align-items: center;
@@ -21,6 +22,11 @@ width: 50vw;
 border: 3px solid black;
 background-color: #1D1D1C;
 color: white;
+:hover{
+    background-color: #727165 ;
+    color: black;
+    cursor: pointer;
+}
 `
 
 export class ServiçosPage extends Component {
@@ -29,12 +35,12 @@ export class ServiçosPage extends Component {
             <>
                 <Navbar />
                 <Container>
-
-                    <Link to='/sistema/faturamento'><Card> <h2>Faturamento</h2>  </Card></Link>
-                    <Link to='/sistema/fechamento'><Card> <h2>Fechamento</h2> </Card></Link>
-                    <Link to='/sistema/despesas'> <Card> <h2>Despesas</h2>  </Card></Link>
-                    <Link to='/sistema/colaboradores'> <Card> <h2>Colaboradores</h2> </Card></Link>
-                    <Link to='/sistema/sistema'> <Card> <h2>Sistema</h2> </Card></Link>
+                   
+                    <Link style={{textDecoration : 'none'}} to='/sistema/faturamento'><Card> <h2>Faturamento</h2>  </Card></Link>
+                    <Link style={{textDecoration : 'none'}} to='/sistema/fechamento'><Card> <h2>Fechamento</h2> </Card></Link>
+                    <Link style={{textDecoration : 'none'}} to='/sistema/despesas'> <Card> <h2>Despesas</h2>  </Card></Link>
+                    <Link style={{textDecoration : 'none'}} to='/sistema/colaboradores'> <Card> <h2>Colaboradores</h2> </Card></Link>
+                    <Link style={{textDecoration : 'none'}} to='/sistema/users-sistema'> <Card> <h2>Sistema</h2> </Card></Link>
 
 
                 </Container>
