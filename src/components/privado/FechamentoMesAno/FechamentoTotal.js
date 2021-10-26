@@ -97,7 +97,8 @@ class FechamentoTotal extends Component {
     state = {
         mes: this.props.match.params.mes,
         ano: this.props.match.params.ano,
-        fechamento: []
+        fechamento: [],
+        totalDespesasGerais:0
     }
 
 
@@ -108,9 +109,11 @@ class FechamentoTotal extends Component {
             return fechamento.data.split('T')[0].includes(`${this.state.ano}-${this.state.mes}`)
         })
 
+        const totalDespesasGerais = filtered[0].DespesasGerais.reduce((acc,e)=>{return acc + e.valor},0)
+
 
         this.setState({
-
+            totalDespesasGerais,
             fechamento: filtered[0]
 
         })
@@ -140,7 +143,7 @@ class FechamentoTotal extends Component {
                         </ContainerValues>
                         <Hr/>
                         <ContainerValues>
-                            <Info>Valor total de despesas  </Info> <Result>R${this.state.fechamento.despesas_totais}</Result>
+                            <Info>Valor total de despesas  </Info> <Result>R${this.state.totalDespesasGerais}</Result>
                         </ContainerValues>
                         <Hr/>
                         <ContainerValues>
