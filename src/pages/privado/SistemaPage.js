@@ -36,7 +36,6 @@ class SistemaPage extends Component {
                 {this.state.load?
                 <>
                 <div className="funcionarios-page-toggle-button">
-
                     <div>
                         <h1>Sistema</h1>
                         <button onClick={this.handleToggleButton}>{this.state.msgButton}</button>
