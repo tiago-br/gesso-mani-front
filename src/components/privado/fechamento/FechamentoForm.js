@@ -1,7 +1,108 @@
 import React, { Component } from 'react'
 import api from '../../../utils/api.util'
 import {ImWarning} from 'react-icons/im'
+import styled from 'styled-components'
 
+const ContainerGeral = styled.div`
+
+border: 3px solid black;
+height: 23rem;
+background-color: #574F43 ;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 3rem;
+width: 30rem;
+@media (max-width: 960px) {  
+    
+    width: 80vw;
+    
+    }
+`
+
+const TextForm = styled.h2`
+
+margin-top: 2rem;
+
+`
+
+const DataAndAluguel = styled.div`
+margin-top: 3rem;
+width: 80%;
+border: 2px solid black;
+background-color: #1D1D1C;
+border: 3px solid black;
+color: white;
+border-radius: 10px;
+display: flex;
+align-items: center;
+height: 3rem;
+justify-content: space-around;
+@media (max-width: 960px) {  
+    
+    width: 95%;
+    
+    }
+
+
+`
+
+const Input = styled.input`
+
+background-color: #2B2B2A;
+color: white;
+width: 15rem;
+margin-bottom: 8px;
+border: 3px solid black;
+text-align: center;
+:focus{
+  outline: none;
+  background-color: white;
+  color: black;
+  cursor: text;
+ 
+}
+@media (max-width: 960px) {  
+    
+    width: 10rem;
+    
+    }
+
+`
+
+const ContainerDown = styled.div`
+
+margin-top: 1rem;
+
+`
+
+const ContainerButton = styled.div`
+display: flex;
+
+width: 10rem;
+justify-content: space-around;
+margin-top: 1rem;
+align-items: center;
+
+`
+const Button = styled.button`
+width: 8rem;
+text-decoration: none;
+height: 2rem;
+color: white;
+cursor: pointer;
+border: 3px solid black;
+background-color: #1D1D1C;
+
+:hover{
+    background-color:  #727165;
+    color: black;
+}
+
+@media (max-width: 960px) {
+    width: 20vw;
+    }
+`
 
 class FechamentoForm extends Component {
     state={
@@ -138,29 +239,29 @@ class FechamentoForm extends Component {
     }
     render() {
         return (
-            <div>
-                <h2>Formulário</h2>
-                <form>
-                    <div>
+            <ContainerGeral>
+                <TextForm>Formulário</TextForm>
+                
+                    <DataAndAluguel>
                         <label>Data:</label>
-                        <input type='month' value={this.state.data} onChange={this.onChangeData}/>
+                        <Input type='month' value={this.state.data} onChange={this.onChangeData}/>
                         
-                    </div>
-                    <div>
+                    </DataAndAluguel>
+                    <DataAndAluguel>
                         <label>Aluguel:</label>
-                        <input type='number' name="aluguel" value={this.state.aluguel} onChange={this.onChangeAluguel}/>
-                    </div>
-                    <div>
+                        <Input type='number' name="aluguel" value={this.state.aluguel} onChange={this.onChangeAluguel}/>
+                    </DataAndAluguel>
+                    <ContainerDown>
                         <div>
                             <h3>{this.state.msg}</h3>
                         </div>
-                        <div>
-                            <button type="button" onClick={this.onClickSubmit}>Enviar</button>
+                        <ContainerButton>
+                            <Button type="button" onClick={this.onClickSubmit}>Enviar</Button>
                             <span><ImWarning/></span>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                        </ContainerButton>
+                    </ContainerDown>
+                
+            </ContainerGeral>
         )
     }
 }

@@ -142,8 +142,8 @@ class EstoqueCardProdutos extends Component {
                         <fieldset disabled={this.state.edit}>
                         <div className="estoque-card-fields">
                             <div className="estoque-card-field-left">
-                                <div>
-                                <label>Produto: </label>
+                                <div >
+                                <label >Produto: </label>
                                 <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
                                 </div>
                                 <div>

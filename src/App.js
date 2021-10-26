@@ -17,6 +17,7 @@ import FechamentoTotal from './components/privado/FechamentoMesAno/FechamentoTot
 import TodasAsDespesas from './components/privado/despesa/TodasAsDespesas';
 import TodasAsCompras from './components/privado/despesa/TodasAsCompras';
 import React from 'react';
+import ServiçosPage from './pages/privado/ServiçosPage';
 
 
 function App() {
@@ -45,6 +46,8 @@ function App() {
         <Route exact path="/sistema/fechamento/:mes/:ano/fechamento" render={(props) => <FechamentoTotal {...props}/>}/>
         <Route exact path="/sistema/despesas/todas-as-despesas" render={(props) => <TodasAsDespesas {...props}/>}/>
         <Route exact path="/sistema/despesas/todas-as-compras" render={(props) => <TodasAsCompras {...props}/>}/>
+        <Route exact path="/sistema/serviços" render={(props) => <ServiçosPage {...props}/>}/>
+
       </AdminPrivateRoute>  
       
       </PrivateRoutes>
