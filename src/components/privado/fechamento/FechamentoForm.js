@@ -211,6 +211,7 @@ class FechamentoForm extends Component {
                     resultado:this.state.valor_total_vendas_do_mes - (this.state.salarios_colaboradores + this.state.aluguel +  this.state.valor_total_compras_do_mes +this.state.despesas_gerais_valor),
                     user: localStorage.getItem('user'),
                 }
+                console.log(payload)
                 await api.postFechamento(payload)
                 await this.state.idDespesas.forEach(e=>{
                     api.deleteDespesa(e)
