@@ -334,7 +334,7 @@ class ComprasPage extends Component {
 
     enviarParaCompra = async () => {
         await this.setState({
-            btnEnviar:"Enviando compra, aguarde!"
+            btnEnviar:"Aguarde!"
         })
         const valor = this.valorTotal()
         const data = Date.parse(this.state.data)
