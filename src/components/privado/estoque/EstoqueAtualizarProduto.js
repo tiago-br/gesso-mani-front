@@ -12,6 +12,12 @@ const ContainerCards = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 2rem;
+    
+    
+    /* @media (max-width: 960px) {
+    
+
+   } */
 `
 
 
