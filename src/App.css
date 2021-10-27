@@ -12,6 +12,7 @@
     background-color:  yellow;
     box-shadow: 5px 5px 5px black;
     color: black;
+    color: #10100f;
 }
 
 @media screen and (max-width: 960px){

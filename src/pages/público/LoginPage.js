@@ -10,9 +10,9 @@ class LoginPage extends Component {
         return (
             <div>
                 <NavBarClient/>
-                <div>
+                
                     <FormLogin {...this.props}/>
-                </div>
+               
             </div>
         )
     }
