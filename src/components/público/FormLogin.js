@@ -4,6 +4,8 @@ import api from '../../utils/api.util'
 import { VscGithubInverted } from 'react-icons/vsc'
 import { SiLinkedin } from 'react-icons/si'
 import { FaLock } from 'react-icons/fa'
+import { CgLogIn } from 'react-icons/cg'
+import { MdLogin } from 'react-icons/md'
 
 
 const FormContainer = styled.form`
@@ -216,7 +218,7 @@ class FormLogin extends Component {
                     <UserName placeholder='Usuário' type='text' name='username' value={this.state.username} onChange={this.handleChangeLogin}></UserName>
 
                     <SenhaLogin placeholder='Senha' type='password' name='password' value={this.state.password} onChange={this.handleChangeLogin}></SenhaLogin>
-                    <Button placeholder='Usuario' type='submit' onClick={this.handleSubmit}>Entrar</Button>
+                    <Button placeholder='Usuario' type='submit' onClick={this.handleSubmit}><MdLogin style={{fontSize:'1.2rem',verticalAlign:'middle',paddingRight:'1px', position:'relative',bottom:'2px'}}/>Entrar</Button>
                 </FormContainer>
                 {this.state.msg && <div>{this.state.msg}</div>}
             </ContainerGeral>
