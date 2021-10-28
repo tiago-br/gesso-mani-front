@@ -45,7 +45,7 @@ class EstoqueNovoProduto extends Component {
     handleSubmit = async(e) =>{
         e.preventDefault()
         const payload ={
-            name:this.state.name,
+            name:this.state.name.trim(),
             quantidade_em_estoque:0,
             valor_de_venda:this.state.valor_de_venda,
             descricao:this.state.descricao,

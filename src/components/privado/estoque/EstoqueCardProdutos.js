@@ -71,7 +71,7 @@ class EstoqueCardProdutos extends Component {
     handleAtualizarProduto = async (e) =>{
         e.preventDefault()
         const payload={
-            name:this.state.name,
+            name:this.state.name.trim(),
             quantidade_em_estoque:this.state.quantidade_em_estoque,
             valor_de_venda:this.state.valor_de_venda,
             descricao:this.state.descricao,
@@ -80,7 +80,7 @@ class EstoqueCardProdutos extends Component {
             valor_de_compra:this.state.valor_de_compra
         }
         try {
-            if(this.state.name==="" || this.state.quantidade_em_estoque<0){
+            if(this.state.name===""){
                 throw new Error()
             }
             await api.putProduto(this.state.id,payload)

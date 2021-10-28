@@ -208,6 +208,8 @@ class FechamentoMesAnoPage extends Component {
             return compra.data.split('T')[0].split('-')[0] === `${this.state.ano}` && compra.data.split('T')[0].split('-')[1] === `${this.state.mes}`
         })
 
+
+
         await this.setState({
             listCompras: filtered
         })
@@ -266,8 +268,8 @@ class FechamentoMesAnoPage extends Component {
                 <Navbar />
                 <ContainerBackAndFechamento>
                     <ButtonBack onClick={this.handleButtonBack}>Voltar</ButtonBack>
-                        <Data>{this.state.mes}/{this.state.ano}</Data>
-                    <Link to= {`/sistema/fechamento/${this.state.mes}/${this.state.ano}/fechamento`}><ButtonBack>Fechamento</ButtonBack></Link>
+                    <Data>{this.state.mes}/{this.state.ano}</Data>
+                    <Link to={`/sistema/fechamento/${this.state.mes}/${this.state.ano}/fechamento`}><ButtonBack>Fechamento</ButtonBack></Link>
                 </ContainerBackAndFechamento>
 
                 <ContainerComprasAndDespesas>
@@ -292,14 +294,16 @@ class FechamentoMesAnoPage extends Component {
                             <InfoCard>Total</InfoCard>
                         </Info>
 
-                        {this.state.corButton ? this.state.listCompras.map(item => <Card>
-                            <Name>{item.compra_produtos[0].name}</Name>
-                            <DataCompra>{this.data(item.data)}</DataCompra>
-                            <Quantidade>{item.compra_produtos[0].quantidade}</Quantidade>
-                            <ValorDeCompra>R${item.compra_produtos[0].valor_de_compra.toLocaleString('pt-BR')}</ValorDeCompra>
-                            <ValorTotalDaCompra>R${item.valor_total_compra.toLocaleString('pt-BR')}</ValorTotalDaCompra>
+                        {this.state.corButton ? this.state.listCompras.map(item => item.compra_produtos.map(produto => {
+                            return <Card >
+                                <Name>{produto.name}</Name>
+                                <DataCompra>{this.data(item.data)}</DataCompra>
+                                <Quantidade>{produto.quantidade}</Quantidade>
+                                <ValorDeCompra>R${produto.valor_de_compra.toLocaleString('pt-BR')}</ValorDeCompra>
+                                <ValorTotalDaCompra>R${(produto.quantidade * produto.valor_de_compra).toLocaleString('pt-BR')}</ValorTotalDaCompra>
+                            </Card>
 
-                        </Card>
+                        })
                         )
                             :
                             <Despesas mes={this.state.mes} ano={this.state.ano} />
@@ -308,7 +312,7 @@ class FechamentoMesAnoPage extends Component {
                     </DivContainerFundoCard>
                 </SectionContainerFundoCard>
 
-            </div>
+            </div >
         )
     }
 }

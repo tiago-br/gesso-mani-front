@@ -128,7 +128,7 @@ class FatVENDAcard extends Component {
                             </ul>              
                         </div>
                         <div>
-                            <button type="button" onClick={this.handleOpenDeletVenda}><img src={imagemLixeira} alt="botao-excluir"/></button>
+                            <button className='bt-lixeira' type="button" onClick={this.handleOpenDeletVenda}><img src={imagemLixeira} alt="botao-excluir"/></button>
                         </div>
                     </section>
                     <div className='toogle-container-button'>
