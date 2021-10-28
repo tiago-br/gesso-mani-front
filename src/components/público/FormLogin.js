@@ -169,6 +169,7 @@ class FormLogin extends Component {
         password: '',
         msg: ''
     }
+    
     handleChangeLogin = (e) => {
         e.preventDefault()
         const { name, value } = e.target

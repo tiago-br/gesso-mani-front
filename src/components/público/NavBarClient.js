@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 
@@ -25,7 +24,6 @@ class NavBarClient extends Component {
     render() {
         return (
             <NavBar>
-
                 <LogoHome>Gesso Mania  <i className='fab fa-firstdraft' /></LogoHome>
             </NavBar>
         )
