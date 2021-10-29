@@ -122,7 +122,7 @@ class Orcamento extends Component {
                 </ContainerBt>
                 {this.state.boolean ? this.state.orçamentos.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)
                     :
-                    this.state.pendentes.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)}
+                 this.state.pendentes.map(orçamento => <CardOrçamento key={orçamento._id} {...orçamento} />)}
             </>
             :
             <h2>Carregando...</h2>
