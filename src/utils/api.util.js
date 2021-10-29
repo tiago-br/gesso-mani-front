@@ -28,7 +28,7 @@ class Api {
         if (error.response.status === 400) {
 
           localStorage.removeItem('token')
-          window.location = "/area-do-funcionario"
+          
         }
         throw error
       }

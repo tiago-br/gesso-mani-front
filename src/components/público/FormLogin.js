@@ -180,23 +180,32 @@ class FormLogin extends Component {
     }
 
     handleSubmit = async (e) => {
-        e.preventDefault()
+        
         const payload = {
             username: this.state.username,
             password: this.state.password
         }
+
+
+
         try {
-
+            
             await api.login(payload)
+            alert('aloo')
             window.location = "/sistema/vendas"
-
         }
-        catch (e) {
-            this.setState({
+        catch (error) {
+
+            await this.setState({
                 msg: 'Usuário ou senha inválido',
-                password: '',
-                username: ''
+                
             })
+
+            setTimeout(() => {
+                this.setState({
+                    msg: ""
+                })
+            },2000)
         }
 
 
@@ -211,7 +220,7 @@ class FormLogin extends Component {
 
 
 
-                        <Login><FaLock /> Login</Login>
+                        <Login><FaLock/> Login</Login>
                         <SistemaLog> <i className='fab fa-firstdraft' /></SistemaLog>
 
                     </CardLogin>
@@ -219,9 +228,10 @@ class FormLogin extends Component {
                     <UserName placeholder='Usuário' type='text' name='username' value={this.state.username} onChange={this.handleChangeLogin}></UserName>
 
                     <SenhaLogin placeholder='Senha' type='password' name='password' value={this.state.password} onChange={this.handleChangeLogin}></SenhaLogin>
-                    <Button placeholder='Usuario' type='submit' onClick={this.handleSubmit}><MdLogin style={{fontSize:'1.2rem',verticalAlign:'middle',paddingRight:'1px', position:'relative',bottom:'2px'}}/>Entrar</Button>
+                    {this.state.msg && <div style={{fontSize:"1.3rem",color: 'red',paddingTop: '0.8rem'}}>{this.state.msg}</div>}
+                    <Button placeholder='Usuario' type='button' onClick={this.handleSubmit}><MdLogin style={{fontSize:'1.2rem',verticalAlign:'middle',paddingRight:'1px', position:'relative',bottom:'2px'}}/>Entrar</Button>
                 </FormContainer>
-                {this.state.msg && <div>{this.state.msg}</div>}
+                
             </ContainerGeral>
 
             <ContainerFooter>
