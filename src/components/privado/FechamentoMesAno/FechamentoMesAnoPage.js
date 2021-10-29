@@ -203,7 +203,7 @@ class FechamentoMesAnoPage extends Component {
 
     componentDidMount = async () => {
 
-        let compras = await apiUtil.getCompra()
+        let compras = await apiUtil.getFechamento()
         let filtered = await compras.filter(compra => {
             return compra.data.split('T')[0].split('-')[0] === `${this.state.ano}` && compra.data.split('T')[0].split('-')[1] === `${this.state.mes}`
         })

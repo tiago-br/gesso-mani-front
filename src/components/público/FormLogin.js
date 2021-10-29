@@ -191,7 +191,6 @@ class FormLogin extends Component {
         try {
             
             await api.login(payload)
-            alert('aloo')
             window.location = "/sistema/vendas"
         }
         catch (error) {
