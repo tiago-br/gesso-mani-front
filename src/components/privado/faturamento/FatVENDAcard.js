@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import apiUtil from '../../../utils/api.util'
 import ListaProdutosVendasCard from './ListaProdutosVendasCard'
 const imagemLixeira = "https://2.bp.blogspot.com/-DqfqcqsH47M/UMixbjsQlnI/AAAAAAAAI_U/IQkIeo-wOaU/s1600/Lixeira+-+Premium+Design+3D+(1).png"
 class FatVENDAcard extends Component {
@@ -68,6 +69,12 @@ class FatVENDAcard extends Component {
             msgDeletError:"Número de confirmamento inválido"
            })
         }else{
+            this.state.produtos.forEach(item=>{
+                const payload={
+                    quantidade:item.quantidade
+                }
+                apiUtil.putAddEstoque(payload,item.nome)
+            })
             await this.props.deleteVenda(this.props.id,this.state.deletNumber,this.state.confirmDeletNumber)
         }
         setTimeout(()=>{this.setState({msgDeletError:""})}, 1500)
