@@ -204,7 +204,7 @@ class FechamentoMesAnoPage extends Component {
 
     componentDidMount = async () => {
 
-        let compras = await apiUtil.getFechamento()
+        let compras = await apiUtil.getCompra()
         let filtered = compras.filter(compra => {
             return compra.data.split('T')[0].split('-')[0] === `${this.state.ano}` && compra.data.split('T')[0].split('-')[1] === `${this.state.mes}`
         })
@@ -300,7 +300,9 @@ class FechamentoMesAnoPage extends Component {
                             <InfoCard>Total</InfoCard>
                         </Info>
 
-                        {this.state.corButton ? this.state.listCompras.map(item => item.compra_produtos.map(produto => {
+                        {this.state.corButton ? 
+                     
+                            this.state.listCompras.map(item => item.compra_produtos.map(produto => {
                             return <Card >
                                 <Name>{produto.name}</Name>
                                 <DataCompra>{this.data(item.data)}</DataCompra>
