@@ -198,20 +198,24 @@ class FechamentoMesAnoPage extends Component {
         mes: this.props.match.params.mes,
         ano: this.props.match.params.ano,
         corButton: true,
-        listCompras: []
+        listCompras: [],
+        load:false
     }
 
     componentDidMount = async () => {
 
         let compras = await apiUtil.getFechamento()
-        let filtered = await compras.filter(compra => {
+        let filtered = compras.filter(compra => {
             return compra.data.split('T')[0].split('-')[0] === `${this.state.ano}` && compra.data.split('T')[0].split('-')[1] === `${this.state.mes}`
         })
 
-
+        if(!filtered){
+            filtered = [{compra_produtos:[]}]
+        }
 
         await this.setState({
-            listCompras: filtered
+            listCompras: filtered,
+            load:true
         })
     }
 
@@ -266,6 +270,8 @@ class FechamentoMesAnoPage extends Component {
         return (
             <div>
                 <Navbar />
+                {this.state.load?
+                <>
                 <ContainerBackAndFechamento>
                     <ButtonBack onClick={this.handleButtonBack}>Voltar</ButtonBack>
                     <Data>{this.state.mes}/{this.state.ano}</Data>
@@ -311,8 +317,11 @@ class FechamentoMesAnoPage extends Component {
 
                     </DivContainerFundoCard>
                 </SectionContainerFundoCard>
+                </>
+                :
+                <h1>Carregando...</h1>}
 
-            </div >
+            </div>
         )
     }
 }
